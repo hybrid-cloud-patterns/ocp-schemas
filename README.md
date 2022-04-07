@@ -5,10 +5,10 @@ Look at the `create-schemas.sh` for how to install openapi2json to run this scri
 
 Notes:
 Since there are no swagger.json files for ACM around, I just installed it on a 4.9 OCP cluster (ACM 2.4.2)
-and retrieved all APIs with the following:
+and retrieved all APIs with the following (the jq -S sorts the keys, which helps keep the json changes smaller):
 ```
 kubectl proxy --port=8080
-curl localhost:8080/openapi/v2 | jq . > ocp-4.9-acm-2.4.2-clean.json
+curl localhost:8080/openapi/v2 | jq -S . > ocp-4.9-acm-2.4.2-clean.json
 ```
 This file was saved in `ocp-acm-schemas/ocp-4.9-acm-2.4.2-clean.json`.
 
