@@ -1,16 +1,8 @@
 {
   "description": "DeploymentTriggerPolicy describes a policy for a single trigger that results in a new deployment.",
-  "type": "object",
   "properties": {
     "imageChangeParams": {
       "description": "DeploymentTriggerImageChangeParams represents the parameters to the ImageChange trigger.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "from"
-      ],
       "properties": {
         "automatic": {
           "description": "Automatic means that the detection of a new tag value should result in an image update inside the pod template.",
@@ -21,20 +13,19 @@
         },
         "containerNames": {
           "description": "ContainerNames is used to restrict tag updates to the specified set of container names in a pod. If multiple triggers point to the same containers, the resulting behavior is undefined. Future API versions will make this a validation error. If ContainerNames does not point to a valid container, the trigger will be ignored. Future API versions will make this a validation error.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "from": {
           "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-          "type": "object",
           "properties": {
             "apiVersion": {
               "description": "API version of the referent.",
@@ -86,6 +77,7 @@
               ]
             }
           },
+          "type": "object",
           "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
@@ -97,6 +89,13 @@
           ]
         }
       },
+      "required": [
+        "from"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "type": {
@@ -107,6 +106,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

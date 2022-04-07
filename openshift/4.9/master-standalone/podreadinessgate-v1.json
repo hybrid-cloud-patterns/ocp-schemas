@@ -1,9 +1,5 @@
 {
   "description": "PodReadinessGate contains the reference to a pod condition",
-  "type": "object",
-  "required": [
-    "conditionType"
-  ],
   "properties": {
     "conditionType": {
       "description": "ConditionType refers to a condition in the pod's condition list with matching type.",
@@ -13,5 +9,9 @@
       ]
     }
   },
+  "required": [
+    "conditionType"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,11 +1,5 @@
 {
   "description": "DeploymentRequest is a request to a deployment config for a new deployment.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-  "type": "object",
-  "required": [
-    "name",
-    "latest",
-    "force"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -20,16 +14,16 @@
     },
     "excludeTriggers": {
       "description": "ExcludeTriggers instructs the instantiator to avoid processing the specified triggers. This field overrides the triggers from latest and allows clients to control specific logic. This field is ignored if not specified.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "type": [
           "string",
           "null"
         ]
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "force": {
       "description": "Force will try to force a new deployment to run. If the deployment config is paused, then setting this to true will return an Invalid error.",
@@ -63,6 +57,12 @@
       ]
     }
   },
+  "required": [
+    "name",
+    "latest",
+    "force"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "",

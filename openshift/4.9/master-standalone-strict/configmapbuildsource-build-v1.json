@@ -1,16 +1,8 @@
 {
   "description": "ConfigMapBuildSource describes a configmap and its destination directory that will be used only at the build time. The content of the configmap referenced here will be copied into the destination directory instead of mounting.",
-  "type": "object",
-  "required": [
-    "configMap"
-  ],
   "properties": {
     "configMap": {
       "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -20,6 +12,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -31,6 +27,10 @@
       ]
     }
   },
+  "required": [
+    "configMap"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

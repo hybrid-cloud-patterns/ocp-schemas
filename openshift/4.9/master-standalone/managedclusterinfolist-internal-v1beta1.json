@@ -1,8 +1,5 @@
 {
   "description": "ManagedClusterInfoList is a list of ManagedClusterInfo",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,16 +13,8 @@
     },
     "items": {
       "description": "List of managedclusterinfos. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ManagedClusterInfo represents the information of managed cluster that acm hub needs to know",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -49,23 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -76,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -121,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -197,14 +174,22 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
-                  }
-                }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -222,22 +207,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -270,8 +241,22 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic"
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -296,22 +281,22 @@
                   "null"
                 ]
               }
-            }
-          },
-          "spec": {
-            "description": "Spec defines the information of the Cluster.",
+            },
             "type": [
               "object",
               "null"
-            ],
+            ]
+          },
+          "spec": {
+            "description": "Spec defines the information of the Cluster.",
             "properties": {
               "loggingCA": {
                 "description": "LoggingCA is the ca data for logging server to authorize apiserver",
+                "format": "byte",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "byte"
+                ]
               },
               "masterEndpoint": {
                 "description": "MasterEndpoint shows the apiserver endpoint of managed cluster",
@@ -320,14 +305,14 @@
                   "null"
                 ]
               }
-            }
-          },
-          "status": {
-            "description": "Status represents the desired status of the Cluster",
+            },
             "type": [
               "object",
               "null"
-            ],
+            ]
+          },
+          "status": {
+            "description": "Status represents the desired status of the Cluster",
             "properties": {
               "cloudVendor": {
                 "description": "CloudVendor describes the cloud provider for the managed cluster. Deprecated in release 2.3 and will be removed in the future. Use clusterClaim product.open-cluster-management.io instead.",
@@ -345,16 +330,51 @@
               },
               "conditions": {
                 "description": "Conditions contains condition information for a managed cluster",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
+                  "properties": {
+                    "lastTransitionTime": {
+                      "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
+                      "maxLength": 32768,
+                      "type": "string"
+                    },
+                    "observedGeneration": {
+                      "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                      "format": "int64",
+                      "minimum": 0,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "reason": {
+                      "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+                      "maxLength": 1024,
+                      "minLength": 1,
+                      "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "status of the condition, one of True, False, Unknown.",
+                      "enum": [
+                        "True",
+                        "False",
+                        "Unknown"
+                      ],
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                      "maxLength": 316,
+                      "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                      "type": "string"
+                    }
+                  },
                   "required": [
                     "lastTransitionTime",
                     "message",
@@ -362,50 +382,15 @@
                     "status",
                     "type"
                   ],
-                  "properties": {
-                    "lastTransitionTime": {
-                      "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "message": {
-                      "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
-                      "type": "string",
-                      "maxLength": 32768
-                    },
-                    "observedGeneration": {
-                      "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
-                      "type": [
-                        "integer",
-                        "null"
-                      ],
-                      "format": "int64",
-                      "minimum": 0
-                    },
-                    "reason": {
-                      "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
-                      "type": "string",
-                      "maxLength": 1024,
-                      "minLength": 1,
-                      "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
-                    },
-                    "status": {
-                      "description": "status of the condition, one of True, False, Unknown.",
-                      "type": "string",
-                      "enum": [
-                        "True",
-                        "False",
-                        "Unknown"
-                      ]
-                    },
-                    "type": {
-                      "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
-                      "type": "string",
-                      "maxLength": 316,
-                      "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
-                    }
-                  }
-                }
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "consoleURL": {
                 "description": "ConsoleURL shows the url of console in managed cluster. Deprecated in release 2.3 and will be removed in the future. Use clusterClaim consoleurl.cluster.open-cluster-management.io instead.",
@@ -416,30 +401,22 @@
               },
               "distributionInfo": {
                 "description": "DistributionInfo is the information about distribution of managed cluster",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "ocp": {
                     "description": "OCP is the distribution information of OCP managed cluster, is matched when the Type is OCP.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "availableUpdates": {
                         "description": "AvailableUpdates contains the list of update versions that are appropriate for the manage cluster. Deprecated in release 2.3 and will be removed in the future. Use VersionAvailableUpdates instead.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "channel": {
                         "description": "Channel is an identifier for explicitly requesting that a non-default set of updates be applied to this cluster. The default channel will be contain stable updates that are appropriate for production clusters.",
@@ -450,27 +427,19 @@
                       },
                       "desired": {
                         "description": "desired is the version that the cluster is reconciling towards. If the cluster is not yet fully initialized desired will be set with the information available, which may be an image or a tag.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "image",
-                          "version"
-                        ],
                         "properties": {
                           "channels": {
                             "description": "channels is the set of Cincinnati channels to which the release currently belongs.",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "image": {
                             "description": "image is a container image location that contains the update. When this field is part of spec, image is optional if version is specified and the availableUpdates field contains a matching version.",
@@ -487,7 +456,15 @@
                             "description": "version is a semantic versioning identifying the update version. When this field is part of spec, version is optional if image is specified.",
                             "type": "string"
                           }
-                        }
+                        },
+                        "required": [
+                          "image",
+                          "version"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ]
                       },
                       "desiredVersion": {
                         "description": "DesiredVersion is the version that the cluster is reconciling towards. Deprecated in release 2.3 and will be removed in the future. User Desired instead.",
@@ -498,27 +475,27 @@
                       },
                       "managedClusterClientConfig": {
                         "description": "Controller will sync this field to managedcluster's ManagedClusterClientConfigs",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "url"
-                        ],
                         "properties": {
                           "caBundle": {
                             "description": "CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.",
+                            "format": "byte",
                             "type": [
                               "string",
                               "null"
-                            ],
-                            "format": "byte"
+                            ]
                           },
                           "url": {
                             "description": "URL is the URL of apiserver endpoint of the managed cluster.",
                             "type": "string"
                           }
-                        }
+                        },
+                        "required": [
+                          "url"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ]
                       },
                       "upgradeFailed": {
                         "description": "UpgradeFailed indicates whether upgrade of the manage cluster is failed. This is true if the status of Failing condition is True and the version is different with desiredVersion in clusterVersion",
@@ -536,33 +513,21 @@
                       },
                       "versionAvailableUpdates": {
                         "description": "VersionAvailableUpdates contains the list of updates that are appropriate for this cluster. This list may be empty if no updates are recommended, if the update service is unavailable, or if an invalid channel has been specified.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "OCPVersionRelease represents an OpenShift release image and associated metadata. The original definition is from https://github.com/openshift/api/blob/master/config/v1/types_cluster_version.go",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "image",
-                            "version"
-                          ],
                           "properties": {
                             "channels": {
                               "description": "channels is the set of Cincinnati channels to which the release currently belongs.",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "image": {
                               "description": "image is a container image location that contains the update. When this field is part of spec, image is optional if version is specified and the availableUpdates field contains a matching version.",
@@ -579,27 +544,25 @@
                               "description": "version is a semantic versioning identifying the update version. When this field is part of spec, version is optional if image is specified.",
                               "type": "string"
                             }
-                          }
-                        }
-                      },
-                      "versionHistory": {
-                        "description": "VersionHistory contains a list of the most recent versions applied to the cluster. This value may be empty during cluster startup, and then will be updated when a new update is being applied. The newest update is first in the list and it is ordered by recency. Updates in the history have state Completed if the rollout completed - if an update was failing or halfway applied the state will be Partial. Only a limited amount of update history is preserved.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "description": "OCPVersionUpdateHistory is a single attempted update to the cluster. the original definition is from https://github.com/openshift/api/blob/master/config/v1/types_cluster_version.go",
+                          },
+                          "required": [
+                            "image",
+                            "version"
+                          ],
                           "type": [
                             "object",
                             "null"
-                          ],
-                          "required": [
-                            "image",
-                            "state",
-                            "verified",
-                            "version"
-                          ],
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "versionHistory": {
+                        "description": "VersionHistory contains a list of the most recent versions applied to the cluster. This value may be empty during cluster startup, and then will be updated when a new update is being applied. The newest update is first in the list and it is ordered by recency. Updates in the history have state Completed if the rollout completed - if an update was failing or halfway applied the state will be Partial. Only a limited amount of update history is preserved.",
+                        "items": {
+                          "description": "OCPVersionUpdateHistory is a single attempted update to the cluster. the original definition is from https://github.com/openshift/api/blob/master/config/v1/types_cluster_version.go",
                           "properties": {
                             "image": {
                               "description": "image is a container image location that contains the update. This value is always populated.",
@@ -617,10 +580,28 @@
                               "description": "version is a semantic versioning identifying the update version. If the requested image does not define a version, or if a failure occurs retrieving the image, this value may be empty.",
                               "type": "string"
                             }
-                          }
-                        }
+                          },
+                          "required": [
+                            "image",
+                            "state",
+                            "verified",
+                            "version"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
-                    }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "type": {
                     "description": "Type is the distribution type of managed cluster, is OCP currently",
@@ -629,7 +610,11 @@
                       "null"
                     ]
                   }
-                }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "kubeVendor": {
                 "description": "KubeVendor describes the kubernetes provider of the managed cluster. Deprecated in release 2.3 and will be removed in the future. Use clusterClaim platform.open-cluster-management.io instead.",
@@ -640,13 +625,6 @@
               },
               "loggingEndpoint": {
                 "description": "LoggingEndpoint shows the endpoint to connect to logging server of managed cluster",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "ip"
-                ],
                 "properties": {
                   "hostname": {
                     "description": "The Hostname of this endpoint",
@@ -668,10 +646,6 @@
                   },
                   "targetRef": {
                     "description": "Reference to object providing the endpoint.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "apiVersion": {
                         "description": "API version of the referent.",
@@ -722,19 +696,23 @@
                           "null"
                         ]
                       }
-                    }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   }
-                }
-              },
-              "loggingPort": {
-                "description": "LoggingPort shows the port to connect to logging server of managed cluster",
+                },
+                "required": [
+                  "ip"
+                ],
                 "type": [
                   "object",
                   "null"
-                ],
-                "required": [
-                  "port"
-                ],
+                ]
+              },
+              "loggingPort": {
+                "description": "LoggingPort shows the port to connect to logging server of managed cluster",
                 "properties": {
                   "appProtocol": {
                     "description": "The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. This is a beta field that is guarded by the ServiceAppProtocol feature gate and enabled by default.",
@@ -752,8 +730,8 @@
                   },
                   "port": {
                     "description": "The port number of the endpoint.",
-                    "type": "integer",
-                    "format": "int32"
+                    "format": "int32",
+                    "type": "integer"
                   },
                   "protocol": {
                     "description": "The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.",
@@ -762,43 +740,34 @@
                       "null"
                     ]
                   }
-                }
+                },
+                "required": [
+                  "port"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "nodeList": {
                 "description": "NodeList shows a list of the status of nodes",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "NodeStatus presents the name, labels and conditions of node",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "capacity": {
+                      "additionalProperties": {
+                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                        "x-kubernetes-int-or-string": true
+                      },
                       "description": "Capacity represents the total resources of a node. only includes CPU and memory.",
                       "type": [
                         "object",
                         "null"
-                      ],
-                      "additionalProperties": {
-                        "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                        "x-kubernetes-int-or-string": true
-                      }
+                      ]
                     },
                     "conditions": {
                       "description": "Conditions is an array of current node conditions. only includes NodeReady.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "status": {
                             "description": "Status of the condition, one of True, False, Unknown.",
@@ -814,21 +783,29 @@
                               "null"
                             ]
                           }
-                        }
-                      }
+                        },
+                        "type": [
+                          "object",
+                          "null"
+                        ]
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "labels": {
-                      "description": "Labels of node.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "additionalProperties": {
                         "type": [
                           "string",
                           "null"
                         ]
-                      }
+                      },
+                      "description": "Labels of node.",
+                      "type": [
+                        "object",
+                        "null"
+                      ]
                     },
                     "name": {
                       "description": "Name of node",
@@ -837,8 +814,16 @@
                         "null"
                       ]
                     }
-                  }
-                }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "version": {
                 "description": "Version is the kube version of managed cluster.",
@@ -847,9 +832,17 @@
                   "null"
                 ]
               }
-            }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
           }
         },
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "internal.open-cluster-management.io",
@@ -857,7 +850,11 @@
             "version": "v1beta1"
           }
         ]
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -871,10 +868,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -885,11 +878,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -905,9 +898,16 @@
             "null"
           ]
         }
-      }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "internal.open-cluster-management.io",

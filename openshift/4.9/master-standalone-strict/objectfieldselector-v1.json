@@ -1,9 +1,5 @@
 {
   "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
-  "type": "object",
-  "required": [
-    "fieldPath"
-  ],
   "properties": {
     "apiVersion": {
       "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -20,6 +16,10 @@
       ]
     }
   },
+  "required": [
+    "fieldPath"
+  ],
+  "type": "object",
   "x-kubernetes-map-type": "atomic",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"

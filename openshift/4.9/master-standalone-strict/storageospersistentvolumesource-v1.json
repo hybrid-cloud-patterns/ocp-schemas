@@ -1,6 +1,5 @@
 {
   "description": "Represents a StorageOS persistent volume resource.",
-  "type": "object",
   "properties": {
     "fsType": {
       "description": "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\". Implicitly inferred to be \"ext4\" if unspecified.",
@@ -18,10 +17,6 @@
     },
     "secretRef": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -73,6 +68,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -91,6 +90,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

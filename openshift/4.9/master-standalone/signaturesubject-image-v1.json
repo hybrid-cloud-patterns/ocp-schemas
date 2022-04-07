@@ -1,9 +1,5 @@
 {
   "description": "SignatureSubject holds information about a person or entity who created the signature.",
-  "type": "object",
-  "required": [
-    "publicKeyID"
-  ],
   "properties": {
     "commonName": {
       "description": "Common name (e.g. openshift-signing-service).",
@@ -27,5 +23,9 @@
       ]
     }
   },
+  "required": [
+    "publicKeyID"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

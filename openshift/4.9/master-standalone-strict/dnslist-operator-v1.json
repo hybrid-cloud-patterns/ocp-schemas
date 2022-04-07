@@ -1,8 +1,5 @@
 {
   "description": "DNSList is a list of DNS",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,16 +13,8 @@
     },
     "items": {
       "description": "List of dnses. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster. \n This supports the DNS-based service discovery specification: https://github.com/kubernetes/dns/blob/master/docs/specification.md \n More details: https://kubernetes.io/docs/tasks/administer-cluster/coredns",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -49,23 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -76,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -121,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -197,15 +174,23 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -223,22 +208,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -271,9 +242,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic",
                   "additionalProperties": false
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -299,55 +284,43 @@
                 ]
               }
             },
-            "additionalProperties": false
-          },
-          "spec": {
-            "description": "spec is the specification of the desired behavior of the DNS.",
             "type": [
               "object",
               "null"
             ],
+            "additionalProperties": false
+          },
+          "spec": {
+            "description": "spec is the specification of the desired behavior of the DNS.",
             "properties": {
               "managementState": {
                 "description": "managementState indicates whether the DNS operator should manage cluster DNS",
+                "pattern": "^(Managed|Unmanaged|Force|Removed)$",
                 "type": [
                   "string",
                   "null"
-                ],
-                "pattern": "^(Managed|Unmanaged|Force|Removed)$"
+                ]
               },
               "nodePlacement": {
                 "description": "nodePlacement provides explicit control over the scheduling of DNS pods. \n Generally, it is useful to run a DNS pod on every node so that DNS queries are always handled by a local DNS pod instead of going over the network to a DNS pod on another node.  However, security policies may require restricting the placement of DNS pods to specific nodes. For example, if a security policy prohibits pods on arbitrary nodes from communicating with the API, a node selector can be specified to restrict DNS pods to nodes that are permitted to communicate with the API.  Conversely, if running DNS pods on nodes with a particular taint is desired, a toleration can be specified for that taint. \n If unset, defaults are used. See nodePlacement for more details.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "nodeSelector": {
-                    "description": "nodeSelector is the node selector applied to DNS pods. \n If empty, the default is used, which is currently the following: \n   kubernetes.io/os: linux \n This default is subject to change. \n If set, the specified selector is used and replaces the default.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "additionalProperties": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "description": "nodeSelector is the node selector applied to DNS pods. \n If empty, the default is used, which is currently the following: \n   kubernetes.io/os: linux \n This default is subject to change. \n If set, the specified selector is used and replaces the default.",
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "tolerations": {
                     "description": "tolerations is a list of tolerations applied to DNS pods. \n If empty, the DNS operator sets a toleration for the \"node-role.kubernetes.io/master\" taint.  This default is subject to change.  Specifying tolerations without including a toleration for the \"node-role.kubernetes.io/master\" taint may be risky as it could lead to an outage if all worker nodes become unavailable. \n Note that the daemon controller adds some tolerations as well.  See https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "effect": {
                           "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -372,11 +345,11 @@
                         },
                         "tolerationSeconds": {
                           "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                          "format": "int64",
                           "type": [
                             "integer",
                             "null"
-                          ],
-                          "format": "int64"
+                          ]
                         },
                         "value": {
                           "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
@@ -386,47 +359,51 @@
                           ]
                         }
                       },
-                      "additionalProperties": false
-                    }
-                  }
-                },
-                "additionalProperties": false
-              },
-              "servers": {
-                "description": "servers is a list of DNS resolvers that provide name query delegation for one or more subdomains outside the scope of the cluster domain. If servers consists of more than one Server, longest suffix match will be used to determine the Server. \n For example, if there are two Servers, one for \"foo.com\" and another for \"a.foo.com\", and the name query is for \"www.a.foo.com\", it will be routed to the Server with Zone \"a.foo.com\". \n If this field is nil, no servers are created.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "Server defines the schema for a server that runs per instance of CoreDNS.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "properties": {
-                    "forwardPlugin": {
-                      "description": "forwardPlugin defines a schema for configuring CoreDNS to proxy DNS messages to upstream resolvers.",
                       "type": [
                         "object",
                         "null"
                       ],
+                      "additionalProperties": false
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": false
+              },
+              "servers": {
+                "description": "servers is a list of DNS resolvers that provide name query delegation for one or more subdomains outside the scope of the cluster domain. If servers consists of more than one Server, longest suffix match will be used to determine the Server. \n For example, if there are two Servers, one for \"foo.com\" and another for \"a.foo.com\", and the name query is for \"www.a.foo.com\", it will be routed to the Server with Zone \"a.foo.com\". \n If this field is nil, no servers are created.",
+                "items": {
+                  "description": "Server defines the schema for a server that runs per instance of CoreDNS.",
+                  "properties": {
+                    "forwardPlugin": {
+                      "description": "forwardPlugin defines a schema for configuring CoreDNS to proxy DNS messages to upstream resolvers.",
                       "properties": {
                         "upstreams": {
                           "description": "upstreams is a list of resolvers to forward name queries for subdomains of Zones. Upstreams are randomized when more than 1 upstream is specified. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. Each upstream is represented by an IP address or IP:port if the upstream listens on a port other than 53. \n A maximum of 15 upstreams is allowed per ForwardPlugin.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
-                          "maxItems": 15,
                           "items": {
                             "type": [
                               "string",
                               "null"
                             ]
-                          }
+                          },
+                          "maxItems": 15,
+                          "type": [
+                            "array",
+                            "null"
+                          ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "name": {
@@ -438,34 +415,38 @@
                     },
                     "zones": {
                       "description": "zones is required and specifies the subdomains that Server is authoritative for. Zones must conform to the rfc1123 definition of a subdomain. Specifying the cluster domain (i.e., \"cluster.local\") is invalid.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "type": [
                           "string",
                           "null"
                         ]
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               }
             },
-            "additionalProperties": false
-          },
-          "status": {
-            "description": "status is the most recently observed status of the DNS.",
             "type": [
               "object",
               "null"
             ],
-            "required": [
-              "clusterDomain",
-              "clusterIP"
-            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "description": "status is the most recently observed status of the DNS.",
             "properties": {
               "clusterDomain": {
                 "description": "clusterDomain is the local cluster DNS domain suffix for DNS services. This will be a subdomain as defined in RFC 1034, section 3.5: https://tools.ietf.org/html/rfc1034#section-3.5 Example: \"cluster.local\" \n More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service",
@@ -477,23 +458,15 @@
               },
               "conditions": {
                 "description": "conditions provide information about the state of the DNS on the cluster. \n These are the supported DNS conditions: \n   * Available   - True if the following conditions are met:     * DNS controller daemonset is available.   - False if any of those conditions are unsatisfied.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OperatorCondition is just the standard condition fields.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "lastTransitionTime": {
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     },
                     "message": {
                       "type": [
@@ -520,13 +493,33 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               }
             },
+            "required": [
+              "clusterDomain",
+              "clusterIP"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "operator.openshift.io",
@@ -535,7 +528,11 @@
           }
         ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -549,10 +546,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -563,11 +556,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -584,9 +577,16 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "operator.openshift.io",

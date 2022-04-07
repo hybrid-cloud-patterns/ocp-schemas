@@ -1,28 +1,11 @@
 {
   "description": "HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend.",
-  "type": "object",
-  "required": [
-    "pathType",
-    "backend"
-  ],
   "properties": {
     "backend": {
       "description": "IngressBackend describes all endpoints for a given service and port.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "resource": {
           "description": "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "kind",
-            "name"
-          ],
           "properties": {
             "apiGroup": {
               "description": "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -40,18 +23,19 @@
               "type": "string"
             }
           },
+          "required": [
+            "kind",
+            "name"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
         "service": {
           "description": "IngressServiceBackend references a Kubernetes Service as a Backend.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "name"
-          ],
           "properties": {
             "name": {
               "description": "Name is the referenced service. The service must exist in the same namespace as the Ingress object.",
@@ -59,10 +43,6 @@
             },
             "port": {
               "description": "ServiceBackendPort is the service port being referenced.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "name": {
                   "description": "Name is the name of the port on the Service. This is a mutually exclusive setting with \"Number\".",
@@ -73,19 +53,34 @@
                 },
                 "number": {
                   "description": "Number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with \"Name\".",
+                  "format": "int32",
                   "type": [
                     "integer",
                     "null"
-                  ],
-                  "format": "int32"
+                  ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             }
           },
+          "required": [
+            "name"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "path": {
@@ -103,6 +98,11 @@
       ]
     }
   },
+  "required": [
+    "pathType",
+    "backend"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

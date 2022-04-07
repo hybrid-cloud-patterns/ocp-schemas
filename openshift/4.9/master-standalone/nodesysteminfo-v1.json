@@ -1,18 +1,5 @@
 {
   "description": "NodeSystemInfo is a set of ids/uuids to uniquely identify the node.",
-  "type": "object",
-  "required": [
-    "machineID",
-    "systemUUID",
-    "bootID",
-    "kernelVersion",
-    "osImage",
-    "containerRuntimeVersion",
-    "kubeletVersion",
-    "kubeProxyVersion",
-    "operatingSystem",
-    "architecture"
-  ],
   "properties": {
     "architecture": {
       "description": "The Architecture reported by the node",
@@ -85,5 +72,18 @@
       ]
     }
   },
+  "required": [
+    "machineID",
+    "systemUUID",
+    "bootID",
+    "kernelVersion",
+    "osImage",
+    "containerRuntimeVersion",
+    "kubeletVersion",
+    "kubeProxyVersion",
+    "operatingSystem",
+    "architecture"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

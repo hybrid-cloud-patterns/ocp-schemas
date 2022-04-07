@@ -1,31 +1,18 @@
 {
   "description": "RouteIngress holds information about the places where a route is exposed.",
-  "type": "object",
   "properties": {
     "conditions": {
       "description": "Conditions is the state of the route, may be empty.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "RouteIngressCondition contains details for the current condition of this route on a particular router.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "type",
-          "status"
-        ],
         "properties": {
           "lastTransitionTime": {
             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+            "format": "date-time",
             "type": [
               "string",
               "null"
-            ],
-            "format": "date-time"
+            ]
           },
           "message": {
             "description": "Human readable message indicating details about last transition.",
@@ -49,8 +36,20 @@
             "description": "Type is the type of the condition. Currently only Ready.",
             "type": "string"
           }
-        }
-      }
+        },
+        "required": [
+          "type",
+          "status"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "host": {
       "description": "Host is the host string under which the route is exposed; this value is required",
@@ -81,5 +80,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

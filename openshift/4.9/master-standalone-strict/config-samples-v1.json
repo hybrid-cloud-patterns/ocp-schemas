@@ -1,10 +1,5 @@
 {
   "description": "Config contains the configuration and detailed condition status for the Samples Operator.",
-  "type": "object",
-  "required": [
-    "metadata",
-    "spec"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -28,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -55,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -100,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -176,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -202,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -250,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -278,35 +269,35 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "ConfigSpec contains the desired configuration and state for the Samples Operator, controlling various behavior around the imagestreams and templates it creates/updates in the openshift namespace.",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "ConfigSpec contains the desired configuration and state for the Samples Operator, controlling various behavior around the imagestreams and templates it creates/updates in the openshift namespace.",
       "properties": {
         "architectures": {
           "description": "architectures determine which hardware architecture(s) to install, where x86_64, ppc64le, and s390x are the only supported choices currently.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "managementState": {
           "description": "managementState is top level on/off type of switch for all operators. When \"Managed\", this operator processes config and manipulates the samples accordingly. When \"Unmanaged\", this operator ignores any updates to the resources it watches. When \"Removed\", it reacts that same wasy as it does if the Config object is deleted, meaning any ImageStreams or Templates it manages (i.e. it honors the skipped lists) and the registry secret are deleted, along with the ConfigMap in the operator's namespace that represents the last config used to manipulate the samples,",
+          "pattern": "^(Managed|Unmanaged|Force|Removed)$",
           "type": [
             "string",
             "null"
-          ],
-          "pattern": "^(Managed|Unmanaged|Force|Removed)$"
+          ]
         },
         "samplesRegistry": {
           "description": "samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content.  Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io.",
@@ -317,85 +308,73 @@
         },
         "skippedImagestreams": {
           "description": "skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don\u2019t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "skippedTemplates": {
           "description": "skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don\u2019t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
-      "additionalProperties": false
-    },
-    "status": {
-      "description": "ConfigStatus contains the actual configuration in effect, as well as various details that describe the state of the Samples Operator.",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "status": {
+      "description": "ConfigStatus contains the actual configuration in effect, as well as various details that describe the state of the Samples Operator.",
       "properties": {
         "architectures": {
           "description": "architectures determine which hardware architecture(s) to install, where x86_64 and ppc64le are the supported choices.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
-        },
-        "conditions": {
-          "description": "conditions represents the available maintenance status of the sample imagestreams and templates.",
+          },
           "type": [
             "array",
             "null"
-          ],
+          ]
+        },
+        "conditions": {
+          "description": "conditions represents the available maintenance status of the sample imagestreams and templates.",
           "items": {
             "description": "ConfigCondition captures various conditions of the Config as entries are processed.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "status",
-              "type"
-            ],
             "properties": {
               "lastTransitionTime": {
                 "description": "lastTransitionTime is the last time the condition transitioned from one status to another.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "lastUpdateTime": {
                 "description": "lastUpdateTime is the last time this condition was updated.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "message": {
                 "description": "message is a human readable message indicating details about the transition.",
@@ -420,16 +399,28 @@
                 "type": "string"
               }
             },
+            "required": [
+              "status",
+              "type"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "managementState": {
           "description": "managementState reflects the current operational status of the on/off switch for the operator.  This operator compares the ManagementState as part of determining that we are turning the operator back on (i.e. \"Managed\") when it was previously \"Unmanaged\".",
+          "pattern": "^(Managed|Unmanaged|Force|Removed)$",
           "type": [
             "string",
             "null"
-          ],
-          "pattern": "^(Managed|Unmanaged|Force|Removed)$"
+          ]
         },
         "samplesRegistry": {
           "description": "samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content.  Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io.",
@@ -440,29 +431,29 @@
         },
         "skippedImagestreams": {
           "description": "skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don\u2019t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "skippedTemplates": {
           "description": "skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don\u2019t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "version": {
           "description": "version is the value of the operator's payload based version indicator when it was last successfully processed",
@@ -472,9 +463,18 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "metadata",
+    "spec"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "samples.operator.openshift.io",

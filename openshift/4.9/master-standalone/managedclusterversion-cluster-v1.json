@@ -1,6 +1,5 @@
 {
   "description": "ManagedClusterVersion represents version information about the managed cluster.",
-  "type": "object",
   "properties": {
     "kubernetes": {
       "description": "Kubernetes is the kubernetes version of managed cluster.",
@@ -10,5 +9,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

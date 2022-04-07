@@ -1,27 +1,18 @@
 {
   "description": "FlowSchemaStatus represents the current state of a FlowSchema.",
-  "type": "object",
   "properties": {
     "conditions": {
       "description": "`conditions` is a list of the current states of FlowSchema.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "FlowSchemaCondition describes conditions for a FlowSchema.",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "lastTransitionTime": {
             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+            "format": "date-time",
             "type": [
               "string",
               "null"
-            ],
-            "format": "date-time"
+            ]
           },
           "message": {
             "description": "`message` is a human-readable message indicating details about last transition.",
@@ -51,13 +42,22 @@
               "null"
             ]
           }
-        }
+        },
+        "type": [
+          "object",
+          "null"
+        ]
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-list-map-keys": [
         "type"
       ],
       "x-kubernetes-list-type": "map"
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

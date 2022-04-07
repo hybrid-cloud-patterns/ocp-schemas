@@ -1,10 +1,5 @@
 {
   "description": "Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling.",
-  "type": "object",
-  "required": [
-    "registry",
-    "volume"
-  ],
   "properties": {
     "group": {
       "description": "Group to map volume access to Default is no group",
@@ -49,6 +44,11 @@
       ]
     }
   },
+  "required": [
+    "registry",
+    "volume"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

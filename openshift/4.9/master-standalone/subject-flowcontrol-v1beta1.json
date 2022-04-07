@@ -1,25 +1,21 @@
 {
   "description": "Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.",
-  "type": "object",
-  "required": [
-    "kind"
-  ],
   "properties": {
     "group": {
       "description": "GroupSubject holds detailed information for group-kind subject.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "name"
-      ],
       "properties": {
         "name": {
           "description": "name is the user group that matches, or \"*\" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.",
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "name"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "kind": {
       "description": "`kind` indicates which one of the other fields is non-empty. Required",
@@ -30,14 +26,6 @@
     },
     "serviceAccount": {
       "description": "ServiceAccountSubject holds detailed information for service-account-kind subject.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "namespace",
-        "name"
-      ],
       "properties": {
         "name": {
           "description": "`name` is the name of matching ServiceAccount objects, or \"*\" to match regardless of name. Required.",
@@ -47,25 +35,37 @@
           "description": "`namespace` is the namespace of matching ServiceAccount objects. Required.",
           "type": "string"
         }
-      }
-    },
-    "user": {
-      "description": "UserSubject holds detailed information for user-kind subject.",
+      },
+      "required": [
+        "namespace",
+        "name"
+      ],
       "type": [
         "object",
         "null"
-      ],
-      "required": [
-        "name"
-      ],
+      ]
+    },
+    "user": {
+      "description": "UserSubject holds detailed information for user-kind subject.",
       "properties": {
         "name": {
           "description": "`name` is the username that matches, or \"*\" to match all usernames. Required.",
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "name"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "required": [
+    "kind"
+  ],
+  "type": "object",
   "x-kubernetes-unions": [
     {
       "discriminator": "kind",

@@ -1,6 +1,5 @@
 {
   "description": "ManifestWork represents a manifests workload that hub wants to deploy on the managed cluster. A manifest workload is defined as a set of Kubernetes resources. ManifestWork must be created in the cluster namespace on the hub, so that agent on the corresponding managed cluster can access this resource and deploy on the managed cluster.",
-  "type": "object",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -24,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -51,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -96,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -172,14 +159,22 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
-            }
-          }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -197,22 +192,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -245,8 +226,22 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic"
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -271,21 +266,17 @@
             "null"
           ]
         }
-      }
-    },
-    "spec": {
-      "description": "Spec represents a desired configuration of work to be deployed on the managed cluster.",
+      },
       "type": [
         "object",
         "null"
-      ],
+      ]
+    },
+    "spec": {
+      "description": "Spec represents a desired configuration of work to be deployed on the managed cluster.",
       "properties": {
         "deleteOption": {
           "description": "DeleteOption represents deletion strategy when the manifestwork is deleted. Foreground deletion strategy is applied to all the resource in this manifestwork if it is not set.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "propagationPolicy": {
               "description": "propagationPolicy can be Foreground, Orphan or SelectivelyOrphan SelectivelyOrphan should be rarely used.  It is provided for cases where particular resources is transfering ownership from one ManifestWork to another or another management unit. Setting this value will allow a flow like 1. create manifestwork/2 to manage foo 2. update manifestwork/1 to selectively orphan foo 3. remove foo from manifestwork/1 without impacting continuity because manifestwork/2 adopts it.",
@@ -296,23 +287,11 @@
             },
             "selectivelyOrphans": {
               "description": "selectivelyOrphan represents a list of resources following orphan deletion stratecy",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "orphaningRules": {
                   "description": "orphaningRules defines a slice of orphaningrule. Each orphaningrule identifies a single resource included in this manifestwork",
-                  "type": [
-                    "array",
-                    "null"
-                  ],
                   "items": {
                     "description": "OrphaningRule identifies a single resource included in this manifestwork",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "group": {
                         "description": "Group is the api group of the resources in the workload that the strategy is applied",
@@ -342,55 +321,106 @@
                           "null"
                         ]
                       }
-                    }
-                  }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
                 }
-              }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
             }
-          }
-        },
-        "workload": {
-          "description": "Workload represents the manifest workload to be deployed on a managed cluster.",
+          },
           "type": [
             "object",
             "null"
-          ],
+          ]
+        },
+        "workload": {
+          "description": "Workload represents the manifest workload to be deployed on a managed cluster.",
           "properties": {
             "manifests": {
               "description": "Manifests represents a list of kuberenetes resources to be deployed on a managed cluster.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "Manifest represents a resource to be deployed on managed cluster.",
                 "x-kubernetes-embedded-resource": true,
                 "x-kubernetes-preserve-unknown-fields": true
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             }
-          }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
         }
-      }
-    },
-    "status": {
-      "description": "Status represents the current status of work.",
+      },
       "type": [
         "object",
         "null"
-      ],
+      ]
+    },
+    "status": {
+      "description": "Status represents the current status of work.",
       "properties": {
         "conditions": {
           "description": "Conditions contains the different condition statuses for this work. Valid condition types are: 1. Applied represents workload in ManifestWork is applied successfully on managed cluster. 2. Progressing represents workload in ManifestWork is being applied on managed cluster. 3. Available represents workload in ManifestWork exists on the managed cluster. 4. Degraded represents the current state of workload does not match the desired state for a certain period.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }",
-            "type": [
-              "object",
-              "null"
-            ],
+            "properties": {
+              "lastTransitionTime": {
+                "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
+                "maxLength": 32768,
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                "format": "int64",
+                "minimum": 0,
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "reason": {
+                "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                "type": "string"
+              },
+              "status": {
+                "description": "status of the condition, one of True, False, Unknown.",
+                "enum": [
+                  "True",
+                  "False",
+                  "Unknown"
+                ],
+                "type": "string"
+              },
+              "type": {
+                "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                "maxLength": 316,
+                "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                "type": "string"
+              }
+            },
             "required": [
               "lastTransitionTime",
               "message",
@@ -398,83 +428,71 @@
               "status",
               "type"
             ],
-            "properties": {
-              "lastTransitionTime": {
-                "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
-                "type": "string",
-                "format": "date-time"
-              },
-              "message": {
-                "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
-                "type": "string",
-                "maxLength": 32768
-              },
-              "observedGeneration": {
-                "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
-                "type": [
-                  "integer",
-                  "null"
-                ],
-                "format": "int64",
-                "minimum": 0
-              },
-              "reason": {
-                "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
-                "type": "string",
-                "maxLength": 1024,
-                "minLength": 1,
-                "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
-              },
-              "status": {
-                "description": "status of the condition, one of True, False, Unknown.",
-                "type": "string",
-                "enum": [
-                  "True",
-                  "False",
-                  "Unknown"
-                ]
-              },
-              "type": {
-                "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
-                "type": "string",
-                "maxLength": 316,
-                "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
-              }
-            }
-          }
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "resourceStatus": {
           "description": "ResourceStatus represents the status of each resource in manifestwork deployed on a managed cluster. The Klusterlet agent on managed cluster syncs the condition from the managed cluster to the hub.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "manifests": {
               "description": "Manifests represents the condition of manifests deployed on managed cluster. Valid condition types are: 1. Progressing represents the resource is being applied on managed cluster. 2. Applied represents the resource is applied successfully on managed cluster. 3. Available represents the resource exists on the managed cluster. 4. Degraded represents the current state of resource does not match the desired state for a certain period.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "ManifestCondition represents the conditions of the resources deployed on a managed cluster.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "conditions": {
                     "description": "Conditions represents the conditions of this resource on a managed cluster.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
+                      "properties": {
+                        "lastTransitionTime": {
+                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
+                          "maxLength": 32768,
+                          "type": "string"
+                        },
+                        "observedGeneration": {
+                          "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                          "format": "int64",
+                          "minimum": 0,
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "reason": {
+                          "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+                          "maxLength": 1024,
+                          "minLength": 1,
+                          "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "status of the condition, one of True, False, Unknown.",
+                          "enum": [
+                            "True",
+                            "False",
+                            "Unknown"
+                          ],
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                          "maxLength": 316,
+                          "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                          "type": "string"
+                        }
+                      },
                       "required": [
                         "lastTransitionTime",
                         "message",
@@ -482,57 +500,18 @@
                         "status",
                         "type"
                       ],
-                      "properties": {
-                        "lastTransitionTime": {
-                          "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "message": {
-                          "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
-                          "type": "string",
-                          "maxLength": 32768
-                        },
-                        "observedGeneration": {
-                          "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
-                          "type": [
-                            "integer",
-                            "null"
-                          ],
-                          "format": "int64",
-                          "minimum": 0
-                        },
-                        "reason": {
-                          "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
-                          "type": "string",
-                          "maxLength": 1024,
-                          "minLength": 1,
-                          "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
-                        },
-                        "status": {
-                          "description": "status of the condition, one of True, False, Unknown.",
-                          "type": "string",
-                          "enum": [
-                            "True",
-                            "False",
-                            "Unknown"
-                          ]
-                        },
-                        "type": {
-                          "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
-                          "type": "string",
-                          "maxLength": 316,
-                          "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
-                        }
-                      }
-                    }
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "resourceMeta": {
                     "description": "ResourceMeta represents the group, version, kind, name and namespace of a resoure.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "group": {
                         "description": "Group is the API Group of the Kubernetes resource.",
@@ -564,11 +543,11 @@
                       },
                       "ordinal": {
                         "description": "Ordinal represents the index of the manifest on spec.",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "resource": {
                         "description": "Resource is the resource name of the Kubernetes resource.",
@@ -584,16 +563,37 @@
                           "null"
                         ]
                       }
-                    }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   }
-                }
-              }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             }
-          }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
         }
-      }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "work.open-cluster-management.io",

@@ -1,11 +1,5 @@
 {
   "description": "ScaleIOPersistentVolumeSource represents a persistent ScaleIO volume",
-  "type": "object",
-  "required": [
-    "gateway",
-    "system",
-    "secretRef"
-  ],
   "properties": {
     "fsType": {
       "description": "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\". Default is \"xfs\"",
@@ -37,10 +31,6 @@
     },
     "secretRef": {
       "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name is unique within a namespace to reference a secret resource.",
@@ -57,6 +47,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -96,6 +90,12 @@
       ]
     }
   },
+  "required": [
+    "gateway",
+    "system",
+    "secretRef"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

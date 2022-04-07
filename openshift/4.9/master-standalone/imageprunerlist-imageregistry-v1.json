@@ -1,8 +1,5 @@
 {
   "description": "ImagePrunerList is a list of ImagePruner",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,20 +13,8 @@
     },
     "items": {
       "description": "List of imagepruners. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ImagePruner is the configuration object for an image registry pruner managed by the registry operator.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "metadata",
-          "spec"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -53,20 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": "object",
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -77,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -122,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -198,14 +174,22 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
-                  }
-                }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -223,22 +207,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -271,8 +241,22 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic"
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -297,175 +281,143 @@
                   "null"
                 ]
               }
-            }
+            },
+            "type": "object"
           },
           "spec": {
             "description": "ImagePrunerSpec defines the specs for the running image pruner.",
-            "type": "object",
             "properties": {
               "affinity": {
                 "description": "affinity is a group of node affinity scheduling rules for the image pruner pod.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "nodeAffinity": {
                     "description": "Describes node affinity scheduling rules for the pod.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "preferredDuringSchedulingIgnoredDuringExecution": {
                         "description": "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
+                          "properties": {
+                            "preference": {
+                              "description": "A node selector term, associated with the corresponding weight.",
+                              "properties": {
+                                "matchExpressions": {
+                                  "description": "A list of node selector requirements by node's labels.",
+                                  "items": {
+                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                                    "properties": {
+                                      "key": {
+                                        "description": "The label key that the selector applies to.",
+                                        "type": "string"
+                                      },
+                                      "operator": {
+                                        "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                        "type": "string"
+                                      },
+                                      "values": {
+                                        "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+                                        "items": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
+                                },
+                                "matchFields": {
+                                  "description": "A list of node selector requirements by node's fields.",
+                                  "items": {
+                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                                    "properties": {
+                                      "key": {
+                                        "description": "The label key that the selector applies to.",
+                                        "type": "string"
+                                      },
+                                      "operator": {
+                                        "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+                                        "type": "string"
+                                      },
+                                      "values": {
+                                        "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+                                        "items": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "weight": {
+                              "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+                              "format": "int32",
+                              "type": "integer"
+                            }
+                          },
                           "required": [
                             "preference",
                             "weight"
                           ],
-                          "properties": {
-                            "preference": {
-                              "description": "A node selector term, associated with the corresponding weight.",
-                              "type": "object",
-                              "properties": {
-                                "matchExpressions": {
-                                  "description": "A list of node selector requirements by node's labels.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
-                                  "items": {
-                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
-                                    "properties": {
-                                      "key": {
-                                        "description": "The label key that the selector applies to.",
-                                        "type": "string"
-                                      },
-                                      "operator": {
-                                        "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-                                        "type": "string"
-                                      },
-                                      "values": {
-                                        "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
-                                        "items": {
-                                          "type": [
-                                            "string",
-                                            "null"
-                                          ]
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "matchFields": {
-                                  "description": "A list of node selector requirements by node's fields.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
-                                  "items": {
-                                    "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
-                                    "properties": {
-                                      "key": {
-                                        "description": "The label key that the selector applies to.",
-                                        "type": "string"
-                                      },
-                                      "operator": {
-                                        "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-                                        "type": "string"
-                                      },
-                                      "values": {
-                                        "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
-                                        "items": {
-                                          "type": [
-                                            "string",
-                                            "null"
-                                          ]
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "weight": {
-                              "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-                              "type": "integer",
-                              "format": "int32"
-                            }
-                          }
-                        }
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "requiredDuringSchedulingIgnoredDuringExecution": {
                         "description": "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "nodeSelectorTerms"
-                        ],
                         "properties": {
                           "nodeSelectorTerms": {
                             "description": "Required. A list of node selector terms. The terms are ORed.",
-                            "type": "array",
                             "items": {
                               "description": "A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "matchExpressions": {
                                   "description": "A list of node selector requirements by node's labels.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "The label key that the selector applies to.",
@@ -477,36 +429,36 @@
                                       },
                                       "values": {
                                         "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "matchFields": {
                                   "description": "A list of node selector requirements by node's fields.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "The label key that the selector applies to.",
@@ -518,81 +470,73 @@
                                       },
                                       "values": {
                                         "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 }
-                              }
-                            }
+                              },
+                              "type": [
+                                "object",
+                                "null"
+                              ]
+                            },
+                            "type": "array"
                           }
-                        }
+                        },
+                        "required": [
+                          "nodeSelectorTerms"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ]
                       }
-                    }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "podAffinity": {
                     "description": "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "preferredDuringSchedulingIgnoredDuringExecution": {
                         "description": "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "podAffinityTerm",
-                            "weight"
-                          ],
                           "properties": {
                             "podAffinityTerm": {
                               "description": "Required. A pod affinity term, associated with the corresponding weight.",
-                              "type": "object",
-                              "required": [
-                                "topologyKey"
-                              ],
                               "properties": {
                                 "labelSelector": {
                                   "description": "A label query over a set of resources, in this case pods.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "matchExpressions": {
                                       "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                      "type": [
-                                        "array",
-                                        "null"
-                                      ],
                                       "items": {
                                         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                        "type": [
-                                          "object",
-                                          "null"
-                                        ],
-                                        "required": [
-                                          "key",
-                                          "operator"
-                                        ],
                                         "properties": {
                                           "key": {
                                             "description": "key is the label key that the selector applies to.",
@@ -604,58 +548,58 @@
                                           },
                                           "values": {
                                             "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                            "type": [
-                                              "array",
-                                              "null"
-                                            ],
                                             "items": {
                                               "type": [
                                                 "string",
                                                 "null"
                                               ]
-                                            }
+                                            },
+                                            "type": [
+                                              "array",
+                                              "null"
+                                            ]
                                           }
-                                        }
-                                      }
+                                        },
+                                        "required": [
+                                          "key",
+                                          "operator"
+                                        ],
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ]
+                                      },
+                                      "type": [
+                                        "array",
+                                        "null"
+                                      ]
                                     },
                                     "matchLabels": {
-                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
                                       "additionalProperties": {
                                         "type": [
                                           "string",
                                           "null"
                                         ]
-                                      }
+                                      },
+                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
                                     }
-                                  }
+                                  },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 },
                                 "namespaceSelector": {
                                   "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "matchExpressions": {
                                       "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                      "type": [
-                                        "array",
-                                        "null"
-                                      ],
                                       "items": {
                                         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                        "type": [
-                                          "object",
-                                          "null"
-                                        ],
-                                        "required": [
-                                          "key",
-                                          "operator"
-                                        ],
                                         "properties": {
                                           "key": {
                                             "description": "key is the label key that the selector applies to.",
@@ -667,101 +611,106 @@
                                           },
                                           "values": {
                                             "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                            "type": [
-                                              "array",
-                                              "null"
-                                            ],
                                             "items": {
                                               "type": [
                                                 "string",
                                                 "null"
                                               ]
-                                            }
+                                            },
+                                            "type": [
+                                              "array",
+                                              "null"
+                                            ]
                                           }
-                                        }
-                                      }
+                                        },
+                                        "required": [
+                                          "key",
+                                          "operator"
+                                        ],
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ]
+                                      },
+                                      "type": [
+                                        "array",
+                                        "null"
+                                      ]
                                     },
                                     "matchLabels": {
-                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
                                       "additionalProperties": {
                                         "type": [
                                           "string",
                                           "null"
                                         ]
-                                      }
+                                      },
+                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
                                     }
-                                  }
+                                  },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 },
                                 "namespaces": {
                                   "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\"",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "topologyKey": {
                                   "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "topologyKey"
+                              ],
+                              "type": "object"
                             },
                             "weight": {
                               "description": "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-                              "type": "integer",
-                              "format": "int32"
+                              "format": "int32",
+                              "type": "integer"
                             }
-                          }
-                        }
+                          },
+                          "required": [
+                            "podAffinityTerm",
+                            "weight"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "requiredDuringSchedulingIgnoredDuringExecution": {
                         "description": "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "topologyKey"
-                          ],
                           "properties": {
                             "labelSelector": {
                               "description": "A label query over a set of resources, in this case pods.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "matchExpressions": {
                                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "key is the label key that the selector applies to.",
@@ -773,58 +722,58 @@
                                       },
                                       "values": {
                                         "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "matchLabels": {
-                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "additionalProperties": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 }
-                              }
+                              },
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "namespaceSelector": {
                               "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "matchExpressions": {
                                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "key is the label key that the selector applies to.",
@@ -836,111 +785,106 @@
                                       },
                                       "values": {
                                         "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "matchLabels": {
-                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "additionalProperties": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 }
-                              }
+                              },
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "namespaces": {
                               "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\"",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "topologyKey": {
                               "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
                               "type": "string"
                             }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "podAntiAffinity": {
-                    "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "properties": {
-                      "preferredDuringSchedulingIgnoredDuringExecution": {
-                        "description": "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
+                          },
+                          "required": [
+                            "topologyKey"
+                          ],
                           "type": [
                             "object",
                             "null"
-                          ],
-                          "required": [
-                            "podAffinityTerm",
-                            "weight"
-                          ],
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "podAntiAffinity": {
+                    "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+                    "properties": {
+                      "preferredDuringSchedulingIgnoredDuringExecution": {
+                        "description": "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+                        "items": {
+                          "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
                           "properties": {
                             "podAffinityTerm": {
                               "description": "Required. A pod affinity term, associated with the corresponding weight.",
-                              "type": "object",
-                              "required": [
-                                "topologyKey"
-                              ],
                               "properties": {
                                 "labelSelector": {
                                   "description": "A label query over a set of resources, in this case pods.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "matchExpressions": {
                                       "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                      "type": [
-                                        "array",
-                                        "null"
-                                      ],
                                       "items": {
                                         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                        "type": [
-                                          "object",
-                                          "null"
-                                        ],
-                                        "required": [
-                                          "key",
-                                          "operator"
-                                        ],
                                         "properties": {
                                           "key": {
                                             "description": "key is the label key that the selector applies to.",
@@ -952,58 +896,58 @@
                                           },
                                           "values": {
                                             "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                            "type": [
-                                              "array",
-                                              "null"
-                                            ],
                                             "items": {
                                               "type": [
                                                 "string",
                                                 "null"
                                               ]
-                                            }
+                                            },
+                                            "type": [
+                                              "array",
+                                              "null"
+                                            ]
                                           }
-                                        }
-                                      }
+                                        },
+                                        "required": [
+                                          "key",
+                                          "operator"
+                                        ],
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ]
+                                      },
+                                      "type": [
+                                        "array",
+                                        "null"
+                                      ]
                                     },
                                     "matchLabels": {
-                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
                                       "additionalProperties": {
                                         "type": [
                                           "string",
                                           "null"
                                         ]
-                                      }
+                                      },
+                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
                                     }
-                                  }
+                                  },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 },
                                 "namespaceSelector": {
                                   "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "matchExpressions": {
                                       "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                      "type": [
-                                        "array",
-                                        "null"
-                                      ],
                                       "items": {
                                         "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                        "type": [
-                                          "object",
-                                          "null"
-                                        ],
-                                        "required": [
-                                          "key",
-                                          "operator"
-                                        ],
                                         "properties": {
                                           "key": {
                                             "description": "key is the label key that the selector applies to.",
@@ -1015,101 +959,106 @@
                                           },
                                           "values": {
                                             "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                            "type": [
-                                              "array",
-                                              "null"
-                                            ],
                                             "items": {
                                               "type": [
                                                 "string",
                                                 "null"
                                               ]
-                                            }
+                                            },
+                                            "type": [
+                                              "array",
+                                              "null"
+                                            ]
                                           }
-                                        }
-                                      }
+                                        },
+                                        "required": [
+                                          "key",
+                                          "operator"
+                                        ],
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ]
+                                      },
+                                      "type": [
+                                        "array",
+                                        "null"
+                                      ]
                                     },
                                     "matchLabels": {
-                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
                                       "additionalProperties": {
                                         "type": [
                                           "string",
                                           "null"
                                         ]
-                                      }
+                                      },
+                                      "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
                                     }
-                                  }
+                                  },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 },
                                 "namespaces": {
                                   "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\"",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "topologyKey": {
                                   "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "topologyKey"
+                              ],
+                              "type": "object"
                             },
                             "weight": {
                               "description": "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-                              "type": "integer",
-                              "format": "int32"
+                              "format": "int32",
+                              "type": "integer"
                             }
-                          }
-                        }
-                      },
-                      "requiredDuringSchedulingIgnoredDuringExecution": {
-                        "description": "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running",
+                          },
+                          "required": [
+                            "podAffinityTerm",
+                            "weight"
+                          ],
                           "type": [
                             "object",
                             "null"
-                          ],
-                          "required": [
-                            "topologyKey"
-                          ],
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                        "description": "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+                        "items": {
+                          "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running",
                           "properties": {
                             "labelSelector": {
                               "description": "A label query over a set of resources, in this case pods.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "matchExpressions": {
                                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "key is the label key that the selector applies to.",
@@ -1121,58 +1070,58 @@
                                       },
                                       "values": {
                                         "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "matchLabels": {
-                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "additionalProperties": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 }
-                              }
+                              },
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "namespaceSelector": {
                               "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces. This field is alpha-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "matchExpressions": {
                                   "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "key",
-                                      "operator"
-                                    ],
                                     "properties": {
                                       "key": {
                                         "description": "key is the label key that the selector applies to.",
@@ -1184,66 +1133,101 @@
                                       },
                                       "values": {
                                         "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
-                                    }
-                                  }
+                                    },
+                                    "required": [
+                                      "key",
+                                      "operator"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 },
                                 "matchLabels": {
-                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "additionalProperties": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
+                                  },
+                                  "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ]
                                 }
-                              }
+                              },
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "namespaces": {
                               "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\"",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "topologyKey": {
                               "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
                               "type": "string"
                             }
-                          }
-                        }
+                          },
+                          "required": [
+                            "topologyKey"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
-                    }
+                    },
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   }
-                }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "failedJobsHistoryLimit": {
                 "description": "failedJobsHistoryLimit specifies how many failed image pruner jobs to retain. Defaults to 3 if not set.",
+                "format": "int32",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int32"
+                ]
               },
               "ignoreInvalidImageReferences": {
                 "description": "ignoreInvalidImageReferences indicates whether the pruner can ignore errors while parsing image references.",
@@ -1261,77 +1245,77 @@
               },
               "keepYoungerThan": {
                 "description": "keepYoungerThan specifies the minimum age in nanoseconds of an image and its referrers for it to be considered a candidate for pruning. DEPRECATED: This field is deprecated in favor of keepYoungerThanDuration. If both are set, this field is ignored and keepYoungerThanDuration takes precedence.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "keepYoungerThanDuration": {
                 "description": "keepYoungerThanDuration specifies the minimum age of an image and its referrers for it to be considered a candidate for pruning. Defaults to 60m (60 minutes).",
+                "format": "duration",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "duration"
+                ]
               },
               "logLevel": {
                 "description": "logLevel sets the level of log output for the pruner job. \n Valid values are: \"Normal\", \"Debug\", \"Trace\", \"TraceAll\". Defaults to \"Normal\".",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "",
                   "Normal",
                   "Debug",
                   "Trace",
                   "TraceAll"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "nodeSelector": {
-                "description": "nodeSelector defines the node selection constraints for the image pruner pod.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
-              },
-              "resources": {
-                "description": "resources defines the resource requests and limits for the image pruner pod.",
+                },
+                "description": "nodeSelector defines the node selection constraints for the image pruner pod.",
                 "type": [
                   "object",
                   "null"
-                ],
+                ]
+              },
+              "resources": {
+                "description": "resources defines the resource requests and limits for the image pruner pod.",
                 "properties": {
                   "limits": {
+                    "additionalProperties": {
+                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                      "x-kubernetes-int-or-string": true
+                    },
                     "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
                     "type": [
                       "object",
                       "null"
-                    ],
+                    ]
+                  },
+                  "requests": {
                     "additionalProperties": {
                       "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                       "x-kubernetes-int-or-string": true
-                    }
-                  },
-                  "requests": {
+                    },
                     "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
                     "type": [
                       "object",
                       "null"
-                    ],
-                    "additionalProperties": {
-                      "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                      "x-kubernetes-int-or-string": true
-                    }
+                    ]
                   }
-                }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "schedule": {
                 "description": "schedule specifies when to execute the job using standard cronjob syntax: https://wikipedia.org/wiki/Cron. Defaults to `0 0 * * *`.",
@@ -1342,11 +1326,11 @@
               },
               "successfulJobsHistoryLimit": {
                 "description": "successfulJobsHistoryLimit specifies how many successful image pruner jobs to retain. Defaults to 3 if not set.",
+                "format": "int32",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int32"
+                ]
               },
               "suspend": {
                 "description": "suspend specifies whether or not to suspend subsequent executions of this cronjob. Defaults to false.",
@@ -1357,16 +1341,8 @@
               },
               "tolerations": {
                 "description": "tolerations defines the node tolerations for the image pruner pod.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "effect": {
                       "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -1391,11 +1367,11 @@
                     },
                     "tolerationSeconds": {
                       "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                      "format": "int64",
                       "type": [
                         "integer",
                         "null"
-                      ],
-                      "format": "int64"
+                      ]
                     },
                     "value": {
                       "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
@@ -1404,37 +1380,34 @@
                         "null"
                       ]
                     }
-                  }
-                }
-              }
-            }
-          },
-          "status": {
-            "description": "ImagePrunerStatus reports image pruner operational status.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "properties": {
-              "conditions": {
-                "description": "conditions is a list of conditions and their status.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "OperatorCondition is just the standard condition fields.",
+                  },
                   "type": [
                     "object",
                     "null"
-                  ],
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "status": {
+            "description": "ImagePrunerStatus reports image pruner operational status.",
+            "properties": {
+              "conditions": {
+                "description": "conditions is a list of conditions and their status.",
+                "items": {
+                  "description": "OperatorCondition is just the standard condition fields.",
                   "properties": {
                     "lastTransitionTime": {
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     },
                     "message": {
                       "type": [
@@ -1460,20 +1433,40 @@
                         "null"
                       ]
                     }
-                  }
-                }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "observedGeneration": {
                 "description": "observedGeneration is the last generation change that has been applied.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               }
-            }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
           }
         },
+        "required": [
+          "metadata",
+          "spec"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "imageregistry.operator.openshift.io",
@@ -1481,7 +1474,11 @@
             "version": "v1"
           }
         ]
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -1495,10 +1492,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -1509,11 +1502,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -1529,9 +1522,16 @@
             "null"
           ]
         }
-      }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "imageregistry.operator.openshift.io",

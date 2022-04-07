@@ -1,8 +1,5 @@
 {
   "description": "ApplicationList is a list of Application",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,20 +13,8 @@
     },
     "items": {
       "description": "List of applications. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "Application is a definition of Application resource.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "metadata",
-          "spec"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -53,20 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": "object",
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -77,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -122,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -198,15 +174,23 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -224,22 +208,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -272,9 +242,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic",
                   "additionalProperties": false
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -300,30 +284,15 @@
                 ]
               }
             },
+            "type": "object",
             "additionalProperties": false
           },
           "operation": {
             "description": "Operation contains information about a requested or running operation",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "info": {
                 "description": "Info is a list of informational items for this operation",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "name",
-                    "value"
-                  ],
                   "properties": {
                     "name": {
                       "type": "string"
@@ -332,15 +301,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "name",
+                    "value"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "initiatedBy": {
                 "description": "InitiatedBy contains information about who initiated the operations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "automated": {
                     "description": "Automated is set to true if operation was initiated automatically by the application controller.",
@@ -357,21 +334,17 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "retry": {
-                "description": "Retry controls the strategy to apply if a sync fails",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "retry": {
+                "description": "Retry controls the strategy to apply if a sync fails",
                 "properties": {
                   "backoff": {
                     "description": "Backoff controls how to backoff on subsequent retries of failed syncs",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "duration": {
                         "description": "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. \"2m\", \"1h\")",
@@ -382,11 +355,11 @@
                       },
                       "factor": {
                         "description": "Factor is a factor to multiply the base duration after each failed retry",
+                        "format": "int64",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int64"
+                        ]
                       },
                       "maxDuration": {
                         "description": "MaxDuration is the maximum amount of time allowed for the backoff strategy",
@@ -396,25 +369,29 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "limit": {
                     "description": "Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "sync": {
-                "description": "Sync contains parameters for the operation",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "sync": {
+                "description": "Sync contains parameters for the operation",
                 "properties": {
                   "dryRun": {
                     "description": "DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync",
@@ -425,16 +402,16 @@
                   },
                   "manifests": {
                     "description": "Manifests is an optional field that overrides sync source with a local directory for development",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "prune": {
                     "description": "Prune specifies to delete resources from the cluster that are no longer tracked in git",
@@ -445,20 +422,8 @@
                   },
                   "resources": {
                     "description": "Resources describes which resources shall be part of the sync",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "SyncOperationResource contains resources to sync.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "kind",
-                        "name"
-                      ],
                       "properties": {
                         "group": {
                           "type": [
@@ -479,8 +444,20 @@
                           ]
                         }
                       },
+                      "required": [
+                        "kind",
+                        "name"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "revision": {
                     "description": "Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.",
@@ -491,13 +468,6 @@
                   },
                   "source": {
                     "description": "Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "repoURL"
-                    ],
                     "properties": {
                       "chart": {
                         "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -508,10 +478,6 @@
                       },
                       "directory": {
                         "description": "Directory holds path/directory specific options",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "exclude": {
                             "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -529,27 +495,11 @@
                           },
                           "jsonnet": {
                             "description": "Jsonnet holds options specific to Jsonnet",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "extVars": {
                                 "description": "ExtVars is a list of Jsonnet External Variables",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "code": {
                                       "type": [
@@ -564,38 +514,38 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "libs": {
-                                "description": "Additional library search dirs",
+                                },
                                 "type": [
                                   "array",
                                   "null"
-                                ],
+                                ]
+                              },
+                              "libs": {
+                                "description": "Additional library search dirs",
                                 "items": {
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
-                              },
-                              "tlas": {
-                                "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                                },
                                 "type": [
                                   "array",
                                   "null"
-                                ],
+                                ]
+                              },
+                              "tlas": {
+                                "description": "TLAS is a list of Jsonnet Top-level Arguments",
                                 "items": {
                                   "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "code": {
                                       "type": [
@@ -610,10 +560,26 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "recurse": {
@@ -624,27 +590,19 @@
                             ]
                           }
                         },
-                        "additionalProperties": false
-                      },
-                      "helm": {
-                        "description": "Helm holds helm specific options",
                         "type": [
                           "object",
                           "null"
                         ],
+                        "additionalProperties": false
+                      },
+                      "helm": {
+                        "description": "Helm holds helm specific options",
                         "properties": {
                           "fileParameters": {
                             "description": "FileParameters are file parameters to the helm template",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "name": {
                                   "description": "Name is the name of the Helm parameter",
@@ -661,21 +619,21 @@
                                   ]
                                 }
                               },
-                              "additionalProperties": false
-                            }
-                          },
-                          "parameters": {
-                            "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
-                            "items": {
-                              "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                               "type": [
                                 "object",
                                 "null"
                               ],
+                              "additionalProperties": false
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "parameters": {
+                            "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                            "items": {
+                              "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                               "properties": {
                                 "forceString": {
                                   "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -699,8 +657,16 @@
                                   ]
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "passCredentials": {
                             "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -718,16 +684,16 @@
                           },
                           "valueFiles": {
                             "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "values": {
                             "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -744,14 +710,14 @@
                             ]
                           }
                         },
-                        "additionalProperties": false
-                      },
-                      "ksonnet": {
-                        "description": "Ksonnet holds ksonnet specific options",
                         "type": [
                           "object",
                           "null"
                         ],
+                        "additionalProperties": false
+                      },
+                      "ksonnet": {
+                        "description": "Ksonnet holds ksonnet specific options",
                         "properties": {
                           "environment": {
                             "description": "Environment is a ksonnet application environment name",
@@ -762,20 +728,8 @@
                           },
                           "parameters": {
                             "description": "Parameters are a list of ksonnet component parameter override values",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "KsonnetParameter is a ksonnet component parameter",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "name",
-                                "value"
-                              ],
                               "properties": {
                                 "component": {
                                   "type": [
@@ -790,58 +744,70 @@
                                   "type": "string"
                                 }
                               },
+                              "required": [
+                                "name",
+                                "value"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           }
                         },
-                        "additionalProperties": false
-                      },
-                      "kustomize": {
-                        "description": "Kustomize holds kustomize specific options",
                         "type": [
                           "object",
                           "null"
                         ],
+                        "additionalProperties": false
+                      },
+                      "kustomize": {
+                        "description": "Kustomize holds kustomize specific options",
                         "properties": {
                           "commonAnnotations": {
+                            "additionalProperties": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
                             "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                             "type": [
                               "object",
                               "null"
-                            ],
+                            ]
+                          },
+                          "commonLabels": {
                             "additionalProperties": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
-                          },
-                          "commonLabels": {
+                            },
                             "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                             "type": [
                               "object",
                               "null"
-                            ],
-                            "additionalProperties": {
-                              "type": [
-                                "string",
-                                "null"
-                              ]
-                            }
+                            ]
                           },
                           "images": {
                             "description": "Images is a list of Kustomize image override specifications",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "namePrefix": {
                             "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -865,6 +831,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "path": {
@@ -876,27 +846,11 @@
                       },
                       "plugin": {
                         "description": "ConfigManagementPlugin holds config management plugin specific options",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "env": {
                             "description": "Env is a list of environment variable entries",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "EnvEntry represents an entry in the application's environment",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "name",
-                                "value"
-                              ],
                               "properties": {
                                 "name": {
                                   "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -907,8 +861,20 @@
                                   "type": "string"
                                 }
                               },
+                              "required": [
+                                "name",
+                                "value"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "name": {
                             "type": [
@@ -917,6 +883,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "repoURL": {
@@ -931,34 +901,33 @@
                         ]
                       }
                     },
+                    "required": [
+                      "repoURL"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "syncOptions": {
                     "description": "SyncOptions provide per-sync sync-options, e.g. Validate=false",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "syncStrategy": {
                     "description": "SyncStrategy describes how to perform the sync",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "apply": {
                         "description": "Apply will perform a `kubectl apply` to perform the sync.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "force": {
                             "description": "Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
@@ -968,14 +937,14 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "hook": {
                         "description": "Hook will submit any referenced resources to perform the sync. This is the default strategy",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "force": {
                             "description": "Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
@@ -985,29 +954,38 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           },
           "spec": {
             "description": "ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision.",
-            "type": "object",
-            "required": [
-              "destination",
-              "project",
-              "source"
-            ],
             "properties": {
               "destination": {
                 "description": "Destination is a reference to the target Kubernetes server and namespace",
-                "type": "object",
                 "properties": {
                   "name": {
                     "description": "Name is an alternate way of specifying the target cluster by its symbolic name",
@@ -1031,24 +1009,13 @@
                     ]
                   }
                 },
+                "type": "object",
                 "additionalProperties": false
               },
               "ignoreDifferences": {
                 "description": "IgnoreDifferences is a list of resources and their fields which should be ignored during comparison",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ResourceIgnoreDifferences contains resource filter and list of json paths which should be ignored during comparison with live state.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "jsonPointers",
-                    "kind"
-                  ],
                   "properties": {
                     "group": {
                       "type": [
@@ -1057,13 +1024,13 @@
                       ]
                     },
                     "jsonPointers": {
-                      "type": "array",
                       "items": {
                         "type": [
                           "string",
                           "null"
                         ]
-                      }
+                      },
+                      "type": "array"
                     },
                     "kind": {
                       "type": "string"
@@ -1081,24 +1048,24 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "info": {
-                "description": "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
+                  "required": [
+                    "jsonPointers",
+                    "kind"
+                  ],
                   "type": [
                     "object",
                     "null"
                   ],
-                  "required": [
-                    "name",
-                    "value"
-                  ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "info": {
+                "description": "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
+                "items": {
                   "properties": {
                     "name": {
                       "type": "string"
@@ -1107,8 +1074,20 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "name",
+                    "value"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "project": {
                 "description": "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
@@ -1116,18 +1095,14 @@
               },
               "revisionHistoryLimit": {
                 "description": "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "source": {
                 "description": "Source is a reference to the location of the application's manifests or chart",
-                "type": "object",
-                "required": [
-                  "repoURL"
-                ],
                 "properties": {
                   "chart": {
                     "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -1138,10 +1113,6 @@
                   },
                   "directory": {
                     "description": "Directory holds path/directory specific options",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "exclude": {
                         "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -1159,27 +1130,11 @@
                       },
                       "jsonnet": {
                         "description": "Jsonnet holds options specific to Jsonnet",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "extVars": {
                             "description": "ExtVars is a list of Jsonnet External Variables",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "name",
-                                "value"
-                              ],
                               "properties": {
                                 "code": {
                                   "type": [
@@ -1194,38 +1149,38 @@
                                   "type": "string"
                                 }
                               },
+                              "required": [
+                                "name",
+                                "value"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
-                          },
-                          "libs": {
-                            "description": "Additional library search dirs",
+                            },
                             "type": [
                               "array",
                               "null"
-                            ],
+                            ]
+                          },
+                          "libs": {
+                            "description": "Additional library search dirs",
                             "items": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
-                          },
-                          "tlas": {
-                            "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                            },
                             "type": [
                               "array",
                               "null"
-                            ],
+                            ]
+                          },
+                          "tlas": {
+                            "description": "TLAS is a list of Jsonnet Top-level Arguments",
                             "items": {
                               "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "name",
-                                "value"
-                              ],
                               "properties": {
                                 "code": {
                                   "type": [
@@ -1240,10 +1195,26 @@
                                   "type": "string"
                                 }
                               },
+                              "required": [
+                                "name",
+                                "value"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "recurse": {
@@ -1254,27 +1225,19 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "helm": {
-                    "description": "Helm holds helm specific options",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "helm": {
+                    "description": "Helm holds helm specific options",
                     "properties": {
                       "fileParameters": {
                         "description": "FileParameters are file parameters to the helm template",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "name": {
                               "description": "Name is the name of the Helm parameter",
@@ -1291,21 +1254,21 @@
                               ]
                             }
                           },
-                          "additionalProperties": false
-                        }
-                      },
-                      "parameters": {
-                        "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "parameters": {
+                        "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                        "items": {
+                          "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                           "properties": {
                             "forceString": {
                               "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -1329,8 +1292,16 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "passCredentials": {
                         "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -1348,16 +1319,16 @@
                       },
                       "valueFiles": {
                         "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "values": {
                         "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -1374,14 +1345,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "ksonnet": {
-                    "description": "Ksonnet holds ksonnet specific options",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "ksonnet": {
+                    "description": "Ksonnet holds ksonnet specific options",
                     "properties": {
                       "environment": {
                         "description": "Environment is a ksonnet application environment name",
@@ -1392,20 +1363,8 @@
                       },
                       "parameters": {
                         "description": "Parameters are a list of ksonnet component parameter override values",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "KsonnetParameter is a ksonnet component parameter",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "name",
-                            "value"
-                          ],
                           "properties": {
                             "component": {
                               "type": [
@@ -1420,58 +1379,70 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "name",
+                            "value"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "kustomize": {
-                    "description": "Kustomize holds kustomize specific options",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "kustomize": {
+                    "description": "Kustomize holds kustomize specific options",
                     "properties": {
                       "commonAnnotations": {
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
                         "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                         "type": [
                           "object",
                           "null"
-                        ],
+                        ]
+                      },
+                      "commonLabels": {
                         "additionalProperties": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
-                      },
-                      "commonLabels": {
+                        },
                         "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                         "type": [
                           "object",
                           "null"
-                        ],
-                        "additionalProperties": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
+                        ]
                       },
                       "images": {
                         "description": "Images is a list of Kustomize image override specifications",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "namePrefix": {
                         "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -1495,6 +1466,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "path": {
@@ -1506,27 +1481,11 @@
                   },
                   "plugin": {
                     "description": "ConfigManagementPlugin holds config management plugin specific options",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "env": {
                         "description": "Env is a list of environment variable entries",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "EnvEntry represents an entry in the application's environment",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "name",
-                            "value"
-                          ],
                           "properties": {
                             "name": {
                               "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -1537,8 +1496,20 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "name",
+                            "value"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "name": {
                         "type": [
@@ -1547,6 +1518,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "repoURL": {
@@ -1561,21 +1536,17 @@
                     ]
                   }
                 },
+                "required": [
+                  "repoURL"
+                ],
+                "type": "object",
                 "additionalProperties": false
               },
               "syncPolicy": {
                 "description": "SyncPolicy controls when and how a sync will be performed",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "automated": {
                     "description": "Automated will keep an application synced to the target revision",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "allowEmpty": {
                         "description": "AllowEmpty allows apps have zero live resources (default: false)",
@@ -1599,21 +1570,17 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "retry": {
-                    "description": "Retry controls failed sync retry behavior",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "retry": {
+                    "description": "Retry controls failed sync retry behavior",
                     "properties": {
                       "backoff": {
                         "description": "Backoff controls how to backoff on subsequent retries of failed syncs",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "duration": {
                             "description": "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. \"2m\", \"1h\")",
@@ -1624,11 +1591,11 @@
                           },
                           "factor": {
                             "description": "Factor is a factor to multiply the base duration after each failed retry",
+                            "format": "int64",
                             "type": [
                               "integer",
                               "null"
-                            ],
-                            "format": "int64"
+                            ]
                           },
                           "maxDuration": {
                             "description": "MaxDuration is the maximum amount of time allowed for the backoff strategy",
@@ -1638,69 +1605,71 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "limit": {
                         "description": "Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.",
+                        "format": "int64",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int64"
+                        ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "syncOptions": {
                     "description": "Options allow you to specify whole app sync-options",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "required": [
+              "destination",
+              "project",
+              "source"
+            ],
+            "type": "object",
             "additionalProperties": false
           },
           "status": {
             "description": "ApplicationStatus contains status information for the application",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "conditions": {
                 "description": "Conditions is a list of currently observed application conditions",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ApplicationCondition contains details about an application condition, which is usally an error or warning",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "message",
-                    "type"
-                  ],
                   "properties": {
                     "lastTransitionTime": {
                       "description": "LastTransitionTime is the time the condition was last observed",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     },
                     "message": {
                       "description": "Message contains human-readable message indicating details about condition",
@@ -1711,15 +1680,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "message",
+                    "type"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "health": {
                 "description": "Health contains information about the application's current health status",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "message": {
                     "description": "Message is a human-readable informational message describing the health status",
@@ -1736,43 +1713,34 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "history": {
                 "description": "History contains information about the application's sync history",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "RevisionHistory contains history information about a previous sync",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "deployedAt",
-                    "id",
-                    "revision"
-                  ],
                   "properties": {
                     "deployStartedAt": {
                       "description": "DeployStartedAt holds the time the sync operation started",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     },
                     "deployedAt": {
                       "description": "DeployedAt holds the time the sync operation completed",
-                      "type": "string",
-                      "format": "date-time"
+                      "format": "date-time",
+                      "type": "string"
                     },
                     "id": {
                       "description": "ID is an auto incrementing identifier of the RevisionHistory",
-                      "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "type": "integer"
                     },
                     "revision": {
                       "description": "Revision holds the revision the sync was performed against",
@@ -1780,13 +1748,6 @@
                     },
                     "source": {
                       "description": "Source is a reference to the application source used for the sync operation",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "repoURL"
-                      ],
                       "properties": {
                         "chart": {
                           "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -1797,10 +1758,6 @@
                         },
                         "directory": {
                           "description": "Directory holds path/directory specific options",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "exclude": {
                               "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -1818,27 +1775,11 @@
                             },
                             "jsonnet": {
                               "description": "Jsonnet holds options specific to Jsonnet",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "extVars": {
                                   "description": "ExtVars is a list of Jsonnet External Variables",
-                                  "type": [
-                                    "array",
-                                    "null"
-                                  ],
                                   "items": {
                                     "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "name",
-                                      "value"
-                                    ],
                                     "properties": {
                                       "code": {
                                         "type": [
@@ -1853,38 +1794,38 @@
                                         "type": "string"
                                       }
                                     },
+                                    "required": [
+                                      "name",
+                                      "value"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ],
                                     "additionalProperties": false
-                                  }
-                                },
-                                "libs": {
-                                  "description": "Additional library search dirs",
+                                  },
                                   "type": [
                                     "array",
                                     "null"
-                                  ],
+                                  ]
+                                },
+                                "libs": {
+                                  "description": "Additional library search dirs",
                                   "items": {
                                     "type": [
                                       "string",
                                       "null"
                                     ]
-                                  }
-                                },
-                                "tlas": {
-                                  "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                                  },
                                   "type": [
                                     "array",
                                     "null"
-                                  ],
+                                  ]
+                                },
+                                "tlas": {
+                                  "description": "TLAS is a list of Jsonnet Top-level Arguments",
                                   "items": {
                                     "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
-                                    "required": [
-                                      "name",
-                                      "value"
-                                    ],
                                     "properties": {
                                       "code": {
                                         "type": [
@@ -1899,10 +1840,26 @@
                                         "type": "string"
                                       }
                                     },
+                                    "required": [
+                                      "name",
+                                      "value"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ],
                                     "additionalProperties": false
-                                  }
+                                  },
+                                  "type": [
+                                    "array",
+                                    "null"
+                                  ]
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "recurse": {
@@ -1913,27 +1870,19 @@
                               ]
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "helm": {
-                          "description": "Helm holds helm specific options",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "helm": {
+                          "description": "Helm holds helm specific options",
                           "properties": {
                             "fileParameters": {
                               "description": "FileParameters are file parameters to the helm template",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "name": {
                                     "description": "Name is the name of the Helm parameter",
@@ -1950,21 +1899,21 @@
                                     ]
                                   }
                                 },
-                                "additionalProperties": false
-                              }
-                            },
-                            "parameters": {
-                              "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
-                              "items": {
-                                "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                 "type": [
                                   "object",
                                   "null"
                                 ],
+                                "additionalProperties": false
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "parameters": {
+                              "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                              "items": {
+                                "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                 "properties": {
                                   "forceString": {
                                     "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -1988,8 +1937,16 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "passCredentials": {
                               "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -2007,16 +1964,16 @@
                             },
                             "valueFiles": {
                               "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "values": {
                               "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -2033,14 +1990,14 @@
                               ]
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "ksonnet": {
-                          "description": "Ksonnet holds ksonnet specific options",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "ksonnet": {
+                          "description": "Ksonnet holds ksonnet specific options",
                           "properties": {
                             "environment": {
                               "description": "Environment is a ksonnet application environment name",
@@ -2051,20 +2008,8 @@
                             },
                             "parameters": {
                               "description": "Parameters are a list of ksonnet component parameter override values",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "KsonnetParameter is a ksonnet component parameter",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
-                                "required": [
-                                  "name",
-                                  "value"
-                                ],
                                 "properties": {
                                   "component": {
                                     "type": [
@@ -2079,58 +2024,70 @@
                                     "type": "string"
                                   }
                                 },
+                                "required": [
+                                  "name",
+                                  "value"
+                                ],
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "kustomize": {
-                          "description": "Kustomize holds kustomize specific options",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "kustomize": {
+                          "description": "Kustomize holds kustomize specific options",
                           "properties": {
                             "commonAnnotations": {
+                              "additionalProperties": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
                               "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                               "type": [
                                 "object",
                                 "null"
-                              ],
+                              ]
+                            },
+                            "commonLabels": {
                               "additionalProperties": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
-                            },
-                            "commonLabels": {
+                              },
                               "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                               "type": [
                                 "object",
                                 "null"
-                              ],
-                              "additionalProperties": {
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
-                              }
+                              ]
                             },
                             "images": {
                               "description": "Images is a list of Kustomize image override specifications",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "namePrefix": {
                               "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -2154,6 +2111,10 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "path": {
@@ -2165,27 +2126,11 @@
                         },
                         "plugin": {
                           "description": "ConfigManagementPlugin holds config management plugin specific options",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "env": {
                               "description": "Env is a list of environment variable entries",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "EnvEntry represents an entry in the application's environment",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
-                                "required": [
-                                  "name",
-                                  "value"
-                                ],
                                 "properties": {
                                   "name": {
                                     "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -2196,8 +2141,20 @@
                                     "type": "string"
                                   }
                                 },
+                                "required": [
+                                  "name",
+                                  "value"
+                                ],
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "name": {
                               "type": [
@@ -2206,6 +2163,10 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "repoURL": {
@@ -2220,39 +2181,50 @@
                           ]
                         }
                       },
+                      "required": [
+                        "repoURL"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     }
                   },
+                  "required": [
+                    "deployedAt",
+                    "id",
+                    "revision"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "observedAt": {
                 "description": "ObservedAt indicates when the application state was updated without querying latest git state Deprecated: controller no longer updates ObservedAt field",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "operationState": {
                 "description": "OperationState contains information about any ongoing operations, such as a sync",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "operation",
-                  "phase",
-                  "startedAt"
-                ],
                 "properties": {
                   "finishedAt": {
                     "description": "FinishedAt contains time of operation completion",
+                    "format": "date-time",
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "format": "date-time"
+                    ]
                   },
                   "message": {
                     "description": "Message holds any pertinent messages when attempting to perform operation (typically errors).",
@@ -2263,23 +2235,10 @@
                   },
                   "operation": {
                     "description": "Operation is the original requested operation",
-                    "type": "object",
                     "properties": {
                       "info": {
                         "description": "Info is a list of informational items for this operation",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "name",
-                            "value"
-                          ],
                           "properties": {
                             "name": {
                               "type": "string"
@@ -2288,15 +2247,23 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "name",
+                            "value"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "initiatedBy": {
                         "description": "InitiatedBy contains information about who initiated the operations",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "automated": {
                             "description": "Automated is set to true if operation was initiated automatically by the application controller.",
@@ -2313,21 +2280,17 @@
                             ]
                           }
                         },
-                        "additionalProperties": false
-                      },
-                      "retry": {
-                        "description": "Retry controls the strategy to apply if a sync fails",
                         "type": [
                           "object",
                           "null"
                         ],
+                        "additionalProperties": false
+                      },
+                      "retry": {
+                        "description": "Retry controls the strategy to apply if a sync fails",
                         "properties": {
                           "backoff": {
                             "description": "Backoff controls how to backoff on subsequent retries of failed syncs",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "duration": {
                                 "description": "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. \"2m\", \"1h\")",
@@ -2338,11 +2301,11 @@
                               },
                               "factor": {
                                 "description": "Factor is a factor to multiply the base duration after each failed retry",
+                                "format": "int64",
                                 "type": [
                                   "integer",
                                   "null"
-                                ],
-                                "format": "int64"
+                                ]
                               },
                               "maxDuration": {
                                 "description": "MaxDuration is the maximum amount of time allowed for the backoff strategy",
@@ -2352,25 +2315,29 @@
                                 ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "limit": {
                             "description": "Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.",
+                            "format": "int64",
                             "type": [
                               "integer",
                               "null"
-                            ],
-                            "format": "int64"
+                            ]
                           }
                         },
-                        "additionalProperties": false
-                      },
-                      "sync": {
-                        "description": "Sync contains parameters for the operation",
                         "type": [
                           "object",
                           "null"
                         ],
+                        "additionalProperties": false
+                      },
+                      "sync": {
+                        "description": "Sync contains parameters for the operation",
                         "properties": {
                           "dryRun": {
                             "description": "DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync",
@@ -2381,16 +2348,16 @@
                           },
                           "manifests": {
                             "description": "Manifests is an optional field that overrides sync source with a local directory for development",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "prune": {
                             "description": "Prune specifies to delete resources from the cluster that are no longer tracked in git",
@@ -2401,20 +2368,8 @@
                           },
                           "resources": {
                             "description": "Resources describes which resources shall be part of the sync",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "description": "SyncOperationResource contains resources to sync.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "kind",
-                                "name"
-                              ],
                               "properties": {
                                 "group": {
                                   "type": [
@@ -2435,8 +2390,20 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "kind",
+                                "name"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "revision": {
                             "description": "Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.",
@@ -2447,13 +2414,6 @@
                           },
                           "source": {
                             "description": "Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
-                            "required": [
-                              "repoURL"
-                            ],
                             "properties": {
                               "chart": {
                                 "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -2464,10 +2424,6 @@
                               },
                               "directory": {
                                 "description": "Directory holds path/directory specific options",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "exclude": {
                                     "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -2485,27 +2441,11 @@
                                   },
                                   "jsonnet": {
                                     "description": "Jsonnet holds options specific to Jsonnet",
-                                    "type": [
-                                      "object",
-                                      "null"
-                                    ],
                                     "properties": {
                                       "extVars": {
                                         "description": "ExtVars is a list of Jsonnet External Variables",
-                                        "type": [
-                                          "array",
-                                          "null"
-                                        ],
                                         "items": {
                                           "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
-                                          "required": [
-                                            "name",
-                                            "value"
-                                          ],
                                           "properties": {
                                             "code": {
                                               "type": [
@@ -2520,38 +2460,38 @@
                                               "type": "string"
                                             }
                                           },
+                                          "required": [
+                                            "name",
+                                            "value"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
                                           "additionalProperties": false
-                                        }
-                                      },
-                                      "libs": {
-                                        "description": "Additional library search dirs",
+                                        },
                                         "type": [
                                           "array",
                                           "null"
-                                        ],
+                                        ]
+                                      },
+                                      "libs": {
+                                        "description": "Additional library search dirs",
                                         "items": {
                                           "type": [
                                             "string",
                                             "null"
                                           ]
-                                        }
-                                      },
-                                      "tlas": {
-                                        "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                                        },
                                         "type": [
                                           "array",
                                           "null"
-                                        ],
+                                        ]
+                                      },
+                                      "tlas": {
+                                        "description": "TLAS is a list of Jsonnet Top-level Arguments",
                                         "items": {
                                           "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
-                                          "required": [
-                                            "name",
-                                            "value"
-                                          ],
                                           "properties": {
                                             "code": {
                                               "type": [
@@ -2566,10 +2506,26 @@
                                               "type": "string"
                                             }
                                           },
+                                          "required": [
+                                            "name",
+                                            "value"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
                                           "additionalProperties": false
-                                        }
+                                        },
+                                        "type": [
+                                          "array",
+                                          "null"
+                                        ]
                                       }
                                     },
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ],
                                     "additionalProperties": false
                                   },
                                   "recurse": {
@@ -2580,27 +2536,19 @@
                                     ]
                                   }
                                 },
-                                "additionalProperties": false
-                              },
-                              "helm": {
-                                "description": "Helm holds helm specific options",
                                 "type": [
                                   "object",
                                   "null"
                                 ],
+                                "additionalProperties": false
+                              },
+                              "helm": {
+                                "description": "Helm holds helm specific options",
                                 "properties": {
                                   "fileParameters": {
                                     "description": "FileParameters are file parameters to the helm template",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
                                       "properties": {
                                         "name": {
                                           "description": "Name is the name of the Helm parameter",
@@ -2617,21 +2565,21 @@
                                           ]
                                         }
                                       },
-                                      "additionalProperties": false
-                                    }
-                                  },
-                                  "parameters": {
-                                    "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
-                                    "items": {
-                                      "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                       "type": [
                                         "object",
                                         "null"
                                       ],
+                                      "additionalProperties": false
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
+                                  },
+                                  "parameters": {
+                                    "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                                    "items": {
+                                      "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                       "properties": {
                                         "forceString": {
                                           "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -2655,8 +2603,16 @@
                                           ]
                                         }
                                       },
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   },
                                   "passCredentials": {
                                     "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -2674,16 +2630,16 @@
                                   },
                                   "valueFiles": {
                                     "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   },
                                   "values": {
                                     "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -2700,14 +2656,14 @@
                                     ]
                                   }
                                 },
-                                "additionalProperties": false
-                              },
-                              "ksonnet": {
-                                "description": "Ksonnet holds ksonnet specific options",
                                 "type": [
                                   "object",
                                   "null"
                                 ],
+                                "additionalProperties": false
+                              },
+                              "ksonnet": {
+                                "description": "Ksonnet holds ksonnet specific options",
                                 "properties": {
                                   "environment": {
                                     "description": "Environment is a ksonnet application environment name",
@@ -2718,20 +2674,8 @@
                                   },
                                   "parameters": {
                                     "description": "Parameters are a list of ksonnet component parameter override values",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "KsonnetParameter is a ksonnet component parameter",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "component": {
                                           "type": [
@@ -2746,58 +2690,70 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   }
                                 },
-                                "additionalProperties": false
-                              },
-                              "kustomize": {
-                                "description": "Kustomize holds kustomize specific options",
                                 "type": [
                                   "object",
                                   "null"
                                 ],
+                                "additionalProperties": false
+                              },
+                              "kustomize": {
+                                "description": "Kustomize holds kustomize specific options",
                                 "properties": {
                                   "commonAnnotations": {
+                                    "additionalProperties": {
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
                                     "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                                     "type": [
                                       "object",
                                       "null"
-                                    ],
+                                    ]
+                                  },
+                                  "commonLabels": {
                                     "additionalProperties": {
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
-                                  },
-                                  "commonLabels": {
+                                    },
                                     "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                                     "type": [
                                       "object",
                                       "null"
-                                    ],
-                                    "additionalProperties": {
-                                      "type": [
-                                        "string",
-                                        "null"
-                                      ]
-                                    }
+                                    ]
                                   },
                                   "images": {
                                     "description": "Images is a list of Kustomize image override specifications",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   },
                                   "namePrefix": {
                                     "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -2821,6 +2777,10 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               },
                               "path": {
@@ -2832,27 +2792,11 @@
                               },
                               "plugin": {
                                 "description": "ConfigManagementPlugin holds config management plugin specific options",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "env": {
                                     "description": "Env is a list of environment variable entries",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "EnvEntry represents an entry in the application's environment",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "name": {
                                           "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -2863,8 +2807,20 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   },
                                   "name": {
                                     "type": [
@@ -2873,6 +2829,10 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               },
                               "repoURL": {
@@ -2887,34 +2847,33 @@
                                 ]
                               }
                             },
+                            "required": [
+                              "repoURL"
+                            ],
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "syncOptions": {
                             "description": "SyncOptions provide per-sync sync-options, e.g. Validate=false",
-                            "type": [
-                              "array",
-                              "null"
-                            ],
                             "items": {
                               "type": [
                                 "string",
                                 "null"
                               ]
-                            }
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
                           },
                           "syncStrategy": {
                             "description": "SyncStrategy describes how to perform the sync",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "apply": {
                                 "description": "Apply will perform a `kubectl apply` to perform the sync.",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "force": {
                                     "description": "Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
@@ -2924,14 +2883,14 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               },
                               "hook": {
                                 "description": "Hook will submit any referenced resources to perform the sync. This is the default strategy",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "force": {
                                     "description": "Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
@@ -2941,15 +2900,28 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       }
                     },
+                    "type": "object",
                     "additionalProperties": false
                   },
                   "phase": {
@@ -2958,46 +2930,24 @@
                   },
                   "retryCount": {
                     "description": "RetryCount contains time of operation retries",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "startedAt": {
                     "description": "StartedAt contains time of operation start",
-                    "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "type": "string"
                   },
                   "syncResult": {
                     "description": "SyncResult is the result of a Sync operation",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "revision"
-                    ],
                     "properties": {
                       "resources": {
                         "description": "Resources contains a list of sync result items for each individual resource in a sync operation",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "ResourceResult holds the operation result details of a specific resource",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "group",
-                            "kind",
-                            "name",
-                            "namespace",
-                            "version"
-                          ],
                           "properties": {
                             "group": {
                               "description": "Group specifies the API group of the resource",
@@ -3055,8 +3005,23 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "group",
+                            "kind",
+                            "name",
+                            "namespace",
+                            "version"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "revision": {
                         "description": "Revision holds the revision this sync operation was performed to",
@@ -3064,13 +3029,6 @@
                       },
                       "source": {
                         "description": "Source records the application source information of the sync, used for comparing auto-sync",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "repoURL"
-                        ],
                         "properties": {
                           "chart": {
                             "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -3081,10 +3039,6 @@
                           },
                           "directory": {
                             "description": "Directory holds path/directory specific options",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "exclude": {
                                 "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -3102,27 +3056,11 @@
                               },
                               "jsonnet": {
                                 "description": "Jsonnet holds options specific to Jsonnet",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "extVars": {
                                     "description": "ExtVars is a list of Jsonnet External Variables",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "code": {
                                           "type": [
@@ -3137,38 +3075,38 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
-                                  },
-                                  "libs": {
-                                    "description": "Additional library search dirs",
+                                    },
                                     "type": [
                                       "array",
                                       "null"
-                                    ],
+                                    ]
+                                  },
+                                  "libs": {
+                                    "description": "Additional library search dirs",
                                     "items": {
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
-                                  },
-                                  "tlas": {
-                                    "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                                    },
                                     "type": [
                                       "array",
                                       "null"
-                                    ],
+                                    ]
+                                  },
+                                  "tlas": {
+                                    "description": "TLAS is a list of Jsonnet Top-level Arguments",
                                     "items": {
                                       "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "code": {
                                           "type": [
@@ -3183,10 +3121,26 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               },
                               "recurse": {
@@ -3197,27 +3151,19 @@
                                 ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "helm": {
-                            "description": "Helm holds helm specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "helm": {
+                            "description": "Helm holds helm specific options",
                             "properties": {
                               "fileParameters": {
                                 "description": "FileParameters are file parameters to the helm template",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "name": {
                                       "description": "Name is the name of the Helm parameter",
@@ -3234,21 +3180,21 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                }
-                              },
-                              "parameters": {
-                                "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
-                                "items": {
-                                  "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                   "type": [
                                     "object",
                                     "null"
                                   ],
+                                  "additionalProperties": false
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
+                              },
+                              "parameters": {
+                                "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                                "items": {
+                                  "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                   "properties": {
                                     "forceString": {
                                       "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -3272,8 +3218,16 @@
                                       ]
                                     }
                                   },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "passCredentials": {
                                 "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -3291,16 +3245,16 @@
                               },
                               "valueFiles": {
                                 "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "values": {
                                 "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -3317,14 +3271,14 @@
                                 ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "ksonnet": {
-                            "description": "Ksonnet holds ksonnet specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "ksonnet": {
+                            "description": "Ksonnet holds ksonnet specific options",
                             "properties": {
                               "environment": {
                                 "description": "Environment is a ksonnet application environment name",
@@ -3335,20 +3289,8 @@
                               },
                               "parameters": {
                                 "description": "Parameters are a list of ksonnet component parameter override values",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "KsonnetParameter is a ksonnet component parameter",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "component": {
                                       "type": [
@@ -3363,58 +3305,70 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "kustomize": {
-                            "description": "Kustomize holds kustomize specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "kustomize": {
+                            "description": "Kustomize holds kustomize specific options",
                             "properties": {
                               "commonAnnotations": {
+                                "additionalProperties": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
                                 "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                                 "type": [
                                   "object",
                                   "null"
-                                ],
+                                ]
+                              },
+                              "commonLabels": {
                                 "additionalProperties": {
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
-                              },
-                              "commonLabels": {
+                                },
                                 "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                                 "type": [
                                   "object",
                                   "null"
-                                ],
-                                "additionalProperties": {
-                                  "type": [
-                                    "string",
-                                    "null"
-                                  ]
-                                }
+                                ]
                               },
                               "images": {
                                 "description": "Images is a list of Kustomize image override specifications",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "namePrefix": {
                                 "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -3438,6 +3392,10 @@
                                 ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "path": {
@@ -3449,27 +3407,11 @@
                           },
                           "plugin": {
                             "description": "ConfigManagementPlugin holds config management plugin specific options",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "env": {
                                 "description": "Env is a list of environment variable entries",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "EnvEntry represents an entry in the application's environment",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "name": {
                                       "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -3480,8 +3422,20 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "name": {
                                 "type": [
@@ -3490,6 +3444,10 @@
                                 ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "repoURL": {
@@ -3504,34 +3462,49 @@
                             ]
                           }
                         },
+                        "required": [
+                          "repoURL"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       }
                     },
+                    "required": [
+                      "revision"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   }
                 },
+                "required": [
+                  "operation",
+                  "phase",
+                  "startedAt"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "reconciledAt": {
                 "description": "ReconciledAt indicates when the application state was reconciled using the latest git version",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "resources": {
                 "description": "Resources is a list of Kubernetes resources managed by this application",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ResourceStatus holds the current sync and health status of a resource TODO: describe members of this type",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "group": {
                       "type": [
@@ -3541,10 +3514,6 @@
                     },
                     "health": {
                       "description": "HealthStatus contains information about the currently observed health state of an application or resource",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "message": {
                           "description": "Message is a human-readable informational message describing the health status",
@@ -3561,6 +3530,10 @@
                           ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "hook": {
@@ -3607,8 +3580,16 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "sourceType": {
                 "description": "SourceType specifies the type of this application",
@@ -3619,64 +3600,48 @@
               },
               "summary": {
                 "description": "Summary contains a list of URLs and container images used by this application",
+                "properties": {
+                  "externalURLs": {
+                    "description": "ExternalURLs holds all external URLs of application child resources.",
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "images": {
+                    "description": "Images holds all images of application child resources.",
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  }
+                },
                 "type": [
                   "object",
                   "null"
                 ],
-                "properties": {
-                  "externalURLs": {
-                    "description": "ExternalURLs holds all external URLs of application child resources.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    }
-                  },
-                  "images": {
-                    "description": "Images holds all images of application child resources.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    }
-                  }
-                },
                 "additionalProperties": false
               },
               "sync": {
                 "description": "Sync contains information about the application's current sync status",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "status"
-                ],
                 "properties": {
                   "comparedTo": {
                     "description": "ComparedTo contains information about what has been compared",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "destination",
-                      "source"
-                    ],
                     "properties": {
                       "destination": {
                         "description": "Destination is a reference to the application's destination used for comparison",
-                        "type": "object",
                         "properties": {
                           "name": {
                             "description": "Name is an alternate way of specifying the target cluster by its symbolic name",
@@ -3700,14 +3665,11 @@
                             ]
                           }
                         },
+                        "type": "object",
                         "additionalProperties": false
                       },
                       "source": {
                         "description": "Source is a reference to the application's source used for comparison",
-                        "type": "object",
-                        "required": [
-                          "repoURL"
-                        ],
                         "properties": {
                           "chart": {
                             "description": "Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.",
@@ -3718,10 +3680,6 @@
                           },
                           "directory": {
                             "description": "Directory holds path/directory specific options",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "exclude": {
                                 "description": "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
@@ -3739,27 +3697,11 @@
                               },
                               "jsonnet": {
                                 "description": "Jsonnet holds options specific to Jsonnet",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "extVars": {
                                     "description": "ExtVars is a list of Jsonnet External Variables",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "code": {
                                           "type": [
@@ -3774,38 +3716,38 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
-                                  },
-                                  "libs": {
-                                    "description": "Additional library search dirs",
+                                    },
                                     "type": [
                                       "array",
                                       "null"
-                                    ],
+                                    ]
+                                  },
+                                  "libs": {
+                                    "description": "Additional library search dirs",
                                     "items": {
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
-                                  },
-                                  "tlas": {
-                                    "description": "TLAS is a list of Jsonnet Top-level Arguments",
+                                    },
                                     "type": [
                                       "array",
                                       "null"
-                                    ],
+                                    ]
+                                  },
+                                  "tlas": {
+                                    "description": "TLAS is a list of Jsonnet Top-level Arguments",
                                     "items": {
                                       "description": "JsonnetVar represents a variable to be passed to jsonnet during manifest generation",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name",
-                                        "value"
-                                      ],
                                       "properties": {
                                         "code": {
                                           "type": [
@@ -3820,10 +3762,26 @@
                                           "type": "string"
                                         }
                                       },
+                                      "required": [
+                                        "name",
+                                        "value"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               },
                               "recurse": {
@@ -3834,27 +3792,19 @@
                                 ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "helm": {
-                            "description": "Helm holds helm specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "helm": {
+                            "description": "Helm holds helm specific options",
                             "properties": {
                               "fileParameters": {
                                 "description": "FileParameters are file parameters to the helm template",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
                                   "properties": {
                                     "name": {
                                       "description": "Name is the name of the Helm parameter",
@@ -3871,21 +3821,21 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                }
-                              },
-                              "parameters": {
-                                "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
-                                "items": {
-                                  "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                   "type": [
                                     "object",
                                     "null"
                                   ],
+                                  "additionalProperties": false
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
+                              },
+                              "parameters": {
+                                "description": "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+                                "items": {
+                                  "description": "HelmParameter is a parameter that's passed to helm template during manifest generation",
                                   "properties": {
                                     "forceString": {
                                       "description": "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -3909,8 +3859,16 @@
                                       ]
                                     }
                                   },
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "passCredentials": {
                                 "description": "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
@@ -3928,16 +3886,16 @@
                               },
                               "valueFiles": {
                                 "description": "ValuesFiles is a list of Helm value files to use when generating a template",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "values": {
                                 "description": "Values specifies Helm values to be passed to helm template, typically defined as a block",
@@ -3954,14 +3912,14 @@
                                 ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "ksonnet": {
-                            "description": "Ksonnet holds ksonnet specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "ksonnet": {
+                            "description": "Ksonnet holds ksonnet specific options",
                             "properties": {
                               "environment": {
                                 "description": "Environment is a ksonnet application environment name",
@@ -3972,20 +3930,8 @@
                               },
                               "parameters": {
                                 "description": "Parameters are a list of ksonnet component parameter override values",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "KsonnetParameter is a ksonnet component parameter",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "component": {
                                       "type": [
@@ -4000,58 +3946,70 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               }
                             },
-                            "additionalProperties": false
-                          },
-                          "kustomize": {
-                            "description": "Kustomize holds kustomize specific options",
                             "type": [
                               "object",
                               "null"
                             ],
+                            "additionalProperties": false
+                          },
+                          "kustomize": {
+                            "description": "Kustomize holds kustomize specific options",
                             "properties": {
                               "commonAnnotations": {
+                                "additionalProperties": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
                                 "description": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
                                 "type": [
                                   "object",
                                   "null"
-                                ],
+                                ]
+                              },
+                              "commonLabels": {
                                 "additionalProperties": {
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
-                              },
-                              "commonLabels": {
+                                },
                                 "description": "CommonLabels is a list of additional labels to add to rendered manifests",
                                 "type": [
                                   "object",
                                   "null"
-                                ],
-                                "additionalProperties": {
-                                  "type": [
-                                    "string",
-                                    "null"
-                                  ]
-                                }
+                                ]
                               },
                               "images": {
                                 "description": "Images is a list of Kustomize image override specifications",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "KustomizeImage represents a Kustomize image definition in the format [old_image_name=]<image_name>:<image_tag>",
                                   "type": [
                                     "string",
                                     "null"
                                   ]
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "namePrefix": {
                                 "description": "NamePrefix is a prefix appended to resources for Kustomize apps",
@@ -4075,6 +4033,10 @@
                                 ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "path": {
@@ -4086,27 +4048,11 @@
                           },
                           "plugin": {
                             "description": "ConfigManagementPlugin holds config management plugin specific options",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "env": {
                                 "description": "Env is a list of environment variable entries",
-                                "type": [
-                                  "array",
-                                  "null"
-                                ],
                                 "items": {
                                   "description": "EnvEntry represents an entry in the application's environment",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "name",
-                                    "value"
-                                  ],
                                   "properties": {
                                     "name": {
                                       "description": "Name is the name of the variable, usually expressed in uppercase",
@@ -4117,8 +4063,20 @@
                                       "type": "string"
                                     }
                                   },
+                                  "required": [
+                                    "name",
+                                    "value"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
-                                }
+                                },
+                                "type": [
+                                  "array",
+                                  "null"
+                                ]
                               },
                               "name": {
                                 "type": [
@@ -4127,6 +4085,10 @@
                                 ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "repoURL": {
@@ -4141,9 +4103,21 @@
                             ]
                           }
                         },
+                        "required": [
+                          "repoURL"
+                        ],
+                        "type": "object",
                         "additionalProperties": false
                       }
                     },
+                    "required": [
+                      "destination",
+                      "source"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "revision": {
@@ -4158,12 +4132,31 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "status"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "required": [
+          "metadata",
+          "spec"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "argoproj.io",
@@ -4172,7 +4165,11 @@
           }
         ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -4186,10 +4183,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -4200,11 +4193,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -4221,9 +4214,16 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "argoproj.io",

@@ -1,16 +1,16 @@
 {
   "description": "describes the attributes of a scale subresource",
-  "type": "object",
   "properties": {
     "replicas": {
       "description": "desired number of instances for the scaled object.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

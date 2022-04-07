@@ -1,9 +1,5 @@
 {
   "description": "ManagedClusterAddOn is the Custom Resource object which holds the current state of an add-on. This object is used by add-on operators to convey their state. This resource should be created in the ManagedCluster namespace.",
-  "type": "object",
-  "required": [
-    "spec"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -27,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -54,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -99,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -175,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -201,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -249,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -277,40 +269,36 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "spec": {
       "description": "spec holds configuration that could apply to any operator.",
+      "properties": {
+        "installNamespace": {
+          "description": "installNamespace is the namespace on the managed cluster to install the addon agent. If it is not set, open-cluster-management-agent-addon namespace is used to install the addon agent.",
+          "maxLength": 63,
+          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
       "type": [
         "object",
         "null"
       ],
-      "properties": {
-        "installNamespace": {
-          "description": "installNamespace is the namespace on the managed cluster to install the addon agent. If it is not set, open-cluster-management-agent-addon namespace is used to install the addon agent.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "maxLength": 63,
-          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-        }
-      },
       "additionalProperties": false
     },
     "status": {
       "description": "status holds the information about the state of an operator.  It is consistent with status information across the Kubernetes ecosystem.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "addOnConfiguration": {
           "description": "addOnConfiguration is a reference to configuration information for the add-on. This resource is use to locate the configuration resource for the add-on.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "crName": {
               "description": "crName is the name of the CR used to configure instances of the managed add-on. This field should be configured if add-on CR have a consistent name across the all of the ManagedCluster instaces.",
@@ -327,14 +315,14 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "addOnMeta": {
-          "description": "addOnMeta is a reference to the metadata information for the add-on. This should be same as the addOnMeta for the corresponding ClusterManagementAddOn resource.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "addOnMeta": {
+          "description": "addOnMeta is a reference to the metadata information for the add-on. This should be same as the addOnMeta for the corresponding ClusterManagementAddOn resource.",
           "properties": {
             "description": {
               "description": "description represents the detailed description of the add-on.",
@@ -351,20 +339,59 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "conditions": {
           "description": "conditions describe the state of the managed and monitored components for the operator.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo's current state.     // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"` \n     // other fields }",
-            "type": [
-              "object",
-              "null"
-            ],
+            "properties": {
+              "lastTransitionTime": {
+                "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
+                "maxLength": 32768,
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+                "format": "int64",
+                "minimum": 0,
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "reason": {
+                "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+                "maxLength": 1024,
+                "minLength": 1,
+                "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+                "type": "string"
+              },
+              "status": {
+                "description": "status of the condition, one of True, False, Unknown.",
+                "enum": [
+                  "True",
+                  "False",
+                  "Unknown"
+                ],
+                "type": "string"
+              },
+              "type": {
+                "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+                "maxLength": 316,
+                "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+                "type": "string"
+              }
+            },
             "required": [
               "lastTransitionTime",
               "message",
@@ -372,106 +399,59 @@
               "status",
               "type"
             ],
-            "properties": {
-              "lastTransitionTime": {
-                "description": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
-                "type": "string",
-                "format": "date-time"
-              },
-              "message": {
-                "description": "message is a human readable message indicating details about the transition. This may be an empty string.",
-                "type": "string",
-                "maxLength": 32768
-              },
-              "observedGeneration": {
-                "description": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
-                "type": [
-                  "integer",
-                  "null"
-                ],
-                "format": "int64",
-                "minimum": 0
-              },
-              "reason": {
-                "description": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
-                "type": "string",
-                "maxLength": 1024,
-                "minLength": 1,
-                "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
-              },
-              "status": {
-                "description": "status of the condition, one of True, False, Unknown.",
-                "type": "string",
-                "enum": [
-                  "True",
-                  "False",
-                  "Unknown"
-                ]
-              },
-              "type": {
-                "description": "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
-                "type": "string",
-                "maxLength": 316,
-                "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
-              }
-            },
-            "additionalProperties": false
-          }
-        },
-        "registrations": {
-          "description": "registrations is the conifigurations for the addon agent to register to hub. It should be set by each addon controller on hub to define how the addon agent on managedcluster is registered. With the registration defined, The addon agent can access to kube apiserver with kube style API or other endpoints on hub cluster with client certificate authentication. A csr will be created per registration configuration. If more than one registrationConfig is defined, a csr will be created for each registration configuration. It is not allowed that multiple registrationConfigs have the same signer name. After the csr is approved on the hub cluster, the klusterlet agent will create a secret in the installNamespace for the registrationConfig. If the signerName is \"kubernetes.io/kube-apiserver-client\", the secret name will be \"{addon name}-hub-kubeconfig\" whose contents includes key/cert and kubeconfig. Otherwise, the secret name will be \"{addon name}-{signer name}-client-cert\" whose contents includes key/cert.",
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "description": "RegistrationConfig defines the configuration of the addon agent to register to hub. The Klusterlet agent will create a csr for the addon agent with the registrationConfig.",
             "type": [
               "object",
               "null"
             ],
+            "additionalProperties": false
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "registrations": {
+          "description": "registrations is the conifigurations for the addon agent to register to hub. It should be set by each addon controller on hub to define how the addon agent on managedcluster is registered. With the registration defined, The addon agent can access to kube apiserver with kube style API or other endpoints on hub cluster with client certificate authentication. A csr will be created per registration configuration. If more than one registrationConfig is defined, a csr will be created for each registration configuration. It is not allowed that multiple registrationConfigs have the same signer name. After the csr is approved on the hub cluster, the klusterlet agent will create a secret in the installNamespace for the registrationConfig. If the signerName is \"kubernetes.io/kube-apiserver-client\", the secret name will be \"{addon name}-hub-kubeconfig\" whose contents includes key/cert and kubeconfig. Otherwise, the secret name will be \"{addon name}-{signer name}-client-cert\" whose contents includes key/cert.",
+          "items": {
+            "description": "RegistrationConfig defines the configuration of the addon agent to register to hub. The Klusterlet agent will create a csr for the addon agent with the registrationConfig.",
             "properties": {
               "signerName": {
                 "description": "signerName is the name of signer that addon agent will use to create csr.",
+                "maxLength": 571,
+                "minLength": 5,
                 "type": [
                   "string",
                   "null"
-                ],
-                "maxLength": 571,
-                "minLength": 5
+                ]
               },
               "subject": {
                 "description": "subject is the user subject of the addon agent to be registered to the hub. If it is not set, the addon agent will have the default subject \"subject\": { \t\"user\": \"system:open-cluster-management:addon:{addonName}:{clusterName}:{agentName}\", \t\"groups: [\"system:open-cluster-management:addon\", \"system:open-cluster-management:addon:{addonName}\", \"system:authenticated\"] }",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "groups": {
                     "description": "groups is the user group of the addon agent.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "organizationUnit": {
                     "description": "organizationUnit is the ou of the addon agent",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "user": {
                     "description": "user is the user name of the addon agent.",
@@ -481,29 +461,28 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
-            "additionalProperties": false
-          }
-        },
-        "relatedObjects": {
-          "description": "relatedObjects is a list of objects that are \"interesting\" or related to this operator. Common uses are: 1. the detailed resource driving the operator 2. operator namespaces 3. operand namespaces 4. related ClusterManagementAddon resource",
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
             "type": [
               "object",
               "null"
             ],
-            "required": [
-              "group",
-              "name",
-              "resource"
-            ],
+            "additionalProperties": false
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "relatedObjects": {
+          "description": "relatedObjects is a list of objects that are \"interesting\" or related to this operator. Common uses are: 1. the detailed resource driving the operator 2. operator namespaces 3. operand namespaces 4. related ClusterManagementAddon resource",
+          "items": {
+            "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
             "properties": {
               "group": {
                 "description": "group of the referent.",
@@ -525,13 +504,34 @@
                 "type": "string"
               }
             },
+            "required": [
+              "group",
+              "name",
+              "resource"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "spec"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "addon.open-cluster-management.io",

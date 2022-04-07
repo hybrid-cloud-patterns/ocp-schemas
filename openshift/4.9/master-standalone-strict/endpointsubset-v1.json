@@ -1,22 +1,10 @@
 {
   "description": "EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:\n  {\n    Addresses: [{\"ip\": \"10.10.1.1\"}, {\"ip\": \"10.10.2.2\"}],\n    Ports:     [{\"name\": \"a\", \"port\": 8675}, {\"name\": \"b\", \"port\": 309}]\n  }\nThe resulting set of endpoints can be viewed as:\n    a: [ 10.10.1.1:8675, 10.10.2.2:8675 ],\n    b: [ 10.10.1.1:309, 10.10.2.2:309 ]",
-  "type": "object",
   "properties": {
     "addresses": {
       "description": "IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "EndpointAddress is a tuple that describes single IP address.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "ip"
-        ],
         "properties": {
           "hostname": {
             "description": "The Hostname of this endpoint",
@@ -38,10 +26,6 @@
           },
           "targetRef": {
             "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -93,29 +77,33 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           }
         },
+        "required": [
+          "ip"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-map-type": "atomic",
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "notReadyAddresses": {
       "description": "IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "EndpointAddress is a tuple that describes single IP address.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "ip"
-        ],
         "properties": {
           "hostname": {
             "description": "The Hostname of this endpoint",
@@ -137,10 +125,6 @@
           },
           "targetRef": {
             "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -192,29 +176,33 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           }
         },
-        "x-kubernetes-map-type": "atomic",
-        "additionalProperties": false
-      }
-    },
-    "ports": {
-      "description": "Port numbers available on the related IP addresses.",
-      "type": [
-        "array",
-        "null"
-      ],
-      "items": {
-        "description": "EndpointPort is a tuple that describes a single port.",
+        "required": [
+          "ip"
+        ],
         "type": [
           "object",
           "null"
         ],
-        "required": [
-          "port"
-        ],
+        "x-kubernetes-map-type": "atomic",
+        "additionalProperties": false
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "ports": {
+      "description": "Port numbers available on the related IP addresses.",
+      "items": {
+        "description": "EndpointPort is a tuple that describes a single port.",
         "properties": {
           "appProtocol": {
             "description": "The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.",
@@ -232,8 +220,8 @@
           },
           "port": {
             "description": "The port number of the endpoint.",
-            "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "type": "integer"
           },
           "protocol": {
             "description": "The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.",
@@ -243,11 +231,23 @@
             ]
           }
         },
+        "required": [
+          "port"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-map-type": "atomic",
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

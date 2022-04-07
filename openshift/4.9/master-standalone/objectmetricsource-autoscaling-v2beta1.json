@@ -1,11 +1,5 @@
 {
   "description": "ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).",
-  "type": "object",
-  "required": [
-    "target",
-    "metricName",
-    "targetValue"
-  ],
   "properties": {
     "averageValue": {
       "oneOf": [
@@ -32,27 +26,11 @@
     },
     "selector": {
       "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "matchExpressions": {
           "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "key",
-              "operator"
-            ],
             "properties": {
               "key": {
                 "description": "key is the label key that the selector applies to.",
@@ -66,46 +44,54 @@
               },
               "values": {
                 "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               }
-            }
-          }
+            },
+            "required": [
+              "key",
+              "operator"
+            ],
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "matchLabels": {
-          "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+          "type": [
+            "object",
+            "null"
+          ]
         }
       },
-      "x-kubernetes-map-type": "atomic"
-    },
-    "target": {
-      "description": "CrossVersionObjectReference contains enough information to let you identify the referred resource.",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "kind",
-        "name"
-      ],
+      "x-kubernetes-map-type": "atomic"
+    },
+    "target": {
+      "description": "CrossVersionObjectReference contains enough information to let you identify the referred resource.",
       "properties": {
         "apiVersion": {
           "description": "API version of the referent",
@@ -122,7 +108,15 @@
           "description": "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "targetValue": {
       "oneOf": [
@@ -141,5 +135,11 @@
       ]
     }
   },
+  "required": [
+    "target",
+    "metricName",
+    "targetValue"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

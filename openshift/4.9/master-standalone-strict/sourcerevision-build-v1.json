@@ -1,23 +1,11 @@
 {
   "description": "SourceRevision is the revision or commit information from the source for the build",
-  "type": "object",
-  "required": [
-    "type"
-  ],
   "properties": {
     "git": {
       "description": "GitSourceRevision is the commit information from a git source for a build",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "author": {
           "description": "SourceControlUser defines the identity of a user of source control",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "email": {
               "description": "email of the source control user",
@@ -34,6 +22,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "commit": {
@@ -45,10 +37,6 @@
         },
         "committer": {
           "description": "SourceControlUser defines the identity of a user of source control",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "email": {
               "description": "email of the source control user",
@@ -65,6 +53,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "message": {
@@ -75,6 +67,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "type": {
@@ -85,6 +81,10 @@
       ]
     }
   },
+  "required": [
+    "type"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

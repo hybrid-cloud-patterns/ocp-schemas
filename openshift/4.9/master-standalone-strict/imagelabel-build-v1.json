@@ -1,9 +1,5 @@
 {
   "description": "ImageLabel represents a label applied to the resulting image.",
-  "type": "object",
-  "required": [
-    "name"
-  ],
   "properties": {
     "name": {
       "description": "name defines the name of the label. It must have non-zero length.",
@@ -20,6 +16,10 @@
       ]
     }
   },
+  "required": [
+    "name"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

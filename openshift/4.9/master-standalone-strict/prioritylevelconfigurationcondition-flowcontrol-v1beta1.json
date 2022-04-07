@@ -1,14 +1,13 @@
 {
   "description": "PriorityLevelConfigurationCondition defines the condition of priority level.",
-  "type": "object",
   "properties": {
     "lastTransitionTime": {
       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+      "format": "date-time",
       "type": [
         "string",
         "null"
-      ],
-      "format": "date-time"
+      ]
     },
     "message": {
       "description": "`message` is a human-readable message indicating details about last transition.",
@@ -39,6 +38,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

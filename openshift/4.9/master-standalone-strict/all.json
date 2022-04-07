@@ -730,6 +730,240 @@
       "$ref": "_definitions.json#/definitions/com.github.stolostron.multicloud-operators-foundation.pkg.proxyserver.apis.proxy.v1beta1.ClusterStatusList"
     },
     {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonAddon"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonAddonList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonConfig"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonConfigList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonInstallerSet"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonInstallerSetList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonPipeline"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonPipelineList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonTrigger"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.operator.v1alpha1.TektonTriggerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.ClusterInterceptor"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.ClusterInterceptorList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.ClusterTriggerBinding"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.ClusterTriggerBindingList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.EventListener"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.EventListenerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.Trigger"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.TriggerBinding"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.TriggerBindingList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.TriggerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.TriggerTemplate"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1alpha1.TriggerTemplateList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.ClusterTriggerBinding"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.ClusterTriggerBindingList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.EventListener"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.EventListenerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.Trigger"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.TriggerBinding"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.TriggerBindingList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.TriggerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.TriggerTemplate"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.triggers.v1beta1.TriggerTemplateList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.ClusterTask"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.ClusterTaskList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.Condition"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.ConditionList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.Pipeline"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.PipelineList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.PipelineResource"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.PipelineResourceList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.PipelineRun"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.PipelineRunList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.Run"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.RunList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.Task"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.TaskList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.TaskRun"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1alpha1.TaskRunList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.ClusterTask"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.ClusterTaskList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.Pipeline"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.PipelineList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.PipelineRun"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.PipelineRunList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.Task"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.TaskList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.TaskRun"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/dev.tekton.v1beta1.TaskRunList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v1alpha1.ActiveMQArtemisSecurity"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v1alpha1.ActiveMQArtemisSecurityList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemis"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemisAddress"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemisAddressList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemisList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemisScaledown"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha1.ActiveMQArtemisScaledownList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha2.ActiveMQArtemis"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha2.ActiveMQArtemisAddress"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha2.ActiveMQArtemisAddressList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha2.ActiveMQArtemisList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha3.ActiveMQArtemis"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha3.ActiveMQArtemisAddress"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha3.ActiveMQArtemisAddressList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha3.ActiveMQArtemisList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha4.ActiveMQArtemis"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha4.ActiveMQArtemisList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha5.ActiveMQArtemis"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.amq.broker.v2alpha5.ActiveMQArtemisList"
+    },
+    {
       "$ref": "_definitions.json#/definitions/io.argoproj.v1alpha1.AppProject"
     },
     {
@@ -3370,6 +3604,90 @@
       "$ref": "_definitions.json#/definitions/io.openshift.tuned.v1.TunedList"
     },
     {
+      "$ref": "_definitions.json#/definitions/io.seldon.machinelearning.v1.SeldonDeployment"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.seldon.machinelearning.v1.SeldonDeploymentList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1alpha1.KafkaTopic"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1alpha1.KafkaTopicList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1alpha1.KafkaUser"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1alpha1.KafkaUserList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta1.KafkaTopic"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta1.KafkaTopicList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta1.KafkaUser"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta1.KafkaUserList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.Kafka"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaBridge"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaBridgeList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaConnect"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaConnectList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaConnector"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaConnectorList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaMirrorMaker"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaMirrorMaker2"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaMirrorMaker2List"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaMirrorMakerList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaRebalance"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaRebalanceList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaTopic"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaTopicList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaUser"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.strimzi.kafka.v1beta2.KafkaUserList"
+    },
+    {
       "$ref": "_definitions.json#/definitions/io.submariner.lighthouse.v2alpha1.ServiceImport"
     },
     {
@@ -3434,6 +3752,54 @@
     },
     {
       "$ref": "_definitions.json#/definitions/io.x-k8s.multicluster.v1alpha1.ServiceImportList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.Build"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.BuildList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.CamelCatalog"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.CamelCatalogList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.Integration"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.IntegrationKit"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.IntegrationKitList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.IntegrationList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.IntegrationPlatform"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1.IntegrationPlatformList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1alpha1.Kamelet"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1alpha1.KameletBinding"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1alpha1.KameletBindingList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.apache.camel.v1alpha1.KameletList"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.kubeflow.apps.kfdef.v1.KfDef"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/org.kubeflow.apps.kfdef.v1.KfDefList"
     }
   ]
 }

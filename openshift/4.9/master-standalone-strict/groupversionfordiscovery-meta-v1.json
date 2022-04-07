@@ -1,10 +1,5 @@
 {
   "description": "GroupVersion contains the \"group/version\" and \"version\" string of a version. It is made a struct to keep extensibility.",
-  "type": "object",
-  "required": [
-    "groupVersion",
-    "version"
-  ],
   "properties": {
     "groupVersion": {
       "description": "groupVersion specifies the API group and version in the form \"group/version\"",
@@ -21,6 +16,11 @@
       ]
     }
   },
+  "required": [
+    "groupVersion",
+    "version"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

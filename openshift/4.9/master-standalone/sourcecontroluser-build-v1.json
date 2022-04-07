@@ -1,6 +1,5 @@
 {
   "description": "SourceControlUser defines the identity of a user of source control",
-  "type": "object",
   "properties": {
     "email": {
       "description": "email of the source control user",
@@ -17,5 +16,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

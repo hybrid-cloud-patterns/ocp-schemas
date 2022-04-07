@@ -1,10 +1,5 @@
 {
   "description": "ContainerMetrics sets resource usage metrics of a container.",
-  "type": "object",
-  "required": [
-    "name",
-    "usage"
-  ],
   "properties": {
     "name": {
       "description": "Container name corresponding to the one from pod.spec.containers.",
@@ -14,11 +9,6 @@
       ]
     },
     "usage": {
-      "description": "The memory usage is the memory working set.",
-      "type": [
-        "object",
-        "null"
-      ],
       "additionalProperties": {
         "oneOf": [
           {
@@ -34,8 +24,18 @@
             ]
           }
         ]
-      }
+      },
+      "description": "The memory usage is the memory working set.",
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "required": [
+    "name",
+    "usage"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

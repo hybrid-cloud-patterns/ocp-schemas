@@ -1,31 +1,18 @@
 {
   "description": "NamespaceStatus is information about the current status of a Namespace.",
-  "type": "object",
   "properties": {
     "conditions": {
       "description": "Represents the latest available observations of a namespace's current state.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "NamespaceCondition contains details about state of namespace.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "type",
-          "status"
-        ],
         "properties": {
           "lastTransitionTime": {
             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+            "format": "date-time",
             "type": [
               "string",
               "null"
-            ],
-            "format": "date-time"
+            ]
           },
           "message": {
             "type": [
@@ -47,8 +34,20 @@
             "description": "Type of namespace controller condition.",
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "status"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-patch-merge-key": "type",
       "x-kubernetes-patch-strategy": "merge"
     },
@@ -60,5 +59,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

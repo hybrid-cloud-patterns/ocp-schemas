@@ -1,10 +1,5 @@
 {
   "description": "DeploymentConfigRollback provides the input to rollback generation.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-  "type": "object",
-  "required": [
-    "name",
-    "spec"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -36,21 +31,9 @@
     },
     "spec": {
       "description": "DeploymentConfigRollbackSpec represents the options for rollback generation.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "from",
-        "includeTriggers",
-        "includeTemplate",
-        "includeReplicationMeta",
-        "includeStrategy"
-      ],
       "properties": {
         "from": {
           "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-          "type": "object",
           "properties": {
             "apiVersion": {
               "description": "API version of the referent.",
@@ -102,6 +85,7 @@
               ]
             }
           },
+          "type": "object",
           "x-kubernetes-map-type": "atomic"
         },
         "includeReplicationMeta": {
@@ -122,28 +106,44 @@
         },
         "revision": {
           "description": "Revision to rollback to. If set to 0, rollback to the last revision.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         }
-      }
-    },
-    "updatedAnnotations": {
-      "description": "UpdatedAnnotations is a set of new annotations that will be added in the deployment config.",
+      },
+      "required": [
+        "from",
+        "includeTriggers",
+        "includeTemplate",
+        "includeReplicationMeta",
+        "includeStrategy"
+      ],
       "type": [
         "object",
         "null"
-      ],
+      ]
+    },
+    "updatedAnnotations": {
       "additionalProperties": {
         "type": [
           "string",
           "null"
         ]
-      }
+      },
+      "description": "UpdatedAnnotations is a set of new annotations that will be added in the deployment config.",
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "required": [
+    "name",
+    "spec"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "",

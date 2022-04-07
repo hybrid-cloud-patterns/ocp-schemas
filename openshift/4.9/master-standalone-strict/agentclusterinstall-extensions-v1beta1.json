@@ -1,9 +1,5 @@
 {
   "description": "AgentClusterInstall represents a request to provision an agent based cluster.",
-  "type": "object",
-  "required": [
-    "spec"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -27,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -54,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -99,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -175,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -201,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -249,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -277,20 +269,14 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "AgentClusterInstallSpec defines the desired state of the AgentClusterInstall.",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "clusterDeploymentRef",
-        "imageSetRef",
-        "networking",
-        "provisionRequirements"
-      ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "AgentClusterInstallSpec defines the desired state of the AgentClusterInstall.",
       "properties": {
         "apiVIP": {
           "description": "APIVIP is the virtual IP used to reach the OpenShift cluster's API.",
@@ -301,7 +287,6 @@
         },
         "clusterDeploymentRef": {
           "description": "ClusterDeploymentRef is a reference to the ClusterDeployment associated with this AgentClusterInstall.",
-          "type": "object",
           "properties": {
             "name": {
               "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -311,24 +296,14 @@
               ]
             }
           },
+          "type": "object",
           "additionalProperties": false
         },
         "clusterMetadata": {
           "description": "ClusterMetadata contains metadata information about the installed cluster. It should be populated once the cluster install is completed. (it can be populated sooner if desired, but Hive will not copy back to ClusterDeployment until the Installed condition goes True.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "adminKubeconfigSecretRef",
-            "adminPasswordSecretRef",
-            "clusterID",
-            "infraID"
-          ],
           "properties": {
             "adminKubeconfigSecretRef": {
               "description": "AdminKubeconfigSecretRef references the secret containing the admin kubeconfig for this cluster.",
-              "type": "object",
               "properties": {
                 "name": {
                   "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -338,11 +313,11 @@
                   ]
                 }
               },
+              "type": "object",
               "additionalProperties": false
             },
             "adminPasswordSecretRef": {
               "description": "AdminPasswordSecretRef references the secret containing the admin username/password which can be used to login to this cluster.",
-              "type": "object",
               "properties": {
                 "name": {
                   "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -352,6 +327,7 @@
                   ]
                 }
               },
+              "type": "object",
               "additionalProperties": false
             },
             "clusterID": {
@@ -363,34 +339,33 @@
               "type": "string"
             }
           },
+          "required": [
+            "adminKubeconfigSecretRef",
+            "adminPasswordSecretRef",
+            "clusterID",
+            "infraID"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "compute": {
           "description": "Compute is the configuration for the machines that comprise the compute nodes.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "AgentMachinePool is a pool of machines to be installed.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "name"
-            ],
             "properties": {
               "hyperthreading": {
                 "description": "Hyperthreading determines the mode of hyperthreading that machines in the pool will utilize. Default is for hyperthreading to be enabled.",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "",
                   "Enabled",
                   "Disabled"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "name": {
@@ -398,29 +373,33 @@
                 "type": "string"
               }
             },
+            "required": [
+              "name"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "controlPlane": {
           "description": "ControlPlane is the configuration for the machines that comprise the control plane.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "name"
-          ],
           "properties": {
             "hyperthreading": {
               "description": "Hyperthreading determines the mode of hyperthreading that machines in the pool will utilize. Default is for hyperthreading to be enabled.",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "",
                 "Enabled",
                 "Disabled"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "name": {
@@ -428,6 +407,13 @@
               "type": "string"
             }
           },
+          "required": [
+            "name"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "holdInstallation": {
@@ -439,16 +425,16 @@
         },
         "imageSetRef": {
           "description": "ImageSetRef is a reference to a ClusterImageSet. The release image specified in the ClusterImageSet will be used to install the cluster.",
-          "type": "object",
-          "required": [
-            "name"
-          ],
           "properties": {
             "name": {
               "description": "Name is the name of the ClusterImageSet that this refers to",
               "type": "string"
             }
           },
+          "required": [
+            "name"
+          ],
+          "type": "object",
           "additionalProperties": false
         },
         "ingressVIP": {
@@ -460,10 +446,6 @@
         },
         "manifestsConfigMapRef": {
           "description": "ManifestsConfigMapRef is a reference to user-provided manifests to add to or replace manifests that are generated by the installer.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "name": {
               "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -473,27 +455,19 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "networking": {
           "description": "Networking is the configuration for the pod network provider in the cluster.",
-          "type": "object",
           "properties": {
             "clusterNetwork": {
               "description": "ClusterNetwork is the list of IP address pools for pods. Default is 10.128.0.0/14 and a host prefix of /23.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "ClusterNetworkEntry is a single IP address block for pod IP blocks. IP blocks are allocated with size 2^HostSubnetLength.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "cidr"
-                ],
                 "properties": {
                   "cidr": {
                     "description": "CIDR is the IP block address pool.",
@@ -501,73 +475,81 @@
                   },
                   "hostPrefix": {
                     "description": "HostPrefix is the prefix size to allocate to each node from the CIDR. For example, 24 would allocate 2^8=256 adresses to each node. If this field is not used by the plugin, it can be left unset.",
+                    "format": "int32",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int32"
+                    ]
                   }
                 },
-                "additionalProperties": false
-              }
-            },
-            "machineNetwork": {
-              "description": "MachineNetwork is the list of IP address pools for machines.",
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "description": "MachineNetworkEntry is a single IP address block for node IP blocks.",
+                "required": [
+                  "cidr"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "cidr"
-                ],
+                "additionalProperties": false
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "machineNetwork": {
+              "description": "MachineNetwork is the list of IP address pools for machines.",
+              "items": {
+                "description": "MachineNetworkEntry is a single IP address block for node IP blocks.",
                 "properties": {
                   "cidr": {
                     "description": "CIDR is the IP block address pool for machines within the cluster.",
                     "type": "string"
                   }
                 },
+                "required": [
+                  "cidr"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "networkType": {
               "description": "NetworkType is the Container Network Interface (CNI) plug-in to install The default value is OpenShiftSDN for IPv4 and OVNKubernetes for IPv6",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "OpenShiftSDN",
                 "OVNKubernetes"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "serviceNetwork": {
               "description": "ServiceNetwork is the list of IP address pools for services. Default is 172.30.0.0/16.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "type": [
                   "string",
                   "null"
                 ]
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             }
           },
+          "type": "object",
           "additionalProperties": false
         },
         "provisionRequirements": {
           "description": "ProvisionRequirements defines configuration for when the installation is ready to be launched automatically.",
-          "type": "object",
-          "required": [
-            "controlPlaneAgents"
-          ],
           "properties": {
             "controlPlaneAgents": {
               "description": "ControlPlaneAgents is the number of matching approved and ready Agents with the control plane role required to launch the install. Must be either 1 or 3.",
@@ -575,21 +557,21 @@
             },
             "workerAgents": {
               "description": "WorkerAgents is the minimum number of matching approved and ready Agents with the worker role required to launch the install.",
+              "minimum": 0,
               "type": [
                 "integer",
                 "null"
-              ],
-              "minimum": 0
+              ]
             }
           },
+          "required": [
+            "controlPlaneAgents"
+          ],
+          "type": "object",
           "additionalProperties": false
         },
         "proxy": {
           "description": "Proxy defines the proxy settings used for the install config",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "httpProxy": {
               "description": "HTTPProxy is the URL of the proxy for HTTP requests.",
@@ -613,6 +595,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "sshPublicKey": {
@@ -623,47 +609,41 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "status": {
-      "description": "AgentClusterInstallStatus defines the observed state of the AgentClusterInstall.",
+      "required": [
+        "clusterDeploymentRef",
+        "imageSetRef",
+        "networking",
+        "provisionRequirements"
+      ],
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "status": {
+      "description": "AgentClusterInstallStatus defines the observed state of the AgentClusterInstall.",
       "properties": {
         "conditions": {
           "description": "Conditions includes more detailed status for the cluster install.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ClusterInstallCondition contains details for the current condition of a cluster install.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "status",
-              "type"
-            ],
             "properties": {
               "lastProbeTime": {
                 "description": "LastProbeTime is the last time we probed the condition.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "lastTransitionTime": {
                 "description": "LastTransitionTime is the last time the condition transitioned from one status to another.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "message": {
                 "description": "Message is a human-readable message indicating details about last transition.",
@@ -688,8 +668,20 @@
                 "type": "string"
               }
             },
+            "required": [
+              "status",
+              "type"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "connectivityMajorityGroups": {
           "type": [
@@ -713,10 +705,6 @@
         },
         "debugInfo": {
           "description": "DebugInfo includes information for debugging the installation process.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "eventsURL": {
               "description": "EventsURL specifies an HTTP/S URL that contains events which occured during the cluster installation process",
@@ -747,31 +735,35 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "machineNetwork": {
           "description": "MachineNetwork is the list of IP address pools for machines.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "MachineNetworkEntry is a single IP address block for node IP blocks.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "cidr"
-            ],
             "properties": {
               "cidr": {
                 "description": "CIDR is the IP block address pool for machines within the cluster.",
                 "type": "string"
               }
             },
+            "required": [
+              "cidr"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "workerAgentsDiscovered": {
           "description": "WorkerAgentsDiscovered is the number of worker Agents currently linked to this ClusterDeployment.",
@@ -788,9 +780,17 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "spec"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "extensions.hive.openshift.io",

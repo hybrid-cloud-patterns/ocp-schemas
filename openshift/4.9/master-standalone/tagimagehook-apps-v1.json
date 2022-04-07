@@ -1,10 +1,5 @@
 {
   "description": "TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.",
-  "type": "object",
-  "required": [
-    "containerName",
-    "to"
-  ],
   "properties": {
     "containerName": {
       "description": "ContainerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container.",
@@ -15,10 +10,6 @@
     },
     "to": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -70,8 +61,17 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic"
     }
   },
+  "required": [
+    "containerName",
+    "to"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

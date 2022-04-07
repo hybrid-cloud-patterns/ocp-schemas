@@ -1,9 +1,5 @@
 {
   "description": "Parameter defines a name/value variable that is to be processed during the Template to Config transformation.",
-  "type": "object",
-  "required": [
-    "name"
-  ],
   "properties": {
     "description": {
       "description": "Description of a parameter. Optional.",
@@ -55,6 +51,10 @@
       ]
     }
   },
+  "required": [
+    "name"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

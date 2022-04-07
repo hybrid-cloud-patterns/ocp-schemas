@@ -1,6 +1,5 @@
 {
   "description": "SelectorSyncIdentityProvider is the Schema for the SelectorSyncSet API",
-  "type": "object",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -24,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -51,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -96,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -172,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -198,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -246,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -274,41 +269,22 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "SelectorSyncIdentityProviderSpec defines the SyncIdentityProviderCommonSpec to sync to ClusterDeploymentSelector indicating which clusters the SelectorSyncIdentityProvider applies to in any namespace.",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "identityProviders"
-      ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "SelectorSyncIdentityProviderSpec defines the SyncIdentityProviderCommonSpec to sync to ClusterDeploymentSelector indicating which clusters the SelectorSyncIdentityProvider applies to in any namespace.",
       "properties": {
         "clusterDeploymentSelector": {
           "description": "ClusterDeploymentSelector is a LabelSelector indicating which clusters the SelectorIdentityProvider applies to in any namespace.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "matchExpressions": {
               "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key",
-                  "operator"
-                ],
                 "properties": {
                   "key": {
                     "description": "key is the label key that the selector applies to.",
@@ -320,103 +296,110 @@
                   },
                   "values": {
                     "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "matchLabels": {
-              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
-              "type": [
-                "object",
-                "null"
-              ],
               "additionalProperties": {
                 "type": [
                   "string",
                   "null"
                 ]
-              }
+              },
+              "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+              "type": [
+                "object",
+                "null"
+              ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "identityProviders": {
           "description": "IdentityProviders is an ordered list of ways for a user to identify themselves",
-          "type": "array",
           "items": {
             "description": "IdentityProvider provides identities for users authenticating using credentials",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "basicAuth": {
                 "description": "basicAuth contains configuration options for the BasicAuth IdP",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "ca": {
                     "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "tlsClientCert": {
                     "description": "tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key \"tls.crt\" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "tlsClientKey": {
                     "description": "tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key \"tls.key\" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "url": {
@@ -427,30 +410,30 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "github": {
-                "description": "github enables user authentication using GitHub credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "github": {
+                "description": "github enables user authentication using GitHub credentials",
                 "properties": {
                   "ca": {
                     "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. This can only be configured when hostname is set to a non-empty value. The namespace for this config map is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "clientID": {
@@ -462,19 +445,19 @@
                   },
                   "clientSecret": {
                     "description": "clientSecret is a required reference to the secret by name containing the oauth client secret. The key \"clientSecret\" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "hostname": {
@@ -486,55 +469,55 @@
                   },
                   "organizations": {
                     "description": "organizations optionally restricts which organizations are allowed to log in",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "teams": {
                     "description": "teams optionally restricts which teams are allowed to log in. Format is <org>/<team>.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "gitlab": {
-                "description": "gitlab enables user authentication using GitLab credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "gitlab": {
+                "description": "gitlab enables user authentication using GitLab credentials",
                 "properties": {
                   "ca": {
                     "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "clientID": {
@@ -546,19 +529,19 @@
                   },
                   "clientSecret": {
                     "description": "clientSecret is a required reference to the secret by name containing the oauth client secret. The key \"clientSecret\" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "url": {
@@ -569,14 +552,14 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "google": {
-                "description": "google enables user authentication using Google credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "google": {
+                "description": "google enables user authentication using Google credentials",
                 "properties": {
                   "clientID": {
                     "description": "clientID is the oauth client ID",
@@ -587,19 +570,19 @@
                   },
                   "clientSecret": {
                     "description": "clientSecret is a required reference to the secret by name containing the oauth client secret. The key \"clientSecret\" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "hostedDomain": {
@@ -610,57 +593,57 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "htpasswd": {
-                "description": "htpasswd enables user authentication using an HTPasswd file to validate credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "htpasswd": {
+                "description": "htpasswd enables user authentication using an HTPasswd file to validate credentials",
                 "properties": {
                   "fileData": {
                     "description": "fileData is a required reference to a secret by name containing the data to use as the htpasswd file. The key \"htpasswd\" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. If the specified htpasswd data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
-                    "additionalProperties": false
-                  }
-                },
-                "additionalProperties": false
-              },
-              "keystone": {
-                "description": "keystone enables user authentication using keystone password credentials",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "properties": {
-                  "ca": {
-                    "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
+                    "required": [
+                      "name"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "name"
-                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": false
+              },
+              "keystone": {
+                "description": "keystone enables user authentication using keystone password credentials",
+                "properties": {
+                  "ca": {
+                    "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "domainName": {
@@ -672,36 +655,36 @@
                   },
                   "tlsClientCert": {
                     "description": "tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key \"tls.crt\" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "tlsClientKey": {
                     "description": "tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key \"tls.key\" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "url": {
@@ -712,75 +695,75 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "ldap": {
-                "description": "ldap enables user authentication using LDAP credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "ldap": {
+                "description": "ldap enables user authentication using LDAP credentials",
                 "properties": {
                   "attributes": {
                     "description": "attributes maps LDAP attributes to identities",
+                    "properties": {
+                      "email": {
+                        "description": "email is the list of attributes whose values should be used as the email address. Optional. If unspecified, no email is set for the identity",
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "id": {
+                        "description": "id is the list of attributes whose values should be used as the user ID. Required. First non-empty attribute is used. At least one attribute is required. If none of the listed attribute have a value, authentication fails. LDAP standard identity attribute is \"dn\"",
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "name": {
+                        "description": "name is the list of attributes whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity LDAP standard display name attribute is \"cn\"",
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "preferredUsername": {
+                        "description": "preferredUsername is the list of attributes whose values should be used as the preferred username. LDAP standard login attribute is \"uid\"",
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      }
+                    },
                     "type": [
                       "object",
                       "null"
                     ],
-                    "properties": {
-                      "email": {
-                        "description": "email is the list of attributes whose values should be used as the email address. Optional. If unspecified, no email is set for the identity",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      },
-                      "id": {
-                        "description": "id is the list of attributes whose values should be used as the user ID. Required. First non-empty attribute is used. At least one attribute is required. If none of the listed attribute have a value, authentication fails. LDAP standard identity attribute is \"dn\"",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      },
-                      "name": {
-                        "description": "name is the list of attributes whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity LDAP standard display name attribute is \"cn\"",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      },
-                      "preferredUsername": {
-                        "description": "preferredUsername is the list of attributes whose values should be used as the preferred username. LDAP standard login attribute is \"uid\"",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        }
-                      }
-                    },
                     "additionalProperties": false
                   },
                   "bindDN": {
@@ -792,36 +775,36 @@
                   },
                   "bindPassword": {
                     "description": "bindPassword is an optional reference to a secret by name containing a password to bind with during the search phase. The key \"bindPassword\" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "ca": {
-                    "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
+                    "required": [
+                      "name"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "name"
-                    ],
+                    "additionalProperties": false
+                  },
+                  "ca": {
+                    "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "insecure": {
@@ -839,6 +822,10 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "mappingMethod": {
@@ -857,75 +844,71 @@
               },
               "openID": {
                 "description": "openID enables user authentication using OpenID credentials",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "ca": {
                     "description": "ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key \"ca.crt\" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "claims": {
-                    "description": "claims mappings",
+                    "required": [
+                      "name"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "claims": {
+                    "description": "claims mappings",
                     "properties": {
                       "email": {
                         "description": "email is the list of claims whose values should be used as the email address. Optional. If unspecified, no email is set for the identity",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "name": {
                         "description": "name is the list of claims whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "preferredUsername": {
                         "description": "preferredUsername is the list of claims whose values should be used as the preferred username. If unspecified, the preferred username is determined from the value of the sub claim",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "clientID": {
@@ -937,46 +920,46 @@
                   },
                   "clientSecret": {
                     "description": "clientSecret is a required reference to the secret by name containing the oauth client secret. The key \"clientSecret\" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced secret",
                         "type": "string"
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "extraAuthorizeParameters": {
-                    "description": "extraAuthorizeParameters are any custom parameters to add to the authorize request.",
+                    "required": [
+                      "name"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "extraAuthorizeParameters": {
                     "additionalProperties": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "description": "extraAuthorizeParameters are any custom parameters to add to the authorize request.",
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "extraScopes": {
                     "description": "extraScopes are any scopes to request in addition to the standard \"openid\" scope.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "issuer": {
                     "description": "issuer is the URL that the OpenID Provider asserts as its Issuer Identifier. It must use the https scheme with no query or fragment component.",
@@ -986,30 +969,30 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "requestHeader": {
-                "description": "requestHeader enables user authentication using request header credentials",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "requestHeader": {
+                "description": "requestHeader enables user authentication using request header credentials",
                 "properties": {
                   "ca": {
                     "description": "ca is a required reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. Specifically, it allows verification of incoming requests to prevent header spoofing. The key \"ca.crt\" is used to locate the data. If the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. The namespace for this config map is openshift-config.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "name"
-                    ],
                     "properties": {
                       "name": {
                         "description": "name is the metadata.name of the referenced config map",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "name"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "challengeURL": {
@@ -1021,42 +1004,42 @@
                   },
                   "clientCommonNames": {
                     "description": "clientCommonNames is an optional list of common names to require a match from. If empty, any client certificate validated against the clientCA bundle is considered authoritative.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "emailHeaders": {
                     "description": "emailHeaders is the set of headers to check for the email address",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "headers": {
                     "description": "headers is the set of headers to check for identity information",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "loginURL": {
                     "description": "loginURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect interactive logins will be redirected here ${url} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=${url} ${query} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?${query} Required when login is set to true.",
@@ -1067,31 +1050,35 @@
                   },
                   "nameHeaders": {
                     "description": "nameHeaders is the set of headers to check for the display name",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "preferredUsernameHeaders": {
                     "description": "preferredUsernameHeaders is the set of headers to check for the preferred username",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "type": {
@@ -1102,10 +1089,22 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": "array"
         }
       },
+      "required": [
+        "identityProviders"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "status": {
@@ -1116,6 +1115,7 @@
       ]
     }
   },
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "hive.openshift.io",

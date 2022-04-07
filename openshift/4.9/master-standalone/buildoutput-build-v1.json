@@ -1,22 +1,10 @@
 {
   "description": "BuildOutput is input to a build strategy and describes the container image that the strategy should produce.",
-  "type": "object",
   "properties": {
     "imageLabels": {
       "description": "imageLabels define a list of labels that are applied to the resulting image. If there are multiple labels with the same name then the last one in the list is used.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ImageLabel represents a label applied to the resulting image.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "description": "name defines the name of the label. It must have non-zero length.",
@@ -29,15 +17,22 @@
               "null"
             ]
           }
-        }
-      }
+        },
+        "required": [
+          "name"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "pushSecret": {
       "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -47,14 +42,14 @@
           ]
         }
       },
-      "x-kubernetes-map-type": "atomic"
-    },
-    "to": {
-      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
       "type": [
         "object",
         "null"
       ],
+      "x-kubernetes-map-type": "atomic"
+    },
+    "to": {
+      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -106,8 +101,13 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic"
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,10 +1,5 @@
 {
   "description": "ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match.",
-  "type": "object",
-  "required": [
-    "clientCIDR",
-    "serverAddress"
-  ],
   "properties": {
     "clientCIDR": {
       "description": "The CIDR with which clients can match their IP to figure out the server address that they should use.",
@@ -21,6 +16,11 @@
       ]
     }
   },
+  "required": [
+    "clientCIDR",
+    "serverAddress"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,9 +1,5 @@
 {
   "description": "FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin.",
-  "type": "object",
-  "required": [
-    "driver"
-  ],
   "properties": {
     "driver": {
       "description": "Driver is the name of the driver to use for this volume.",
@@ -20,17 +16,17 @@
       ]
     },
     "options": {
-      "description": "Optional: Extra command options if any.",
-      "type": [
-        "object",
-        "null"
-      ],
       "additionalProperties": {
         "type": [
           "string",
           "null"
         ]
-      }
+      },
+      "description": "Optional: Extra command options if any.",
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "readOnly": {
       "description": "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -41,10 +37,6 @@
     },
     "secretRef": {
       "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name is unique within a namespace to reference a secret resource.",
@@ -61,10 +53,18 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     }
   },
+  "required": [
+    "driver"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

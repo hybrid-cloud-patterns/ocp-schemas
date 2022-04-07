@@ -1,10 +1,5 @@
 {
   "description": "VolumeMount describes a mounting of a Volume within a container.",
-  "type": "object",
-  "required": [
-    "name",
-    "mountPath"
-  ],
   "properties": {
     "mountPath": {
       "description": "Path within the container at which the volume should be mounted.  Must not contain ':'.",
@@ -49,5 +44,10 @@
       ]
     }
   },
+  "required": [
+    "name",
+    "mountPath"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,9 +1,5 @@
 {
   "description": "CustomBuildStrategy defines input parameters specific to Custom build.",
-  "type": "object",
-  "required": [
-    "from"
-  ],
   "properties": {
     "buildAPIVersion": {
       "description": "buildAPIVersion is the requested API version for the Build object serialized and passed to the custom builder",
@@ -14,19 +10,8 @@
     },
     "env": {
       "description": "env contains additional environment variables you want to pass into a builder container.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "EnvVar represents an environment variable present in a Container.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -41,20 +26,9 @@
           },
           "valueFrom": {
             "description": "EnvVarSource represents a source for the value of an EnvVar.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "configMapKeyRef": {
                 "description": "Selects a key from a ConfigMap.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key to select.",
@@ -75,18 +49,18 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "fieldRef": {
                 "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "fieldPath"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -100,18 +74,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "fieldPath"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "resourceFieldRef": {
                 "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "resource"
-                ],
                 "properties": {
                   "containerName": {
                     "description": "Container name: required for volumes, optional for env vars",
@@ -141,18 +115,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "resource"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "secretKeyRef": {
                 "description": "SecretKeySelector selects a key of a Secret.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -173,15 +147,37 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "required": [
+          "name"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "exposeDockerSocket": {
       "description": "exposeDockerSocket will allow running Docker commands (and build container images) from inside the container.",
@@ -199,10 +195,6 @@
     },
     "from": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -254,15 +246,15 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
     "pullSecret": {
       "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -272,25 +264,17 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
     "secrets": {
       "description": "secrets is a list of additional secrets that will be included in the build pod",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "SecretSpec specifies a secret to be included in a build pod and its corresponding mount point",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "secretSource",
-          "mountPath"
-        ],
         "properties": {
           "mountPath": {
             "description": "mountPath is the path at which to mount the secret",
@@ -298,7 +282,6 @@
           },
           "secretSource": {
             "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-            "type": "object",
             "properties": {
               "name": {
                 "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -308,14 +291,31 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           }
         },
+        "required": [
+          "secretSource",
+          "mountPath"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "required": [
+    "from"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

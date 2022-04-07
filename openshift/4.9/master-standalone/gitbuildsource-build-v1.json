@@ -1,9 +1,5 @@
 {
   "description": "GitBuildSource defines the parameters of a Git SCM",
-  "type": "object",
-  "required": [
-    "uri"
-  ],
   "properties": {
     "httpProxy": {
       "description": "httpProxy is a proxy used to reach the git repository over http",
@@ -41,5 +37,9 @@
       ]
     }
   },
+  "required": [
+    "uri"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

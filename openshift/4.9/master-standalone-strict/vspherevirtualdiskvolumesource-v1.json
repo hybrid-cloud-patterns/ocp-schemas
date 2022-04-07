@@ -1,9 +1,5 @@
 {
   "description": "Represents a vSphere volume resource.",
-  "type": "object",
-  "required": [
-    "volumePath"
-  ],
   "properties": {
     "fsType": {
       "description": "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\". Implicitly inferred to be \"ext4\" if unspecified.",
@@ -34,6 +30,10 @@
       ]
     }
   },
+  "required": [
+    "volumePath"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

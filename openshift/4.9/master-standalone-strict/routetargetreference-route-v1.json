@@ -1,10 +1,5 @@
 {
   "description": "RouteTargetReference specifies the target that resolve into endpoints. Only the 'Service' kind is allowed. Use 'weight' field to emphasize one over others.",
-  "type": "object",
-  "required": [
-    "kind",
-    "name"
-  ],
   "properties": {
     "kind": {
       "description": "The kind of target that the route is referring to. Currently, only 'Service' is allowed",
@@ -22,13 +17,18 @@
     },
     "weight": {
       "description": "weight as an integer between 0 and 256, default 100, that specifies the target's relative weight against other target reference objects. 0 suppresses requests to this backend.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     }
   },
+  "required": [
+    "kind",
+    "name"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

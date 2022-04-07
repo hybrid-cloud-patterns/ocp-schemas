@@ -1,6 +1,5 @@
 {
   "description": "ExternalDocumentation allows referencing an external resource for extended documentation.",
-  "type": "object",
   "properties": {
     "description": {
       "type": [
@@ -15,6 +14,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

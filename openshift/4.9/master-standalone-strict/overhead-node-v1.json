@@ -1,13 +1,7 @@
 {
   "description": "Overhead structure represents the resource overhead associated with running a pod.",
-  "type": "object",
   "properties": {
     "podFixed": {
-      "description": "PodFixed represents the fixed resource overhead associated with running a pod.",
-      "type": [
-        "object",
-        "null"
-      ],
       "additionalProperties": {
         "oneOf": [
           {
@@ -23,9 +17,15 @@
             ]
           }
         ]
-      }
+      },
+      "description": "PodFixed represents the fixed resource overhead associated with running a pod.",
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

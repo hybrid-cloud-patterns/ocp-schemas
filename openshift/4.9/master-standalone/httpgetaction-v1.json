@@ -1,9 +1,5 @@
 {
   "description": "HTTPGetAction describes an action based on HTTP Get requests.",
-  "type": "object",
-  "required": [
-    "port"
-  ],
   "properties": {
     "host": {
       "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -14,20 +10,8 @@
     },
     "httpHeaders": {
       "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name",
-          "value"
-        ],
         "properties": {
           "name": {
             "description": "The header field name",
@@ -37,8 +21,20 @@
             "description": "The header field value",
             "type": "string"
           }
-        }
-      }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "path": {
       "description": "Path to access on the HTTP server.",
@@ -71,5 +67,9 @@
       ]
     }
   },
+  "required": [
+    "port"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

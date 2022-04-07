@@ -1,10 +1,5 @@
 {
   "description": "Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling.",
-  "type": "object",
-  "required": [
-    "server",
-    "path"
-  ],
   "properties": {
     "path": {
       "description": "Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
@@ -28,6 +23,11 @@
       ]
     }
   },
+  "required": [
+    "server",
+    "path"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

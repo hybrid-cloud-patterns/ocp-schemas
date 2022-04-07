@@ -1,20 +1,8 @@
 {
   "description": "DeploymentConfigRollbackSpec represents the options for rollback generation.",
-  "type": "object",
-  "required": [
-    "from",
-    "includeTriggers",
-    "includeTemplate",
-    "includeReplicationMeta",
-    "includeStrategy"
-  ],
   "properties": {
     "from": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -66,6 +54,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -99,13 +91,21 @@
     },
     "revision": {
       "description": "Revision to rollback to. If set to 0, rollback to the last revision.",
+      "format": "int64",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int64"
+      ]
     }
   },
+  "required": [
+    "from",
+    "includeTriggers",
+    "includeTemplate",
+    "includeReplicationMeta",
+    "includeStrategy"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

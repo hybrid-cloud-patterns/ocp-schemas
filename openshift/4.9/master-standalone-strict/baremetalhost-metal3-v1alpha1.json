@@ -1,6 +1,5 @@
 {
   "description": "BareMetalHost is the Schema for the baremetalhosts API",
-  "type": "object",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -24,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -51,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -96,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -172,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -198,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -246,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -274,39 +269,28 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "BareMetalHostSpec defines the desired state of BareMetalHost",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "online"
-      ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "BareMetalHostSpec defines the desired state of BareMetalHost",
       "properties": {
         "automatedCleaningMode": {
           "description": "When set to disabled, automated cleaning will be avoided during provisioning and deprovisioning.",
-          "type": [
-            "string",
-            "null"
-          ],
           "enum": [
             "metadata",
             "disabled"
+          ],
+          "type": [
+            "string",
+            "null"
           ]
         },
         "bmc": {
           "description": "How do we connect to the BMC?",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "address",
-            "credentialsName"
-          ],
           "properties": {
             "address": {
               "description": "Address holds the URL for accessing the controller on the network.",
@@ -324,34 +308,38 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "bootMACAddress": {
-          "description": "Which MAC address will PXE boot? This is optional for some types, but required for libvirt VMs driven by vbmc.",
-          "type": [
-            "string",
-            "null"
+          "required": [
+            "address",
+            "credentialsName"
           ],
-          "pattern": "[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}"
-        },
-        "bootMode": {
-          "description": "Select the method of initializing the hardware during boot. Defaults to UEFI.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "enum": [
-            "UEFI",
-            "UEFISecureBoot",
-            "legacy"
-          ]
-        },
-        "consumerRef": {
-          "description": "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered \"in use\".",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "bootMACAddress": {
+          "description": "Which MAC address will PXE boot? This is optional for some types, but required for libvirt VMs driven by vbmc.",
+          "pattern": "[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bootMode": {
+          "description": "Select the method of initializing the hardware during boot. Defaults to UEFI.",
+          "enum": [
+            "UEFI",
+            "UEFISecureBoot",
+            "legacy"
+          ],
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "consumerRef": {
+          "description": "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered \"in use\".",
           "properties": {
             "apiVersion": {
               "description": "API version of the referent.",
@@ -403,23 +391,27 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "customDeploy": {
-          "description": "A custom deploy procedure.",
           "type": [
             "object",
             "null"
           ],
-          "required": [
-            "method"
-          ],
+          "additionalProperties": false
+        },
+        "customDeploy": {
+          "description": "A custom deploy procedure.",
           "properties": {
             "method": {
               "description": "Custom deploy method name. This name is specific to the deploy ramdisk used. If you don't have a custom deploy ramdisk, you shouldn't use CustomDeploy.",
               "type": "string"
             }
           },
+          "required": [
+            "method"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "description": {
@@ -438,45 +430,45 @@
         },
         "firmware": {
           "description": "BIOS configuration for bare metal server",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "simultaneousMultithreadingEnabled": {
               "description": "Allows a single physical processor core to appear as several logical processors. This supports following options: true, false.",
-              "type": [
-                "boolean",
-                "null"
-              ],
               "enum": [
                 true,
                 false
+              ],
+              "type": [
+                "boolean",
+                "null"
               ]
             },
             "sriovEnabled": {
               "description": "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. This supports following options: true, false.",
-              "type": [
-                "boolean",
-                "null"
-              ],
               "enum": [
                 true,
                 false
+              ],
+              "type": [
+                "boolean",
+                "null"
               ]
             },
             "virtualizationEnabled": {
               "description": "Supports the virtualization of platform hardware. This supports following options: true, false.",
-              "type": [
-                "boolean",
-                "null"
-              ],
               "enum": [
                 true,
                 false
+              ],
+              "type": [
+                "boolean",
+                "null"
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "hardwareProfile": {
@@ -488,13 +480,6 @@
         },
         "image": {
           "description": "Image holds the details of the image to be provisioned.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "url"
-          ],
           "properties": {
             "checksum": {
               "description": "Checksum is the checksum for the image.",
@@ -505,28 +490,28 @@
             },
             "checksumType": {
               "description": "ChecksumType is the checksum algorithm for the image. e.g md5, sha256, sha512",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "md5",
                 "sha256",
                 "sha512"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "format": {
               "description": "DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "raw",
                 "qcow2",
                 "vdi",
                 "vmdk",
                 "live-iso"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "url": {
@@ -534,14 +519,17 @@
               "type": "string"
             }
           },
+          "required": [
+            "url"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "metaData": {
           "description": "MetaData holds the reference to the Secret containing host metadata (e.g. meta_data.json which is passed to Config Drive).",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "name": {
               "description": "Name is unique within a namespace to reference a secret resource.",
@@ -558,14 +546,14 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "networkData": {
           "description": "NetworkData holds the reference to the Secret containing network configuration (e.g content of network_data.json which is passed to Config Drive).",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "name": {
               "description": "Name is unique within a namespace to reference a secret resource.",
@@ -582,6 +570,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "online": {
@@ -590,30 +582,14 @@
         },
         "raid": {
           "description": "RAID configuration for bare metal server",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "hardwareRAIDVolumes": {
               "description": "The list of logical disks for hardware RAID, if rootDeviceHints isn't used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "HardwareRAIDVolume defines the desired configuration of volume in hardware RAID",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "level"
-                ],
                 "properties": {
                   "level": {
                     "description": "RAID level for the logical disk. The following levels are supported: 0;1;2;5;6;1+0;5+0;6+0.",
-                    "type": "string",
                     "enum": [
                       "0",
                       "1",
@@ -623,23 +599,24 @@
                       "1+0",
                       "5+0",
                       "6+0"
-                    ]
+                    ],
+                    "type": "string"
                   },
                   "name": {
                     "description": "Name of the volume. Should be unique within the Node. If not specified, volume name will be auto-generated.",
+                    "maxLength": 64,
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "maxLength": 64
+                    ]
                   },
                   "numberOfPhysicalDisks": {
                     "description": "Integer, number of physical disks to use for the logical disk. Defaults to minimum number of disks required for the particular RAID level.",
+                    "minimum": 1,
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "minimum": 1
+                    ]
                   },
                   "rotational": {
                     "description": "Select disks with only rotational or solid-state storage",
@@ -650,55 +627,45 @@
                   },
                   "sizeGibibytes": {
                     "description": "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+                    "minimum": 0,
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "minimum": 0
+                    ]
                   }
                 },
-                "additionalProperties": false
-              }
-            },
-            "softwareRAIDVolumes": {
-              "description": "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
-              "type": [
-                "array",
-                "null"
-              ],
-              "maxItems": 2,
-              "items": {
-                "description": "SoftwareRAIDVolume defines the desired configuration of volume in software RAID",
+                "required": [
+                  "level"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "level"
-                ],
+                "additionalProperties": false
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "softwareRAIDVolumes": {
+              "description": "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
+              "items": {
+                "description": "SoftwareRAIDVolume defines the desired configuration of volume in software RAID",
                 "properties": {
                   "level": {
                     "description": "RAID level for the logical disk. The following levels are supported: 0;1;1+0.",
-                    "type": "string",
                     "enum": [
                       "0",
                       "1",
                       "1+0"
-                    ]
+                    ],
+                    "type": "string"
                   },
                   "physicalDisks": {
                     "description": "A list of device hints, the number of items should be greater than or equal to 2.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "minItems": 2,
                     "items": {
                       "description": "RootDeviceHints holds the hints for specifying the storage location for the root filesystem for the image.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "deviceName": {
                           "description": "A Linux device name like \"/dev/vda\". The hint must match the actual value exactly.",
@@ -716,11 +683,11 @@
                         },
                         "minSizeGigabytes": {
                           "description": "The minimum size of the device in Gigabytes.",
+                          "minimum": 0,
                           "type": [
                             "integer",
                             "null"
-                          ],
-                          "minimum": 0
+                          ]
                         },
                         "model": {
                           "description": "A vendor-specific device identifier. The hint can be a substring of the actual value.",
@@ -772,30 +739,51 @@
                           ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "minItems": 2,
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "sizeGibibytes": {
                     "description": "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+                    "minimum": 0,
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "minimum": 0
+                    ]
                   }
                 },
+                "required": [
+                  "level"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "maxItems": 2,
+              "type": [
+                "array",
+                "null"
+              ]
             }
           },
-          "additionalProperties": false
-        },
-        "rootDeviceHints": {
-          "description": "Provide guidance about how to choose the device for the image being provisioned.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "rootDeviceHints": {
+          "description": "Provide guidance about how to choose the device for the image being provisioned.",
           "properties": {
             "deviceName": {
               "description": "A Linux device name like \"/dev/vda\". The hint must match the actual value exactly.",
@@ -813,11 +801,11 @@
             },
             "minSizeGigabytes": {
               "description": "The minimum size of the device in Gigabytes.",
+              "minimum": 0,
               "type": [
                 "integer",
                 "null"
-              ],
-              "minimum": 0
+              ]
             },
             "model": {
               "description": "A vendor-specific device identifier. The hint can be a substring of the actual value.",
@@ -869,24 +857,16 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "taints": {
           "description": "Taints is the full, authoritative list of taints to apply to the corresponding Machine. This list will overwrite any modifications made to the Machine on an ongoing basis.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "The node this Taint is attached to has the \"effect\" on any pod that does not tolerate the Taint.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "effect",
-              "key"
-            ],
             "properties": {
               "effect": {
                 "description": "Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -898,11 +878,11 @@
               },
               "timeAdded": {
                 "description": "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "value": {
                 "description": "The taint value corresponding to the taint key.",
@@ -912,15 +892,23 @@
                 ]
               }
             },
+            "required": [
+              "effect",
+              "key"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "userData": {
           "description": "UserData holds the reference to the Secret containing the user data to be passed to the host before it boots.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "name": {
               "description": "Name is unique within a namespace to reference a secret resource.",
@@ -937,25 +925,24 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         }
       },
-      "additionalProperties": false
-    },
-    "status": {
-      "description": "BareMetalHostStatus defines the observed state of BareMetalHost",
+      "required": [
+        "online"
+      ],
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "errorCount",
-        "errorMessage",
-        "hardwareProfile",
-        "operationalStatus",
-        "poweredOn",
-        "provisioning"
-      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "description": "BareMetalHostStatus defines the observed state of BareMetalHost",
       "properties": {
         "errorCount": {
           "description": "ErrorCount records how many times the host has encoutered an error since the last successful operation",
@@ -967,10 +954,6 @@
         },
         "errorType": {
           "description": "ErrorType indicates the type of failure encountered when the OperationalStatus is OperationalStatusError",
-          "type": [
-            "string",
-            "null"
-          ],
           "enum": [
             "provisioned registration error",
             "registration error",
@@ -978,21 +961,17 @@
             "preparation error",
             "provisioning error",
             "power management error"
+          ],
+          "type": [
+            "string",
+            "null"
           ]
         },
         "goodCredentials": {
           "description": "the last credentials we were able to validate as working",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "credentials": {
               "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "name": {
                   "description": "Name is unique within a namespace to reference a secret resource.",
@@ -1009,6 +988,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "credentialsVersion": {
@@ -1018,21 +1001,17 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "hardware": {
-          "description": "The hardware discovered to exist on the host.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "hardware": {
+          "description": "The hardware discovered to exist on the host.",
           "properties": {
             "cpu": {
               "description": "CPU describes one processor on the host.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "arch": {
                   "type": [
@@ -1042,11 +1021,11 @@
                 },
                 "clockMegahertz": {
                   "description": "ClockSpeed is a clock speed in MHz",
+                  "format": "double",
                   "type": [
                     "number",
                     "null"
-                  ],
-                  "format": "double"
+                  ]
                 },
                 "count": {
                   "type": [
@@ -1055,16 +1034,16 @@
                   ]
                 },
                 "flags": {
-                  "type": [
-                    "array",
-                    "null"
-                  ],
                   "items": {
                     "type": [
                       "string",
                       "null"
                     ]
-                  }
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
                 },
                 "model": {
                   "type": [
@@ -1073,21 +1052,17 @@
                   ]
                 }
               },
-              "additionalProperties": false
-            },
-            "firmware": {
-              "description": "Firmware describes the firmware on the host.",
               "type": [
                 "object",
                 "null"
               ],
+              "additionalProperties": false
+            },
+            "firmware": {
+              "description": "Firmware describes the firmware on the host.",
               "properties": {
                 "bios": {
                   "description": "The BIOS for this firmware",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "date": {
                       "description": "The release/build date for this BIOS",
@@ -1111,9 +1086,17 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "hostname": {
@@ -1123,16 +1106,8 @@
               ]
             },
             "nics": {
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "NIC describes one network interface on the host.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "ip": {
                     "description": "The IP address of the interface. This will be an IPv4 or IPv6 address if one is present.  If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP.",
@@ -1143,11 +1118,11 @@
                   },
                   "mac": {
                     "description": "The device MAC address",
+                    "pattern": "[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}",
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "pattern": "[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}"
+                    ]
                   },
                   "model": {
                     "description": "The vendor and product IDs of the NIC, e.g. \"0x8086 0x1572\"",
@@ -1179,36 +1154,28 @@
                   },
                   "vlanId": {
                     "description": "The untagged VLAN ID",
+                    "format": "int32",
+                    "maximum": 4094,
+                    "minimum": 0,
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int32",
-                    "maximum": 4094,
-                    "minimum": 0
+                    ]
                   },
                   "vlans": {
                     "description": "The VLANs available",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "VLAN represents the name and ID of a VLAN",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "id": {
                           "description": "VLANID is a 12-bit 802.1Q VLAN identifier",
+                          "format": "int32",
+                          "maximum": 4094,
+                          "minimum": 0,
                           "type": [
                             "integer",
                             "null"
-                          ],
-                          "format": "int32",
-                          "maximum": 4094,
-                          "minimum": 0
+                          ]
                         },
                         "name": {
                           "type": [
@@ -1217,12 +1184,28 @@
                           ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "ramMebibytes": {
               "type": [
@@ -1231,16 +1214,8 @@
               ]
             },
             "storage": {
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "Storage describes one storage device (disk, SSD, etc.) on the host.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "hctl": {
                     "description": "The SCSI location of the device",
@@ -1279,22 +1254,22 @@
                   },
                   "sizeBytes": {
                     "description": "The size of the disk in Bytes",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "type": {
                     "description": "Device type, one of: HDD, SSD, NVME.",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "enum": [
                       "HDD",
                       "SSD",
                       "NVME"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
                     ]
                   },
                   "vendor": {
@@ -1326,15 +1301,19 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "systemVendor": {
               "description": "HardwareSystemVendor stores details about the whole hardware system.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "manufacturer": {
                   "type": [
@@ -1355,9 +1334,17 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "hardwareProfile": {
@@ -1366,25 +1353,17 @@
         },
         "lastUpdated": {
           "description": "LastUpdated identifies when this status was last observed.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "operationHistory": {
           "description": "OperationHistory holds information about operations performed on this host.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "deprovision": {
               "description": "OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "end": {
                   "format": "date-time"
@@ -1393,14 +1372,14 @@
                   "format": "date-time"
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "inspect": {
               "description": "OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "end": {
                   "format": "date-time"
@@ -1409,14 +1388,14 @@
                   "format": "date-time"
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "provision": {
               "description": "OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "end": {
                   "format": "date-time"
@@ -1425,14 +1404,14 @@
                   "format": "date-time"
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "register": {
               "description": "OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "end": {
                   "format": "date-time"
@@ -1441,14 +1420,21 @@
                   "format": "date-time"
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "operationalStatus": {
           "description": "OperationalStatus holds the status of the host",
-          "type": "string",
           "enum": [
             "",
             "OK",
@@ -1456,7 +1442,8 @@
             "error",
             "delayed",
             "detached"
-          ]
+          ],
+          "type": "string"
         },
         "poweredOn": {
           "description": "indicator for whether or not the host is powered on",
@@ -1464,11 +1451,6 @@
         },
         "provisioning": {
           "description": "Information tracked by the provisioner.",
-          "type": "object",
-          "required": [
-            "ID",
-            "state"
-          ],
           "properties": {
             "ID": {
               "description": "The machine's UUID from the underlying provisioning tool",
@@ -1476,85 +1458,78 @@
             },
             "bootMode": {
               "description": "BootMode indicates the boot mode used to provision the node",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "UEFI",
                 "UEFISecureBoot",
                 "legacy"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "customDeploy": {
               "description": "Custom deploy procedure applied to the host.",
-              "type": [
-                "object",
-                "null"
-              ],
-              "required": [
-                "method"
-              ],
               "properties": {
                 "method": {
                   "description": "Custom deploy method name. This name is specific to the deploy ramdisk used. If you don't have a custom deploy ramdisk, you shouldn't use CustomDeploy.",
                   "type": "string"
                 }
               },
+              "required": [
+                "method"
+              ],
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "firmware": {
               "description": "The Bios set by the user",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "simultaneousMultithreadingEnabled": {
                   "description": "Allows a single physical processor core to appear as several logical processors. This supports following options: true, false.",
-                  "type": [
-                    "boolean",
-                    "null"
-                  ],
                   "enum": [
                     true,
                     false
+                  ],
+                  "type": [
+                    "boolean",
+                    "null"
                   ]
                 },
                 "sriovEnabled": {
                   "description": "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. This supports following options: true, false.",
-                  "type": [
-                    "boolean",
-                    "null"
-                  ],
                   "enum": [
                     true,
                     false
+                  ],
+                  "type": [
+                    "boolean",
+                    "null"
                   ]
                 },
                 "virtualizationEnabled": {
                   "description": "Supports the virtualization of platform hardware. This supports following options: true, false.",
-                  "type": [
-                    "boolean",
-                    "null"
-                  ],
                   "enum": [
                     true,
                     false
+                  ],
+                  "type": [
+                    "boolean",
+                    "null"
                   ]
                 }
               },
-              "additionalProperties": false
-            },
-            "image": {
-              "description": "Image holds the details of the last image successfully provisioned to the host.",
               "type": [
                 "object",
                 "null"
               ],
-              "required": [
-                "url"
-              ],
+              "additionalProperties": false
+            },
+            "image": {
+              "description": "Image holds the details of the last image successfully provisioned to the host.",
               "properties": {
                 "checksum": {
                   "description": "Checksum is the checksum for the image.",
@@ -1565,28 +1540,28 @@
                 },
                 "checksumType": {
                   "description": "ChecksumType is the checksum algorithm for the image. e.g md5, sha256, sha512",
-                  "type": [
-                    "string",
-                    "null"
-                  ],
                   "enum": [
                     "md5",
                     "sha256",
                     "sha512"
+                  ],
+                  "type": [
+                    "string",
+                    "null"
                   ]
                 },
                 "format": {
                   "description": "DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.",
-                  "type": [
-                    "string",
-                    "null"
-                  ],
                   "enum": [
                     "raw",
                     "qcow2",
                     "vdi",
                     "vmdk",
                     "live-iso"
+                  ],
+                  "type": [
+                    "string",
+                    "null"
                   ]
                 },
                 "url": {
@@ -1594,34 +1569,25 @@
                   "type": "string"
                 }
               },
-              "additionalProperties": false
-            },
-            "raid": {
-              "description": "The Raid set by the user",
+              "required": [
+                "url"
+              ],
               "type": [
                 "object",
                 "null"
               ],
+              "additionalProperties": false
+            },
+            "raid": {
+              "description": "The Raid set by the user",
               "properties": {
                 "hardwareRAIDVolumes": {
                   "description": "The list of logical disks for hardware RAID, if rootDeviceHints isn't used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations.",
-                  "type": [
-                    "array",
-                    "null"
-                  ],
                   "items": {
                     "description": "HardwareRAIDVolume defines the desired configuration of volume in hardware RAID",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "level"
-                    ],
                     "properties": {
                       "level": {
                         "description": "RAID level for the logical disk. The following levels are supported: 0;1;2;5;6;1+0;5+0;6+0.",
-                        "type": "string",
                         "enum": [
                           "0",
                           "1",
@@ -1631,23 +1597,24 @@
                           "1+0",
                           "5+0",
                           "6+0"
-                        ]
+                        ],
+                        "type": "string"
                       },
                       "name": {
                         "description": "Name of the volume. Should be unique within the Node. If not specified, volume name will be auto-generated.",
+                        "maxLength": 64,
                         "type": [
                           "string",
                           "null"
-                        ],
-                        "maxLength": 64
+                        ]
                       },
                       "numberOfPhysicalDisks": {
                         "description": "Integer, number of physical disks to use for the logical disk. Defaults to minimum number of disks required for the particular RAID level.",
+                        "minimum": 1,
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "minimum": 1
+                        ]
                       },
                       "rotational": {
                         "description": "Select disks with only rotational or solid-state storage",
@@ -1658,55 +1625,45 @@
                       },
                       "sizeGibibytes": {
                         "description": "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+                        "minimum": 0,
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "minimum": 0
+                        ]
                       }
                     },
-                    "additionalProperties": false
-                  }
-                },
-                "softwareRAIDVolumes": {
-                  "description": "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
-                  "type": [
-                    "array",
-                    "null"
-                  ],
-                  "maxItems": 2,
-                  "items": {
-                    "description": "SoftwareRAIDVolume defines the desired configuration of volume in software RAID",
+                    "required": [
+                      "level"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "level"
-                    ],
+                    "additionalProperties": false
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
+                },
+                "softwareRAIDVolumes": {
+                  "description": "The list of logical disks for software RAID, if rootDeviceHints isn't used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting node in case of a disk failure. Software RAID will always be deleted.",
+                  "items": {
+                    "description": "SoftwareRAIDVolume defines the desired configuration of volume in software RAID",
                     "properties": {
                       "level": {
                         "description": "RAID level for the logical disk. The following levels are supported: 0;1;1+0.",
-                        "type": "string",
                         "enum": [
                           "0",
                           "1",
                           "1+0"
-                        ]
+                        ],
+                        "type": "string"
                       },
                       "physicalDisks": {
                         "description": "A list of device hints, the number of items should be greater than or equal to 2.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "minItems": 2,
                         "items": {
                           "description": "RootDeviceHints holds the hints for specifying the storage location for the root filesystem for the image.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "deviceName": {
                               "description": "A Linux device name like \"/dev/vda\". The hint must match the actual value exactly.",
@@ -1724,11 +1681,11 @@
                             },
                             "minSizeGigabytes": {
                               "description": "The minimum size of the device in Gigabytes.",
+                              "minimum": 0,
                               "type": [
                                 "integer",
                                 "null"
-                              ],
-                              "minimum": 0
+                              ]
                             },
                             "model": {
                               "description": "A vendor-specific device identifier. The hint can be a substring of the actual value.",
@@ -1780,30 +1737,51 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "minItems": 2,
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "sizeGibibytes": {
                         "description": "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+                        "minimum": 0,
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "minimum": 0
+                        ]
                       }
                     },
+                    "required": [
+                      "level"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
-                  }
+                  },
+                  "maxItems": 2,
+                  "type": [
+                    "array",
+                    "null"
+                  ]
                 }
               },
-              "additionalProperties": false
-            },
-            "rootDeviceHints": {
-              "description": "The RootDevicehints set by the user",
               "type": [
                 "object",
                 "null"
               ],
+              "additionalProperties": false
+            },
+            "rootDeviceHints": {
+              "description": "The RootDevicehints set by the user",
               "properties": {
                 "deviceName": {
                   "description": "A Linux device name like \"/dev/vda\". The hint must match the actual value exactly.",
@@ -1821,11 +1799,11 @@
                 },
                 "minSizeGigabytes": {
                   "description": "The minimum size of the device in Gigabytes.",
+                  "minimum": 0,
                   "type": [
                     "integer",
                     "null"
-                  ],
-                  "minimum": 0
+                  ]
                 },
                 "model": {
                   "description": "A vendor-specific device identifier. The hint can be a substring of the actual value.",
@@ -1877,6 +1855,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "state": {
@@ -1884,21 +1866,18 @@
               "type": "string"
             }
           },
+          "required": [
+            "ID",
+            "state"
+          ],
+          "type": "object",
           "additionalProperties": false
         },
         "triedCredentials": {
           "description": "the last credentials we sent to the provisioning backend",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "credentials": {
               "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "name": {
                   "description": "Name is unique within a namespace to reference a secret resource.",
@@ -1915,6 +1894,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "credentialsVersion": {
@@ -1924,12 +1907,29 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         }
       },
+      "required": [
+        "errorCount",
+        "errorMessage",
+        "hardwareProfile",
+        "operationalStatus",
+        "poweredOn",
+        "provisioning"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "metal3.io",

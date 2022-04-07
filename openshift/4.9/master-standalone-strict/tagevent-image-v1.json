@@ -1,20 +1,13 @@
 {
   "description": "TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.",
-  "type": "object",
-  "required": [
-    "created",
-    "dockerImageReference",
-    "image",
-    "generation"
-  ],
   "properties": {
     "created": {
       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+      "format": "date-time",
       "type": [
         "string",
         "null"
-      ],
-      "format": "date-time"
+      ]
     },
     "dockerImageReference": {
       "description": "DockerImageReference is the string that can be used to pull this image",
@@ -25,11 +18,11 @@
     },
     "generation": {
       "description": "Generation is the spec tag generation that resulted in this tag being updated",
+      "format": "int64",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int64"
+      ]
     },
     "image": {
       "description": "Image is the image",
@@ -39,6 +32,13 @@
       ]
     }
   },
+  "required": [
+    "created",
+    "dockerImageReference",
+    "image",
+    "generation"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

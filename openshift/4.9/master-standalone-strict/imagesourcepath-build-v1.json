@@ -1,10 +1,5 @@
 {
   "description": "ImageSourcePath describes a path to be copied from a source image and its destination within the build directory.",
-  "type": "object",
-  "required": [
-    "sourcePath",
-    "destinationDir"
-  ],
   "properties": {
     "destinationDir": {
       "description": "destinationDir is the relative directory within the build directory where files copied from the image are placed.",
@@ -21,6 +16,11 @@
       ]
     }
   },
+  "required": [
+    "sourcePath",
+    "destinationDir"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

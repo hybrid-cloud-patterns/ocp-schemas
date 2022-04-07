@@ -1,33 +1,24 @@
 {
   "description": "Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.",
-  "type": "object",
   "properties": {
     "nodeSelector": {
-      "description": "nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.",
-      "type": [
-        "object",
-        "null"
-      ],
       "additionalProperties": {
         "type": [
           "string",
           "null"
         ]
       },
+      "description": "nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.",
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic"
     },
     "tolerations": {
       "description": "tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "effect": {
             "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -52,11 +43,11 @@
           },
           "tolerationSeconds": {
             "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+            "format": "int64",
             "type": [
               "integer",
               "null"
-            ],
-            "format": "int64"
+            ]
           },
           "value": {
             "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
@@ -65,10 +56,19 @@
               "null"
             ]
           }
-        }
+        },
+        "type": [
+          "object",
+          "null"
+        ]
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-list-type": "atomic"
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

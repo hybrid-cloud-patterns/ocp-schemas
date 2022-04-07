@@ -1,16 +1,5 @@
 {
   "description": "ResourceAccessReview is a means to request a list of which users and groups are authorized to perform the action specified by spec\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-  "type": "object",
-  "required": [
-    "namespace",
-    "verb",
-    "resourceAPIGroup",
-    "resourceAPIVersion",
-    "resource",
-    "resourceName",
-    "path",
-    "isNonResourceURL"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -97,6 +86,17 @@
       ]
     }
   },
+  "required": [
+    "namespace",
+    "verb",
+    "resourceAPIGroup",
+    "resourceAPIVersion",
+    "resource",
+    "resourceName",
+    "path",
+    "isNonResourceURL"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "",

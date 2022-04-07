@@ -1,9 +1,5 @@
 {
   "description": "AlertmanagerConfig defines a namespaced AlertmanagerConfig to be aggregated across multiple namespaces configuring one Alertmanager cluster.",
-  "type": "object",
-  "required": [
-    "spec"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -27,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -54,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -99,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -175,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -201,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -249,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -277,61 +269,42 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration. By definition, the Alertmanager configuration only applies to alerts for which the `namespace` label is equal to the namespace of the AlertmanagerConfig resource.",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "AlertmanagerConfigSpec is a specification of the desired behavior of the Alertmanager configuration. By definition, the Alertmanager configuration only applies to alerts for which the `namespace` label is equal to the namespace of the AlertmanagerConfig resource.",
       "properties": {
         "inhibitRules": {
           "description": "List of inhibition rules. The rules will only apply to alerts matching the resource\u2019s namespace.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "InhibitRule defines an inhibition rule that allows to mute alerts when other alerts are already firing. See https://prometheus.io/docs/alerting/latest/configuration/#inhibit_rule",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "equal": {
                 "description": "Labels that must have an equal value in the source and target alert for the inhibition to take effect.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "sourceMatch": {
                 "description": "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource\u2019s namespace.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "Matcher defines how to match on alert's labels.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "name"
-                  ],
                   "properties": {
                     "name": {
                       "description": "Label to match.",
-                      "type": "string",
-                      "minLength": 1
+                      "minLength": 1,
+                      "type": "string"
                     },
                     "regex": {
                       "description": "Whether to match on equality (false) or regular-expression (true).",
@@ -348,29 +321,29 @@
                       ]
                     }
                   },
+                  "required": [
+                    "name"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "targetMatch": {
                 "description": "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource\u2019s namespace.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "Matcher defines how to match on alert's labels.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "name"
-                  ],
                   "properties": {
                     "name": {
                       "description": "Label to match.",
-                      "type": "string",
-                      "minLength": 1
+                      "minLength": 1,
+                      "type": "string"
                     },
                     "regex": {
                       "description": "Whether to match on equality (false) or regular-expression (true).",
@@ -387,41 +360,41 @@
                       ]
                     }
                   },
+                  "required": [
+                    "name"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               }
             },
-            "additionalProperties": false
-          }
-        },
-        "receivers": {
-          "description": "List of receivers.",
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "description": "Receiver defines one or more notification integrations.",
             "type": [
               "object",
               "null"
             ],
-            "required": [
-              "name"
-            ],
+            "additionalProperties": false
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "receivers": {
+          "description": "List of receivers.",
+          "items": {
+            "description": "Receiver defines one or more notification integrations.",
             "properties": {
               "emailConfigs": {
                 "description": "List of Email configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "EmailConfig configures notifications via Email.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "authIdentity": {
                       "description": "The identity to use for authentication.",
@@ -432,13 +405,6 @@
                     },
                     "authPassword": {
                       "description": "The secret's key that contains the password to use for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -459,17 +425,17 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "authSecret": {
                       "description": "The secret's key that contains the CRAM-MD5 secret. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -490,6 +456,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "authUsername": {
@@ -508,33 +481,33 @@
                     },
                     "headers": {
                       "description": "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "KeyValue defines a (key, value) tuple.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "key",
-                          "value"
-                        ],
                         "properties": {
                           "key": {
                             "description": "Key of the tuple.",
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "value": {
                             "description": "Value of the tuple.",
                             "type": "string"
                           }
                         },
+                        "required": [
+                          "key",
+                          "value"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "hello": {
                       "description": "The hostname to identify to the SMTP server.",
@@ -580,27 +553,12 @@
                     },
                     "tlsConfig": {
                       "description": "TLS configuration",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "ca": {
                           "description": "Struct containing the CA cert to use for the targets.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "configMap": {
                               "description": "ConfigMap containing data to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key to select.",
@@ -621,17 +579,17 @@
                                   ]
                                 }
                               },
-                              "additionalProperties": false
-                            },
-                            "secret": {
-                              "description": "Secret containing data to use for the targets.",
+                              "required": [
+                                "key"
+                              ],
                               "type": [
                                 "object",
                                 "null"
                               ],
-                              "required": [
-                                "key"
-                              ],
+                              "additionalProperties": false
+                            },
+                            "secret": {
+                              "description": "Secret containing data to use for the targets.",
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -652,27 +610,27 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "cert": {
                           "description": "Struct containing the client cert file for the targets.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "configMap": {
                               "description": "ConfigMap containing data to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key to select.",
@@ -693,17 +651,17 @@
                                   ]
                                 }
                               },
-                              "additionalProperties": false
-                            },
-                            "secret": {
-                              "description": "Secret containing data to use for the targets.",
+                              "required": [
+                                "key"
+                              ],
                               "type": [
                                 "object",
                                 "null"
                               ],
-                              "required": [
-                                "key"
-                              ],
+                              "additionalProperties": false
+                            },
+                            "secret": {
+                              "description": "Secret containing data to use for the targets.",
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -724,9 +682,20 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "insecureSkipVerify": {
@@ -738,13 +707,6 @@
                         },
                         "keySecret": {
                           "description": "Secret containing the client key file for the targets.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "key"
-                          ],
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -765,6 +727,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "serverName": {
@@ -775,6 +744,10 @@
                           ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "to": {
@@ -785,36 +758,29 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "name": {
-                "description": "Name of the receiver. Must be unique across all items from the list.",
-                "type": "string",
-                "minLength": 1
-              },
-              "opsgenieConfigs": {
-                "description": "List of OpsGenie configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "OpsGenieConfig configures notifications via OpsGenie. See https://prometheus.io/docs/alerting/latest/configuration/#opsgenie_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "name": {
+                "description": "Name of the receiver. Must be unique across all items from the list.",
+                "minLength": 1,
+                "type": "string"
+              },
+              "opsgenieConfigs": {
+                "description": "List of OpsGenie configurations.",
+                "items": {
+                  "description": "OpsGenieConfig configures notifications via OpsGenie. See https://prometheus.io/docs/alerting/latest/configuration/#opsgenie_config",
                   "properties": {
                     "apiKey": {
                       "description": "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -835,6 +801,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "apiURL": {
@@ -853,57 +826,42 @@
                     },
                     "details": {
                       "description": "A set of arbitrary key/value pairs that provide further detail about the incident.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "KeyValue defines a (key, value) tuple.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "key",
-                          "value"
-                        ],
                         "properties": {
                           "key": {
                             "description": "Key of the tuple.",
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "value": {
                             "description": "Value of the tuple.",
                             "type": "string"
                           }
                         },
+                        "required": [
+                          "key",
+                          "value"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -924,17 +882,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -955,20 +913,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -989,6 +951,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -1000,27 +969,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -1041,17 +995,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1072,27 +1026,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -1113,17 +1067,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1144,9 +1098,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -1158,13 +1123,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1185,6 +1143,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -1195,9 +1160,17 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "message": {
@@ -1223,19 +1196,8 @@
                     },
                     "responders": {
                       "description": "List of responders responsible for notifications.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "OpsGenieConfigResponder defines a responder to an incident. One of `id`, `name` or `username` has to be defined.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "type"
-                        ],
                         "properties": {
                           "id": {
                             "description": "ID of the responder.",
@@ -1253,8 +1215,8 @@
                           },
                           "type": {
                             "description": "Type of responder.",
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "username": {
                             "description": "Username of the responder.",
@@ -1264,8 +1226,19 @@
                             ]
                           }
                         },
+                        "required": [
+                          "type"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "sendResolved": {
                       "description": "Whether or not to notify about resolved alerts.",
@@ -1289,21 +1262,21 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "pagerdutyConfigs": {
-                "description": "List of PagerDuty configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "PagerDutyConfig configures notifications via PagerDuty. See https://prometheus.io/docs/alerting/latest/configuration/#pagerduty_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "pagerdutyConfigs": {
+                "description": "List of PagerDuty configurations.",
+                "items": {
+                  "description": "PagerDutyConfig configures notifications via PagerDuty. See https://prometheus.io/docs/alerting/latest/configuration/#pagerduty_config",
                   "properties": {
                     "class": {
                       "description": "The class/type of the event.",
@@ -1342,33 +1315,33 @@
                     },
                     "details": {
                       "description": "Arbitrary key/value pairs that provide further detail about the incident.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "KeyValue defines a (key, value) tuple.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "key",
-                          "value"
-                        ],
                         "properties": {
                           "key": {
                             "description": "Key of the tuple.",
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "value": {
                             "description": "Value of the tuple.",
                             "type": "string"
                           }
                         },
+                        "required": [
+                          "key",
+                          "value"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "group": {
                       "description": "A cluster or grouping of sources.",
@@ -1379,27 +1352,12 @@
                     },
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1420,17 +1378,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1451,20 +1409,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1485,6 +1447,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -1496,27 +1465,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -1537,17 +1491,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1568,27 +1522,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -1609,17 +1563,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1640,9 +1594,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -1654,13 +1619,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1681,6 +1639,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -1691,20 +1656,21 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
-                      "additionalProperties": false
-                    },
-                    "routingKey": {
-                      "description": "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or `serviceKey` needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                       "type": [
                         "object",
                         "null"
                       ],
-                      "required": [
-                        "key"
-                      ],
+                      "additionalProperties": false
+                    },
+                    "routingKey": {
+                      "description": "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or `serviceKey` needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1725,6 +1691,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "sendResolved": {
@@ -1736,13 +1709,6 @@
                     },
                     "serviceKey": {
                       "description": "The secret's key that contains the PagerDuty service key (when using integration type \"Prometheus\"). Either this field or `routingKey` needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1763,6 +1729,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "severity": {
@@ -1780,21 +1753,21 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "pushoverConfigs": {
-                "description": "List of Pushover configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "PushoverConfig configures notifications via Pushover. See https://prometheus.io/docs/alerting/latest/configuration/#pushover_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "pushoverConfigs": {
+                "description": "List of Pushover configurations.",
+                "items": {
+                  "description": "PushoverConfig configures notifications via Pushover. See https://prometheus.io/docs/alerting/latest/configuration/#pushover_config",
                   "properties": {
                     "expire": {
                       "description": "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
@@ -1812,27 +1785,12 @@
                     },
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1853,17 +1811,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1884,20 +1842,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -1918,6 +1880,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -1929,27 +1898,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -1970,17 +1924,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2001,27 +1955,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -2042,17 +1996,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2073,9 +2027,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -2087,13 +2052,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2114,6 +2072,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -2124,9 +2089,17 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "message": {
@@ -2173,13 +2146,6 @@
                     },
                     "token": {
                       "description": "The secret's key that contains the registered application\u2019s API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2200,6 +2166,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "url": {
@@ -2218,13 +2191,6 @@
                     },
                     "userKey": {
                       "description": "The secret's key that contains the recipient user\u2019s user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2245,51 +2211,39 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "slackConfigs": {
-                "description": "List of Slack configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "SlackConfig configures notifications via Slack. See https://prometheus.io/docs/alerting/latest/configuration/#slack_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "slackConfigs": {
+                "description": "List of Slack configurations.",
+                "items": {
+                  "description": "SlackConfig configures notifications via Slack. See https://prometheus.io/docs/alerting/latest/configuration/#slack_config",
                   "properties": {
                     "actions": {
                       "description": "A list of Slack actions that are sent with each notification.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "SlackAction configures a single Slack action that is sent with each notification. See https://api.slack.com/docs/message-attachments#action_fields and https://api.slack.com/docs/message-buttons for more information.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "text",
-                          "type"
-                        ],
                         "properties": {
                           "confirm": {
                             "description": "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
-                            "required": [
-                              "text"
-                            ],
                             "properties": {
                               "dismissText": {
                                 "type": [
@@ -2304,8 +2258,8 @@
                                 ]
                               },
                               "text": {
-                                "type": "string",
-                                "minLength": 1
+                                "minLength": 1,
+                                "type": "string"
                               },
                               "title": {
                                 "type": [
@@ -2314,6 +2268,13 @@
                                 ]
                               }
                             },
+                            "required": [
+                              "text"
+                            ],
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
                           "name": {
@@ -2329,12 +2290,12 @@
                             ]
                           },
                           "text": {
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "type": {
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "url": {
                             "type": [
@@ -2349,18 +2310,23 @@
                             ]
                           }
                         },
+                        "required": [
+                          "text",
+                          "type"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "apiURL": {
                       "description": "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2381,6 +2347,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "callbackId": {
@@ -2410,20 +2383,8 @@
                     },
                     "fields": {
                       "description": "A list of Slack fields that are sent with each notification.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "SlackField configures a single Slack field that is sent with each notification. Each field must contain a title, value, and optionally, a boolean value to indicate if the field is short enough to be displayed next to other fields designated as short. See https://api.slack.com/docs/message-attachments#fields for more information.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "title",
-                          "value"
-                        ],
                         "properties": {
                           "short": {
                             "type": [
@@ -2432,16 +2393,28 @@
                             ]
                           },
                           "title": {
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "value": {
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           }
                         },
+                        "required": [
+                          "title",
+                          "value"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "footer": {
                       "type": [
@@ -2451,27 +2424,12 @@
                     },
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2492,17 +2450,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2523,20 +2481,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2557,6 +2519,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -2568,27 +2537,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -2609,17 +2563,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2640,27 +2594,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -2681,17 +2635,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2712,9 +2666,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -2726,13 +2691,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2753,6 +2711,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -2763,9 +2728,17 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "iconEmoji": {
@@ -2793,16 +2766,16 @@
                       ]
                     },
                     "mrkdwnIn": {
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "type": [
                           "string",
                           "null"
                         ]
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "pretext": {
                       "type": [
@@ -2854,31 +2827,24 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "victoropsConfigs": {
-                "description": "List of VictorOps configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "VictorOpsConfig configures notifications via VictorOps. See https://prometheus.io/docs/alerting/latest/configuration/#victorops_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "victoropsConfigs": {
+                "description": "List of VictorOps configurations.",
+                "items": {
+                  "description": "VictorOpsConfig configures notifications via VictorOps. See https://prometheus.io/docs/alerting/latest/configuration/#victorops_config",
                   "properties": {
                     "apiKey": {
                       "description": "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2899,6 +2865,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "apiUrl": {
@@ -2910,33 +2883,33 @@
                     },
                     "customFields": {
                       "description": "Additional custom fields for notification.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "KeyValue defines a (key, value) tuple.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "key",
-                          "value"
-                        ],
                         "properties": {
                           "key": {
                             "description": "Key of the tuple.",
-                            "type": "string",
-                            "minLength": 1
+                            "minLength": 1,
+                            "type": "string"
                           },
                           "value": {
                             "description": "Value of the tuple.",
                             "type": "string"
                           }
                         },
+                        "required": [
+                          "key",
+                          "value"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
-                      }
+                      },
+                      "type": [
+                        "array",
+                        "null"
+                      ]
                     },
                     "entityDisplayName": {
                       "description": "Contains summary of the alerted problem.",
@@ -2947,27 +2920,12 @@
                     },
                     "httpConfig": {
                       "description": "The HTTP client's configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -2988,17 +2946,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3019,20 +2977,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3053,6 +3015,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -3064,27 +3033,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3105,17 +3059,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3136,27 +3090,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3177,17 +3131,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3208,9 +3162,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -3222,13 +3187,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3249,6 +3207,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -3259,9 +3224,17 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "messageType": {
@@ -3300,45 +3273,30 @@
                       ]
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "webhookConfigs": {
-                "description": "List of webhook configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "WebhookConfig configures notifications via a generic receiver supporting the webhook payload. See https://prometheus.io/docs/alerting/latest/configuration/#webhook_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "webhookConfigs": {
+                "description": "List of webhook configurations.",
+                "items": {
+                  "description": "WebhookConfig configures notifications via a generic receiver supporting the webhook payload. See https://prometheus.io/docs/alerting/latest/configuration/#webhook_config",
                   "properties": {
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3359,17 +3317,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3390,20 +3348,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3424,6 +3386,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -3435,27 +3404,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3476,17 +3430,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3507,27 +3461,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3548,17 +3502,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3579,9 +3533,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -3593,13 +3558,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3620,6 +3578,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -3630,19 +3595,27 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "maxAlerts": {
                       "description": "Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.",
+                      "format": "int32",
+                      "minimum": 0,
                       "type": [
                         "integer",
                         "null"
-                      ],
-                      "format": "int32",
-                      "minimum": 0
+                      ]
                     },
                     "sendResolved": {
                       "description": "Whether or not to notify about resolved alerts.",
@@ -3660,13 +3633,6 @@
                     },
                     "urlSecret": {
                       "description": "The secret's key that contains the webhook URL to send HTTP requests to. `urlSecret` takes precedence over `url`. One of `urlSecret` and `url` should be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3687,24 +3653,31 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     }
                   },
-                  "additionalProperties": false
-                }
-              },
-              "wechatConfigs": {
-                "description": "List of WeChat configurations.",
-                "type": [
-                  "array",
-                  "null"
-                ],
-                "items": {
-                  "description": "WeChatConfig configures notifications via WeChat. See https://prometheus.io/docs/alerting/latest/configuration/#wechat_config",
                   "type": [
                     "object",
                     "null"
                   ],
+                  "additionalProperties": false
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
+              },
+              "wechatConfigs": {
+                "description": "List of WeChat configurations.",
+                "items": {
+                  "description": "WeChatConfig configures notifications via WeChat. See https://prometheus.io/docs/alerting/latest/configuration/#wechat_config",
                   "properties": {
                     "agentID": {
                       "type": [
@@ -3714,13 +3687,6 @@
                     },
                     "apiSecret": {
                       "description": "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3741,6 +3707,13 @@
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "apiURL": {
@@ -3759,27 +3732,12 @@
                     },
                     "httpConfig": {
                       "description": "HTTP client configuration.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "basicAuth": {
                           "description": "BasicAuth for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "password": {
                               "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3800,17 +3758,17 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "username": {
                               "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3831,20 +3789,24 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "bearerTokenSecret": {
-                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "key"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "bearerTokenSecret": {
+                          "description": "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
                           "properties": {
                             "key": {
                               "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3865,6 +3827,13 @@
                               ]
                             }
                           },
+                          "required": [
+                            "key"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "proxyURL": {
@@ -3876,27 +3845,12 @@
                         },
                         "tlsConfig": {
                           "description": "TLS configuration for the client.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "ca": {
                               "description": "Struct containing the CA cert to use for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3917,17 +3871,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -3948,27 +3902,27 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "cert": {
                               "description": "Struct containing the client cert file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "properties": {
                                 "configMap": {
                                   "description": "ConfigMap containing data to use for the targets.",
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "required": [
-                                    "key"
-                                  ],
                                   "properties": {
                                     "key": {
                                       "description": "The key to select.",
@@ -3989,17 +3943,17 @@
                                       ]
                                     }
                                   },
-                                  "additionalProperties": false
-                                },
-                                "secret": {
-                                  "description": "Secret containing data to use for the targets.",
+                                  "required": [
+                                    "key"
+                                  ],
                                   "type": [
                                     "object",
                                     "null"
                                   ],
-                                  "required": [
-                                    "key"
-                                  ],
+                                  "additionalProperties": false
+                                },
+                                "secret": {
+                                  "description": "Secret containing data to use for the targets.",
                                   "properties": {
                                     "key": {
                                       "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -4020,9 +3974,20 @@
                                       ]
                                     }
                                   },
+                                  "required": [
+                                    "key"
+                                  ],
+                                  "type": [
+                                    "object",
+                                    "null"
+                                  ],
                                   "additionalProperties": false
                                 }
                               },
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "insecureSkipVerify": {
@@ -4034,13 +3999,6 @@
                             },
                             "keySecret": {
                               "description": "Secret containing the client key file for the targets.",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
-                              "required": [
-                                "key"
-                              ],
                               "properties": {
                                 "key": {
                                   "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -4061,6 +4019,13 @@
                                   ]
                                 }
                               },
+                              "required": [
+                                "key"
+                              ],
+                              "type": [
+                                "object",
+                                "null"
+                              ],
                               "additionalProperties": false
                             },
                             "serverName": {
@@ -4071,9 +4036,17 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "message": {
@@ -4115,19 +4088,34 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               }
             },
+            "required": [
+              "name"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "route": {
           "description": "The Alertmanager route definition for alerts matching the resource\u2019s namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "continue": {
               "description": "Boolean indicating whether an alert should continue matching subsequent sibling nodes. It will always be overridden to true for the first-level route by the Prometheus operator.",
@@ -4138,16 +4126,16 @@
             },
             "groupBy": {
               "description": "List of labels to group by.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "type": [
                   "string",
                   "null"
                 ]
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "groupInterval": {
               "description": "How long to wait before sending an updated notification. Must match the regular expression `[0-9]+(ms|s|m|h)` (milliseconds seconds minutes hours).",
@@ -4165,24 +4153,13 @@
             },
             "matchers": {
               "description": "List of matchers that the alert\u2019s labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the `namespace` label and adds a `namespace: <object namespace>` matcher.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "Matcher defines how to match on alert's labels.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "name"
-                ],
                 "properties": {
                   "name": {
                     "description": "Label to match.",
-                    "type": "string",
-                    "minLength": 1
+                    "minLength": 1,
+                    "type": "string"
                   },
                   "regex": {
                     "description": "Whether to match on equality (false) or regular-expression (true).",
@@ -4199,8 +4176,19 @@
                     ]
                   }
                 },
+                "required": [
+                  "name"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "receiver": {
               "description": "Name of the receiver for this route. If not empty, it should be listed in the `receivers` field.",
@@ -4218,21 +4206,33 @@
             },
             "routes": {
               "description": "Child routes.",
+              "items": {
+                "x-kubernetes-preserve-unknown-fields": true
+              },
               "type": [
                 "array",
                 "null"
-              ],
-              "items": {
-                "x-kubernetes-preserve-unknown-fields": true
-              }
+              ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "spec"
+  ],
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "monitoring.coreos.com",

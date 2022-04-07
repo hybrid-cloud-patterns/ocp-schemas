@@ -1,6 +1,5 @@
 {
   "description": "Maintainer defines a project maintainer",
-  "type": "object",
   "properties": {
     "email": {
       "type": [
@@ -15,6 +14,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,6 +1,5 @@
 {
   "description": "PersistentVolumeStatus is the current status of a persistent volume.",
-  "type": "object",
   "properties": {
     "message": {
       "description": "A human-readable message indicating details about why the volume is in this state.",
@@ -24,6 +23,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

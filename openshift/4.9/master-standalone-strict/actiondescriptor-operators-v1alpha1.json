@@ -1,9 +1,5 @@
 {
   "description": "ActionDescriptor describes a declarative action that can be performed on a custom resource instance",
-  "type": "object",
-  "required": [
-    "path"
-  ],
   "properties": {
     "description": {
       "type": [
@@ -24,25 +20,29 @@
       ]
     },
     "value": {
+      "format": "byte",
       "type": [
         "string",
         "null"
-      ],
-      "format": "byte"
+      ]
     },
     "x-descriptors": {
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "type": [
           "string",
           "null"
         ]
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "required": [
+    "path"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

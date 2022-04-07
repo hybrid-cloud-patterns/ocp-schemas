@@ -1,39 +1,31 @@
 {
   "description": "Handler defines a specific action that should be taken",
-  "type": "object",
   "properties": {
     "exec": {
       "description": "ExecAction describes a \"run in container\" action.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "command": {
           "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
-      "additionalProperties": false
-    },
-    "httpGet": {
-      "description": "HTTPGetAction describes an action based on HTTP Get requests.",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "port"
-      ],
+      "additionalProperties": false
+    },
+    "httpGet": {
+      "description": "HTTPGetAction describes an action based on HTTP Get requests.",
       "properties": {
         "host": {
           "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -44,20 +36,8 @@
         },
         "httpHeaders": {
           "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "name",
-              "value"
-            ],
             "properties": {
               "name": {
                 "description": "The header field name",
@@ -68,8 +48,20 @@
                 "type": "string"
               }
             },
+            "required": [
+              "name",
+              "value"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "path": {
           "description": "Path to access on the HTTP server.",
@@ -102,17 +94,17 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "tcpSocket": {
-      "description": "TCPSocketAction describes an action based on opening a socket",
+      "required": [
+        "port"
+      ],
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "port"
-      ],
+      "additionalProperties": false
+    },
+    "tcpSocket": {
+      "description": "TCPSocketAction describes an action based on opening a socket",
       "properties": {
         "host": {
           "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -138,9 +130,17 @@
           ]
         }
       },
+      "required": [
+        "port"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

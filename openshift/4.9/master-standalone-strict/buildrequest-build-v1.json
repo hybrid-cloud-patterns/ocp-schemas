@@ -1,6 +1,5 @@
 {
   "description": "BuildRequest is the resource used to pass parameters to build generator\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-  "type": "object",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -15,10 +14,6 @@
     },
     "binary": {
       "description": "BinaryBuildSource describes a binary file to be used for the Docker and Source build strategies, where the file will be extracted and used as the build source.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "asFile": {
           "description": "asFile indicates that the provided binary input should be considered a single file within the build input. For example, specifying \"webapp.war\" would place the provided binary as `/webapp.war` for the builder. If left empty, the Docker and Source build strategies assume this file is a zip, tar, or tar.gz file and extract it as the source. The custom strategy receives this binary as standard input. This filename may not contain slashes or be '..' or '.'.",
@@ -28,30 +23,19 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "dockerStrategyOptions": {
-      "description": "DockerStrategyOptions contains extra strategy options for container image builds",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "dockerStrategyOptions": {
+      "description": "DockerStrategyOptions contains extra strategy options for container image builds",
       "properties": {
         "buildArgs": {
           "description": "Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "EnvVar represents an environment variable present in a Container.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "name"
-            ],
             "properties": {
               "name": {
                 "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -66,20 +50,9 @@
               },
               "valueFrom": {
                 "description": "EnvVarSource represents a source for the value of an EnvVar.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "configMapKeyRef": {
                     "description": "Selects a key from a ConfigMap.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "key"
-                    ],
                     "properties": {
                       "key": {
                         "description": "The key to select.",
@@ -100,18 +73,18 @@
                         ]
                       }
                     },
+                    "required": [
+                      "key"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "fieldRef": {
                     "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "fieldPath"
-                    ],
                     "properties": {
                       "apiVersion": {
                         "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -125,18 +98,18 @@
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "fieldPath"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "resourceFieldRef": {
                     "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "resource"
-                    ],
                     "properties": {
                       "containerName": {
                         "description": "Container name: required for volumes, optional for env vars",
@@ -166,18 +139,18 @@
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "resource"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "secretKeyRef": {
                     "description": "SecretKeySelector selects a key of a Secret.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "key"
-                    ],
                     "properties": {
                       "key": {
                         "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -198,15 +171,37 @@
                         ]
                       }
                     },
+                    "required": [
+                      "key"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "required": [
+              "name"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "noCache": {
           "description": "noCache overrides the docker-strategy noCache option in the build config",
@@ -216,23 +211,16 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "env": {
       "description": "env contains additional environment variables you want to pass into a builder container.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "EnvVar represents an environment variable present in a Container.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -247,20 +235,9 @@
           },
           "valueFrom": {
             "description": "EnvVarSource represents a source for the value of an EnvVar.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "configMapKeyRef": {
                 "description": "Selects a key from a ConfigMap.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key to select.",
@@ -281,18 +258,18 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "fieldRef": {
                 "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "fieldPath"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -306,18 +283,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "fieldPath"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "resourceFieldRef": {
                 "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "resource"
-                ],
                 "properties": {
                   "containerName": {
                     "description": "Container name: required for volumes, optional for env vars",
@@ -347,18 +324,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "resource"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "secretKeyRef": {
                 "description": "SecretKeySelector selects a key of a Secret.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -379,22 +356,40 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "required": [
+          "name"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "from": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -446,6 +441,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -461,31 +460,27 @@
     },
     "lastVersion": {
       "description": "lastVersion (optional) is the LastVersion of the BuildConfig that was used to generate the build. If the BuildConfig in the generator doesn't match, a build will not be generated.",
+      "format": "int64",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int64"
+      ]
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -496,40 +491,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -541,37 +536,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -617,15 +604,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -643,22 +638,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -691,9 +672,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -719,31 +714,20 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "revision": {
-      "description": "SourceRevision is the revision or commit information from the source for the build",
       "type": [
         "object",
         "null"
       ],
-      "required": [
-        "type"
-      ],
+      "additionalProperties": false
+    },
+    "revision": {
+      "description": "SourceRevision is the revision or commit information from the source for the build",
       "properties": {
         "git": {
           "description": "GitSourceRevision is the commit information from a git source for a build",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "author": {
               "description": "SourceControlUser defines the identity of a user of source control",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "email": {
                   "description": "email of the source control user",
@@ -760,6 +744,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "commit": {
@@ -771,10 +759,6 @@
             },
             "committer": {
               "description": "SourceControlUser defines the identity of a user of source control",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "email": {
                   "description": "email of the source control user",
@@ -791,6 +775,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "message": {
@@ -801,6 +789,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "type": {
@@ -808,14 +800,17 @@
           "type": "string"
         }
       },
-      "additionalProperties": false
-    },
-    "sourceStrategyOptions": {
-      "description": "SourceStrategyOptions contains extra strategy options for Source builds",
+      "required": [
+        "type"
+      ],
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "sourceStrategyOptions": {
+      "description": "SourceStrategyOptions contains extra strategy options for Source builds",
       "properties": {
         "incremental": {
           "description": "incremental overrides the source-strategy incremental option in the build config",
@@ -825,51 +820,28 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "triggeredBy": {
       "description": "triggeredBy describes which triggers started the most recent update to the build configuration and contains information about those triggers.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration.",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "bitbucketWebHook": {
             "description": "BitbucketWebHookCause has information about a Bitbucket webhook that triggered a build.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "revision": {
                 "description": "SourceRevision is the revision or commit information from the source for the build",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "type"
-                ],
                 "properties": {
                   "git": {
                     "description": "GitSourceRevision is the commit information from a git source for a build",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "author": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -886,6 +858,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "commit": {
@@ -897,10 +873,6 @@
                       },
                       "committer": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -917,6 +889,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "message": {
@@ -927,6 +903,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "type": {
@@ -934,6 +914,13 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "type"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "secret": {
@@ -944,38 +931,23 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           },
           "genericWebHook": {
             "description": "GenericWebHookCause holds information about a generic WebHook that triggered a build.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "revision": {
                 "description": "SourceRevision is the revision or commit information from the source for the build",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "type"
-                ],
                 "properties": {
                   "git": {
                     "description": "GitSourceRevision is the commit information from a git source for a build",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "author": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -992,6 +964,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "commit": {
@@ -1003,10 +979,6 @@
                       },
                       "committer": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -1023,6 +995,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "message": {
@@ -1033,6 +1009,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "type": {
@@ -1040,6 +1020,13 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "type"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "secret": {
@@ -1050,38 +1037,23 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           },
           "githubWebHook": {
             "description": "GitHubWebHookCause has information about a GitHub webhook that triggered a build.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "revision": {
                 "description": "SourceRevision is the revision or commit information from the source for the build",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "type"
-                ],
                 "properties": {
                   "git": {
                     "description": "GitSourceRevision is the commit information from a git source for a build",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "author": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -1098,6 +1070,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "commit": {
@@ -1109,10 +1085,6 @@
                       },
                       "committer": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -1129,6 +1101,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "message": {
@@ -1139,6 +1115,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "type": {
@@ -1146,6 +1126,13 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "type"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "secret": {
@@ -1156,38 +1143,23 @@
                 ]
               }
             },
-            "additionalProperties": false
-          },
-          "gitlabWebHook": {
-            "description": "GitLabWebHookCause has information about a GitLab webhook that triggered a build.",
             "type": [
               "object",
               "null"
             ],
+            "additionalProperties": false
+          },
+          "gitlabWebHook": {
+            "description": "GitLabWebHookCause has information about a GitLab webhook that triggered a build.",
             "properties": {
               "revision": {
                 "description": "SourceRevision is the revision or commit information from the source for the build",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "type"
-                ],
                 "properties": {
                   "git": {
                     "description": "GitSourceRevision is the commit information from a git source for a build",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "author": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -1204,6 +1176,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "commit": {
@@ -1215,10 +1191,6 @@
                       },
                       "committer": {
                         "description": "SourceControlUser defines the identity of a user of source control",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "properties": {
                           "email": {
                             "description": "email of the source control user",
@@ -1235,6 +1207,10 @@
                             ]
                           }
                         },
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
                       "message": {
@@ -1245,6 +1221,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "type": {
@@ -1252,6 +1232,13 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "type"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "secret": {
@@ -1262,21 +1249,17 @@
                 ]
               }
             },
-            "additionalProperties": false
-          },
-          "imageChangeBuild": {
-            "description": "ImageChangeCause contains information about the image that triggered a build",
             "type": [
               "object",
               "null"
             ],
+            "additionalProperties": false
+          },
+          "imageChangeBuild": {
+            "description": "ImageChangeCause contains information about the image that triggered a build",
             "properties": {
               "fromRef": {
                 "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "API version of the referent.",
@@ -1328,6 +1311,10 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
@@ -1339,6 +1326,10 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           },
           "message": {
@@ -1349,15 +1340,19 @@
             ]
           }
         },
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "triggeredByImage": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -1409,10 +1404,15 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     }
   },
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "",

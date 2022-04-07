@@ -1,22 +1,10 @@
 {
   "description": "DockerStrategyOptions contains extra strategy options for container image builds",
-  "type": "object",
   "properties": {
     "buildArgs": {
       "description": "Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "EnvVar represents an environment variable present in a Container.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -31,20 +19,9 @@
           },
           "valueFrom": {
             "description": "EnvVarSource represents a source for the value of an EnvVar.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "configMapKeyRef": {
                 "description": "Selects a key from a ConfigMap.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key to select.",
@@ -65,17 +42,17 @@
                     ]
                   }
                 },
-                "x-kubernetes-map-type": "atomic"
-              },
-              "fieldRef": {
-                "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
+                "required": [
+                  "key"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "fieldPath"
-                ],
+                "x-kubernetes-map-type": "atomic"
+              },
+              "fieldRef": {
+                "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
                 "properties": {
                   "apiVersion": {
                     "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -89,17 +66,17 @@
                     "type": "string"
                   }
                 },
-                "x-kubernetes-map-type": "atomic"
-              },
-              "resourceFieldRef": {
-                "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
+                "required": [
+                  "fieldPath"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "resource"
-                ],
+                "x-kubernetes-map-type": "atomic"
+              },
+              "resourceFieldRef": {
+                "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
                 "properties": {
                   "containerName": {
                     "description": "Container name: required for volumes, optional for env vars",
@@ -129,17 +106,17 @@
                     "type": "string"
                   }
                 },
-                "x-kubernetes-map-type": "atomic"
-              },
-              "secretKeyRef": {
-                "description": "SecretKeySelector selects a key of a Secret.",
+                "required": [
+                  "resource"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "key"
-                ],
+                "x-kubernetes-map-type": "atomic"
+              },
+              "secretKeyRef": {
+                "description": "SecretKeySelector selects a key of a Secret.",
                 "properties": {
                   "key": {
                     "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -160,12 +137,34 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic"
               }
-            }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
           }
-        }
-      }
+        },
+        "required": [
+          "name"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "noCache": {
       "description": "noCache overrides the docker-strategy noCache option in the build config",
@@ -175,5 +174,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

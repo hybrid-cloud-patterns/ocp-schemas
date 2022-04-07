@@ -1,6 +1,5 @@
 {
   "description": "ImageBlobReferences describes the blob references within an image.",
-  "type": "object",
   "properties": {
     "config": {
       "description": "config, if set, is the blob that contains the image config. Some images do not have separate config blobs and this field will be set to nil if so.",
@@ -18,18 +17,19 @@
     },
     "layers": {
       "description": "layers is the list of blobs that compose this image, from base layer to top layer. All layers referenced by this array will be defined in the blobs map. Some images may have zero layers.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "type": [
           "string",
           "null"
         ]
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

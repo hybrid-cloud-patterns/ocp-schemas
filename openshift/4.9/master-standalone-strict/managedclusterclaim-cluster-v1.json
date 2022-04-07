@@ -1,6 +1,5 @@
 {
   "description": "ManagedClusterClaim represents a ClusterClaim collected from a managed cluster.",
-  "type": "object",
   "properties": {
     "name": {
       "description": "Name is the name of a ClusterClaim resource on managed cluster. It's a well known or customized name to identify the claim.",
@@ -17,6 +16,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

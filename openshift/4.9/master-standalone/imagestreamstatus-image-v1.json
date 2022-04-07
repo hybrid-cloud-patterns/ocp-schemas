@@ -1,9 +1,5 @@
 {
   "description": "ImageStreamStatus contains information about the state of this image stream.",
-  "type": "object",
-  "required": [
-    "dockerImageRepository"
-  ],
   "properties": {
     "dockerImageRepository": {
       "description": "DockerImageRepository represents the effective location this stream may be accessed at. May be empty until the server determines where the repository is located",
@@ -21,51 +17,26 @@
     },
     "tags": {
       "description": "Tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "NamedTagEventList relates a tag to its image history.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "tag",
-          "items"
-        ],
         "properties": {
           "conditions": {
             "description": "Conditions is an array of conditions that apply to the tag event list.",
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "description": "TagEventCondition contains condition information for a tag event.",
-              "type": [
-                "object",
-                "null"
-              ],
-              "required": [
-                "type",
-                "status",
-                "generation"
-              ],
               "properties": {
                 "generation": {
                   "description": "Generation is the spec tag generation that this status corresponds to",
-                  "type": "integer",
-                  "format": "int64"
+                  "format": "int64",
+                  "type": "integer"
                 },
                 "lastTransitionTime": {
                   "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                  "format": "date-time",
                   "type": [
                     "string",
                     "null"
-                  ],
-                  "format": "date-time"
+                  ]
                 },
                 "message": {
                   "description": "Message is a human readable description of the details about last transition, complementing reason.",
@@ -89,29 +60,31 @@
                   "description": "Type of tag event condition, currently only ImportSuccess",
                   "type": "string"
                 }
-              }
-            }
-          },
-          "items": {
-            "description": "Standard object's metadata.",
-            "type": "array",
-            "items": {
-              "description": "TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.",
+              },
+              "required": [
+                "type",
+                "status",
+                "generation"
+              ],
               "type": [
                 "object",
                 "null"
-              ],
-              "required": [
-                "created",
-                "dockerImageReference",
-                "image",
-                "generation"
-              ],
+              ]
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "items": {
+            "description": "Standard object's metadata.",
+            "items": {
+              "description": "TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.",
               "properties": {
                 "created": {
                   "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-                  "type": "string",
-                  "format": "date-time"
+                  "format": "date-time",
+                  "type": "string"
                 },
                 "dockerImageReference": {
                   "description": "DockerImageReference is the string that can be used to pull this image",
@@ -119,25 +92,52 @@
                 },
                 "generation": {
                   "description": "Generation is the spec tag generation that resulted in this tag being updated",
-                  "type": "integer",
-                  "format": "int64"
+                  "format": "int64",
+                  "type": "integer"
                 },
                 "image": {
                   "description": "Image is the image",
                   "type": "string"
                 }
-              }
-            }
+              },
+              "required": [
+                "created",
+                "dockerImageReference",
+                "image",
+                "generation"
+              ],
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "type": "array"
           },
           "tag": {
             "description": "Tag is the tag for which the history is recorded",
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "tag",
+          "items"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-patch-merge-key": "tag",
       "x-kubernetes-patch-strategy": "merge"
     }
   },
+  "required": [
+    "dockerImageRepository"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

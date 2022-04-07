@@ -1,32 +1,13 @@
 {
   "description": "ImageStreamImportStatus contains information about the status of an image stream import.",
-  "type": "object",
   "properties": {
     "images": {
       "description": "Images is set with the result of importing spec.images",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ImageImportStatus describes the result of an image import.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "status"
-        ],
         "properties": {
           "image": {
             "description": "Image is an immutable representation of a container image and metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users instead access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "dockerImageLayers"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -48,18 +29,8 @@
               },
               "dockerImageLayers": {
                 "description": "DockerImageLayers represents the layers in the image. May not be set if the image does not define that data.",
-                "type": "array",
                 "items": {
                   "description": "ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "name",
-                    "size",
-                    "mediaType"
-                  ],
                   "properties": {
                     "mediaType": {
                       "description": "MediaType of the referenced object.",
@@ -71,12 +42,22 @@
                     },
                     "size": {
                       "description": "Size of the layer in bytes as defined by the underlying store.",
-                      "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "type": "integer"
                     }
                   },
+                  "required": [
+                    "name",
+                    "size",
+                    "mediaType"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": "array"
               },
               "dockerImageManifest": {
                 "description": "DockerImageManifest is the raw JSON of the manifest",
@@ -115,17 +96,17 @@
               },
               "dockerImageSignatures": {
                 "description": "DockerImageSignatures provides the signatures as opaque blobs. This is a part of manifest schema v1.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
+                  "format": "byte",
                   "type": [
                     "string",
                     "null"
-                  ],
-                  "format": "byte"
-                }
+                  ]
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "kind": {
                 "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -139,23 +120,19 @@
               },
               "metadata": {
                 "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "annotations": {
-                    "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "additionalProperties": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "clusterName": {
                     "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -166,40 +143,40 @@
                   },
                   "creationTimestamp": {
                     "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                    "format": "date-time",
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "format": "date-time"
+                    ]
                   },
                   "deletionGracePeriodSeconds": {
                     "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "deletionTimestamp": {
                     "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                    "format": "date-time",
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "format": "date-time"
+                    ]
                   },
                   "finalizers": {
                     "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "type": [
                         "string",
                         "null"
                       ]
                     },
+                    "type": [
+                      "array",
+                      "null"
+                    ],
                     "x-kubernetes-patch-strategy": "merge"
                   },
                   "generateName": {
@@ -211,37 +188,29 @@
                   },
                   "generation": {
                     "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "labels": {
-                    "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "additionalProperties": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
+                    },
+                    "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                    "type": [
+                      "object",
+                      "null"
+                    ]
                   },
                   "managedFields": {
                     "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "apiVersion": {
                           "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -287,15 +256,23 @@
                         },
                         "time": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                          "format": "date-time",
                           "type": [
                             "string",
                             "null"
-                          ],
-                          "format": "date-time"
+                          ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "name": {
                     "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -313,22 +290,8 @@
                   },
                   "ownerReferences": {
                     "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "apiVersion",
-                        "kind",
-                        "name",
-                        "uid"
-                      ],
                       "properties": {
                         "apiVersion": {
                           "description": "API version of the referent.",
@@ -361,9 +324,23 @@
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "apiVersion",
+                        "kind",
+                        "name",
+                        "uid"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "x-kubernetes-map-type": "atomic",
                       "additionalProperties": false
                     },
+                    "type": [
+                      "array",
+                      "null"
+                    ],
                     "x-kubernetes-patch-merge-key": "uid",
                     "x-kubernetes-patch-strategy": "merge"
                   },
@@ -389,24 +366,16 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "signatures": {
                 "description": "Signatures holds all signatures of the image.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature's content by the server. They serve just an informative purpose.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "type",
-                    "content"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -421,36 +390,24 @@
                     },
                     "conditions": {
                       "description": "Conditions represent the latest available observations of a signature's current state.",
-                      "type": [
-                        "array",
-                        "null"
-                      ],
                       "items": {
                         "description": "SignatureCondition describes an image signature condition of particular kind at particular probe time.",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
-                        "required": [
-                          "type",
-                          "status"
-                        ],
                         "properties": {
                           "lastProbeTime": {
                             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                            "format": "date-time",
                             "type": [
                               "string",
                               "null"
-                            ],
-                            "format": "date-time"
+                            ]
                           },
                           "lastTransitionTime": {
                             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                            "format": "date-time",
                             "type": [
                               "string",
                               "null"
-                            ],
-                            "format": "date-time"
+                            ]
                           },
                           "message": {
                             "description": "Human readable message indicating details about last transition.",
@@ -475,23 +432,35 @@
                             "type": "string"
                           }
                         },
+                        "required": [
+                          "type",
+                          "status"
+                        ],
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "additionalProperties": false
                       },
+                      "type": [
+                        "array",
+                        "null"
+                      ],
                       "x-kubernetes-patch-merge-key": "type",
                       "x-kubernetes-patch-strategy": "merge"
                     },
                     "content": {
                       "description": "Required: An opaque binary string which is an image's signature.",
-                      "type": "string",
-                      "format": "byte"
+                      "format": "byte",
+                      "type": "string"
                     },
                     "created": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     },
                     "imageIdentity": {
                       "description": "A human readable string representing image's identity. It could be a product name and version, or an image pull spec (e.g. \"registry.access.redhat.com/rhel7/rhel:7.2\").",
@@ -502,10 +471,6 @@
                     },
                     "issuedBy": {
                       "description": "SignatureIssuer holds information about an issuer of signing certificate or key.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "commonName": {
                           "description": "Common name (e.g. openshift-signing-service).",
@@ -522,17 +487,14 @@
                           ]
                         }
                       },
-                      "additionalProperties": false
-                    },
-                    "issuedTo": {
-                      "description": "SignatureSubject holds information about a person or entity who created the signature.",
                       "type": [
                         "object",
                         "null"
                       ],
-                      "required": [
-                        "publicKeyID"
-                      ],
+                      "additionalProperties": false
+                    },
+                    "issuedTo": {
+                      "description": "SignatureSubject holds information about a person or entity who created the signature.",
                       "properties": {
                         "commonName": {
                           "description": "Common name (e.g. openshift-signing-service).",
@@ -553,6 +515,13 @@
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "publicKeyID"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
                     },
                     "kind": {
@@ -567,23 +536,19 @@
                     },
                     "metadata": {
                       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "annotations": {
-                          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "additionalProperties": {
                             "type": [
                               "string",
                               "null"
                             ]
-                          }
+                          },
+                          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                          "type": [
+                            "object",
+                            "null"
+                          ]
                         },
                         "clusterName": {
                           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -594,40 +559,40 @@
                         },
                         "creationTimestamp": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                          "format": "date-time",
                           "type": [
                             "string",
                             "null"
-                          ],
-                          "format": "date-time"
+                          ]
                         },
                         "deletionGracePeriodSeconds": {
                           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                          "format": "int64",
                           "type": [
                             "integer",
                             "null"
-                          ],
-                          "format": "int64"
+                          ]
                         },
                         "deletionTimestamp": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                          "format": "date-time",
                           "type": [
                             "string",
                             "null"
-                          ],
-                          "format": "date-time"
+                          ]
                         },
                         "finalizers": {
                           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
                           "items": {
                             "type": [
                               "string",
                               "null"
                             ]
                           },
+                          "type": [
+                            "array",
+                            "null"
+                          ],
                           "x-kubernetes-patch-strategy": "merge"
                         },
                         "generateName": {
@@ -639,37 +604,29 @@
                         },
                         "generation": {
                           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                          "format": "int64",
                           "type": [
                             "integer",
                             "null"
-                          ],
-                          "format": "int64"
+                          ]
                         },
                         "labels": {
-                          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "additionalProperties": {
                             "type": [
                               "string",
                               "null"
                             ]
-                          }
+                          },
+                          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                          "type": [
+                            "object",
+                            "null"
+                          ]
                         },
                         "managedFields": {
                           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
                           "items": {
                             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "apiVersion": {
                                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -715,15 +672,23 @@
                               },
                               "time": {
                                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                                "format": "date-time",
                                 "type": [
                                   "string",
                                   "null"
-                                ],
-                                "format": "date-time"
+                                ]
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
-                          }
+                          },
+                          "type": [
+                            "array",
+                            "null"
+                          ]
                         },
                         "name": {
                           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -741,22 +706,8 @@
                         },
                         "ownerReferences": {
                           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
                           "items": {
                             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
-                            "required": [
-                              "apiVersion",
-                              "kind",
-                              "name",
-                              "uid"
-                            ],
                             "properties": {
                               "apiVersion": {
                                 "description": "API version of the referent.",
@@ -789,9 +740,23 @@
                                 "type": "string"
                               }
                             },
+                            "required": [
+                              "apiVersion",
+                              "kind",
+                              "name",
+                              "uid"
+                            ],
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "x-kubernetes-map-type": "atomic",
                             "additionalProperties": false
                           },
+                          "type": [
+                            "array",
+                            "null"
+                          ],
                           "x-kubernetes-patch-merge-key": "uid",
                           "x-kubernetes-patch-strategy": "merge"
                         },
@@ -817,26 +782,38 @@
                           ]
                         }
                       },
-                      "additionalProperties": false
-                    },
-                    "signedClaims": {
-                      "description": "Contains claims from the signature.",
                       "type": [
                         "object",
                         "null"
                       ],
+                      "additionalProperties": false
+                    },
+                    "signedClaims": {
                       "additionalProperties": {
                         "type": [
                           "string",
                           "null"
                         ]
-                      }
+                      },
+                      "description": "Contains claims from the signature.",
+                      "type": [
+                        "object",
+                        "null"
+                      ]
                     },
                     "type": {
                       "description": "Required: Describes a type of stored blob.",
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "type",
+                    "content"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-group-version-kind": [
                     {
                       "group": "",
@@ -851,10 +828,21 @@
                   ],
                   "additionalProperties": false
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "name",
                 "x-kubernetes-patch-strategy": "merge"
               }
             },
+            "required": [
+              "dockerImageLayers"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-group-version-kind": [
               {
                 "group": "",
@@ -871,7 +859,6 @@
           },
           "status": {
             "description": "Status is a return value for calls that don't return other objects.",
-            "type": "object",
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -885,31 +872,19 @@
               },
               "code": {
                 "description": "Suggested HTTP return code for this status, 0 if not set.",
+                "format": "int32",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int32"
+                ]
               },
               "details": {
                 "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "causes": {
                     "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
                       "properties": {
                         "field": {
                           "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
@@ -933,8 +908,16 @@
                           ]
                         }
                       },
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "group": {
                     "description": "The group attribute of the resource associated with the status StatusReason.",
@@ -959,11 +942,11 @@
                   },
                   "retryAfterSeconds": {
                     "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+                    "format": "int32",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int32"
+                    ]
                   },
                   "uid": {
                     "description": "UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
@@ -973,6 +956,10 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "kind": {
@@ -994,10 +981,6 @@
               },
               "metadata": {
                 "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "continue": {
                     "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -1008,11 +991,11 @@
                   },
                   "remainingItemCount": {
                     "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "resourceVersion": {
                     "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -1029,6 +1012,10 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "reason": {
@@ -1046,6 +1033,7 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-group-version-kind": [
               {
                 "group": "",
@@ -1063,15 +1051,22 @@
             ]
           }
         },
+        "required": [
+          "status"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "import": {
       "description": "An ImageStream stores a mapping of tags to images, metadata overrides that are applied when images are tagged in a stream, and an optional reference to a container image repository on a registry. Users typically update the spec.tags field to point to external images which are imported from container registries using credentials in your namespace with the pull secret type, or to existing image stream tags and images which are immediately accessible for tagging or pulling. The history of images applied to a tag is visible in the status.tags field and any user who can view an image stream is allowed to tag that image into their own image streams. Access to pull images from the integrated registry is granted by having the \"get imagestreams/layers\" permission on a given image stream. Users may remove a tag by deleting the imagestreamtag resource, which causes both spec and status for that tag to be removed. Image stream history is retained until an administrator runs the prune operation, which removes references that are no longer in use. To preserve a historical image, ensure there is a tag in spec pointing to that image by its digest.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -1096,23 +1091,19 @@
         },
         "metadata": {
           "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "annotations": {
-              "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-              "type": [
-                "object",
-                "null"
-              ],
               "additionalProperties": {
                 "type": [
                   "string",
                   "null"
                 ]
-              }
+              },
+              "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+              "type": [
+                "object",
+                "null"
+              ]
             },
             "clusterName": {
               "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -1123,40 +1114,40 @@
             },
             "creationTimestamp": {
               "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+              "format": "date-time",
               "type": [
                 "string",
                 "null"
-              ],
-              "format": "date-time"
+              ]
             },
             "deletionGracePeriodSeconds": {
               "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+              "format": "int64",
               "type": [
                 "integer",
                 "null"
-              ],
-              "format": "int64"
+              ]
             },
             "deletionTimestamp": {
               "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+              "format": "date-time",
               "type": [
                 "string",
                 "null"
-              ],
-              "format": "date-time"
+              ]
             },
             "finalizers": {
               "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "type": [
                   "string",
                   "null"
                 ]
               },
+              "type": [
+                "array",
+                "null"
+              ],
               "x-kubernetes-patch-strategy": "merge"
             },
             "generateName": {
@@ -1168,37 +1159,29 @@
             },
             "generation": {
               "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+              "format": "int64",
               "type": [
                 "integer",
                 "null"
-              ],
-              "format": "int64"
+              ]
             },
             "labels": {
-              "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-              "type": [
-                "object",
-                "null"
-              ],
               "additionalProperties": {
                 "type": [
                   "string",
                   "null"
                 ]
-              }
+              },
+              "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+              "type": [
+                "object",
+                "null"
+              ]
             },
             "managedFields": {
               "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -1244,15 +1227,23 @@
                   },
                   "time": {
                     "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                    "format": "date-time",
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "format": "date-time"
+                    ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "name": {
               "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -1270,22 +1261,8 @@
             },
             "ownerReferences": {
               "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "apiVersion",
-                  "kind",
-                  "name",
-                  "uid"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "API version of the referent.",
@@ -1318,9 +1295,23 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "apiVersion",
+                  "kind",
+                  "name",
+                  "uid"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
+              "type": [
+                "array",
+                "null"
+              ],
               "x-kubernetes-patch-merge-key": "uid",
               "x-kubernetes-patch-strategy": "merge"
             },
@@ -1346,14 +1337,14 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "spec": {
-          "description": "ImageStreamSpec represents options for ImageStreams.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "spec": {
+          "description": "ImageStreamSpec represents options for ImageStreams.",
           "properties": {
             "dockerImageRepository": {
               "description": "dockerImageRepository is optional, if specified this stream is backed by a container repository on this server Deprecated: This field is deprecated as of v3.7 and will be removed in a future release. Specify the source for the tags to be imported in each tag via the spec.tags.from reference instead.",
@@ -1364,56 +1355,41 @@
             },
             "lookupPolicy": {
               "description": "ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace.",
-              "type": [
-                "object",
-                "null"
-              ],
-              "required": [
-                "local"
-              ],
               "properties": {
                 "local": {
                   "description": "local will change the docker short image references (like \"mysql\" or \"php:latest\") on objects in this namespace to the image ID whenever they match this image stream, instead of reaching out to a remote registry. The name will be fully qualified to an image ID if found. The tag's referencePolicy is taken into account on the replaced value. Only works within the current namespace.",
                   "type": "boolean"
                 }
               },
+              "required": [
+                "local"
+              ],
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "tags": {
               "description": "tags map arbitrary string values to specific image locators",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "name"
-                ],
                 "properties": {
                   "annotations": {
-                    "description": "Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "additionalProperties": {
                       "type": [
                         "string",
                         "null"
                       ]
-                    }
-                  },
-                  "from": {
-                    "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
+                    },
+                    "description": "Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags.",
                     "type": [
                       "object",
                       "null"
-                    ],
+                    ]
+                  },
+                  "from": {
+                    "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
                     "properties": {
                       "apiVersion": {
                         "description": "API version of the referent.",
@@ -1465,23 +1441,23 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "generation": {
                     "description": "Generation is a counter that tracks mutations to the spec tag (user intent). When a tag reference is changed the generation is set to match the current stream generation (which is incremented every time spec is changed). Other processes in the system like the image importer observe that the generation of spec tag is newer than the generation recorded in the status and use that as a trigger to import the newest remote tag. To trigger a new import, clients may set this value to zero which will reset the generation to the latest stream generation. Legacy clients will send this value as nil which will be merged with the current tag generation.",
+                    "format": "int64",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int64"
+                    ]
                   },
                   "importPolicy": {
                     "description": "TagImportPolicy controls how images related to this tag will be imported.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "insecure": {
                         "description": "Insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import.",
@@ -1498,6 +1474,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "name": {
@@ -1513,39 +1493,47 @@
                   },
                   "referencePolicy": {
                     "description": "TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "type"
-                    ],
                     "properties": {
                       "type": {
                         "description": "Type determines how the image pull spec should be transformed when the image stream tag is used in deployment config triggers or new builds. The default value is `Source`, indicating the original location of the image should be used (if imported). The user may also specify `Local`, indicating that the pull spec should point to the integrated container image registry and leverage the registry's ability to proxy the pull to an upstream registry. `Local` allows the credentials used to pull this image to be managed from the image stream's namespace, so others on the platform can access a remote image but have no access to the remote secret. It also allows the image layers to be mirrored into the local registry which the images can still be pulled even if the upstream registry is unavailable.",
                         "type": "string"
                       }
                     },
+                    "required": [
+                      "type"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   }
                 },
+                "required": [
+                  "name"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
+              "type": [
+                "array",
+                "null"
+              ],
               "x-kubernetes-patch-merge-key": "name",
               "x-kubernetes-patch-strategy": "merge"
             }
           },
-          "additionalProperties": false
-        },
-        "status": {
-          "description": "ImageStreamStatus contains information about the state of this image stream.",
           "type": [
             "object",
             "null"
           ],
-          "required": [
-            "dockerImageRepository"
-          ],
+          "additionalProperties": false
+        },
+        "status": {
+          "description": "ImageStreamStatus contains information about the state of this image stream.",
           "properties": {
             "dockerImageRepository": {
               "description": "DockerImageRepository represents the effective location this stream may be accessed at. May be empty until the server determines where the repository is located",
@@ -1560,51 +1548,26 @@
             },
             "tags": {
               "description": "Tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "NamedTagEventList relates a tag to its image history.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "tag",
-                  "items"
-                ],
                 "properties": {
                   "conditions": {
                     "description": "Conditions is an array of conditions that apply to the tag event list.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "TagEventCondition contains condition information for a tag event.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "type",
-                        "status",
-                        "generation"
-                      ],
                       "properties": {
                         "generation": {
                           "description": "Generation is the spec tag generation that this status corresponds to",
-                          "type": "integer",
-                          "format": "int64"
+                          "format": "int64",
+                          "type": "integer"
                         },
                         "lastTransitionTime": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                          "format": "date-time",
                           "type": [
                             "string",
                             "null"
-                          ],
-                          "format": "date-time"
+                          ]
                         },
                         "message": {
                           "description": "Message is a human readable description of the details about last transition, complementing reason.",
@@ -1629,29 +1592,31 @@
                           "type": "string"
                         }
                       },
-                      "additionalProperties": false
-                    }
-                  },
-                  "items": {
-                    "description": "Standard object's metadata.",
-                    "type": "array",
-                    "items": {
-                      "description": "TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.",
+                      "required": [
+                        "type",
+                        "status",
+                        "generation"
+                      ],
                       "type": [
                         "object",
                         "null"
                       ],
-                      "required": [
-                        "created",
-                        "dockerImageReference",
-                        "image",
-                        "generation"
-                      ],
+                      "additionalProperties": false
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "items": {
+                    "description": "Standard object's metadata.",
+                    "items": {
+                      "description": "TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.",
                       "properties": {
                         "created": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-                          "type": "string",
-                          "format": "date-time"
+                          "format": "date-time",
+                          "type": "string"
                         },
                         "dockerImageReference": {
                           "description": "DockerImageReference is the string that can be used to pull this image",
@@ -1659,31 +1624,65 @@
                         },
                         "generation": {
                           "description": "Generation is the spec tag generation that resulted in this tag being updated",
-                          "type": "integer",
-                          "format": "int64"
+                          "format": "int64",
+                          "type": "integer"
                         },
                         "image": {
                           "description": "Image is the image",
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "created",
+                        "dockerImageReference",
+                        "image",
+                        "generation"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": "array"
                   },
                   "tag": {
                     "description": "Tag is the tag for which the history is recorded",
                     "type": "string"
                   }
                 },
+                "required": [
+                  "tag",
+                  "items"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
+              "type": [
+                "array",
+                "null"
+              ],
               "x-kubernetes-patch-merge-key": "tag",
               "x-kubernetes-patch-strategy": "merge"
             }
           },
+          "required": [
+            "dockerImageRepository"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-group-version-kind": [
         {
           "group": "",
@@ -1700,49 +1699,27 @@
     },
     "repository": {
       "description": "RepositoryImportStatus describes the result of an image repository import",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "additionalTags": {
           "description": "AdditionalTags are tags that exist in the repository but were not imported because a maximum limit of automatic imports was applied.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
-        },
-        "images": {
-          "description": "Images is a list of images successfully retrieved by the import of the repository.",
+          },
           "type": [
             "array",
             "null"
-          ],
+          ]
+        },
+        "images": {
+          "description": "Images is a list of images successfully retrieved by the import of the repository.",
           "items": {
             "description": "ImageImportStatus describes the result of an image import.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "status"
-            ],
             "properties": {
               "image": {
                 "description": "Image is an immutable representation of a container image and metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users instead access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "dockerImageLayers"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -1764,18 +1741,8 @@
                   },
                   "dockerImageLayers": {
                     "description": "DockerImageLayers represents the layers in the image. May not be set if the image does not define that data.",
-                    "type": "array",
                     "items": {
                       "description": "ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "name",
-                        "size",
-                        "mediaType"
-                      ],
                       "properties": {
                         "mediaType": {
                           "description": "MediaType of the referenced object.",
@@ -1787,12 +1754,22 @@
                         },
                         "size": {
                           "description": "Size of the layer in bytes as defined by the underlying store.",
-                          "type": "integer",
-                          "format": "int64"
+                          "format": "int64",
+                          "type": "integer"
                         }
                       },
+                      "required": [
+                        "name",
+                        "size",
+                        "mediaType"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": "array"
                   },
                   "dockerImageManifest": {
                     "description": "DockerImageManifest is the raw JSON of the manifest",
@@ -1831,17 +1808,17 @@
                   },
                   "dockerImageSignatures": {
                     "description": "DockerImageSignatures provides the signatures as opaque blobs. This is a part of manifest schema v1.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
+                      "format": "byte",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "byte"
-                    }
+                      ]
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   },
                   "kind": {
                     "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -1855,23 +1832,19 @@
                   },
                   "metadata": {
                     "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "annotations": {
-                        "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "additionalProperties": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                        "type": [
+                          "object",
+                          "null"
+                        ]
                       },
                       "clusterName": {
                         "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -1882,40 +1855,40 @@
                       },
                       "creationTimestamp": {
                         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                        "format": "date-time",
                         "type": [
                           "string",
                           "null"
-                        ],
-                        "format": "date-time"
+                        ]
                       },
                       "deletionGracePeriodSeconds": {
                         "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                        "format": "int64",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int64"
+                        ]
                       },
                       "deletionTimestamp": {
                         "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                        "format": "date-time",
                         "type": [
                           "string",
                           "null"
-                        ],
-                        "format": "date-time"
+                        ]
                       },
                       "finalizers": {
                         "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "type": [
                             "string",
                             "null"
                           ]
                         },
+                        "type": [
+                          "array",
+                          "null"
+                        ],
                         "x-kubernetes-patch-strategy": "merge"
                       },
                       "generateName": {
@@ -1927,37 +1900,29 @@
                       },
                       "generation": {
                         "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                        "format": "int64",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int64"
+                        ]
                       },
                       "labels": {
-                        "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                        "type": [
-                          "object",
-                          "null"
-                        ],
                         "additionalProperties": {
                           "type": [
                             "string",
                             "null"
                           ]
-                        }
+                        },
+                        "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                        "type": [
+                          "object",
+                          "null"
+                        ]
                       },
                       "managedFields": {
                         "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "apiVersion": {
                               "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -2003,15 +1968,23 @@
                             },
                             "time": {
                               "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                              "format": "date-time",
                               "type": [
                                 "string",
                                 "null"
-                              ],
-                              "format": "date-time"
+                              ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "name": {
                         "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -2029,22 +2002,8 @@
                       },
                       "ownerReferences": {
                         "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
-                          "required": [
-                            "apiVersion",
-                            "kind",
-                            "name",
-                            "uid"
-                          ],
                           "properties": {
                             "apiVersion": {
                               "description": "API version of the referent.",
@@ -2077,9 +2036,23 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "apiVersion",
+                            "kind",
+                            "name",
+                            "uid"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "x-kubernetes-map-type": "atomic",
                           "additionalProperties": false
                         },
+                        "type": [
+                          "array",
+                          "null"
+                        ],
                         "x-kubernetes-patch-merge-key": "uid",
                         "x-kubernetes-patch-strategy": "merge"
                       },
@@ -2105,24 +2078,16 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "signatures": {
                     "description": "Signatures holds all signatures of the image.",
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature's content by the server. They serve just an informative purpose.\n\nCompatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "type",
-                        "content"
-                      ],
                       "properties": {
                         "apiVersion": {
                           "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -2137,36 +2102,24 @@
                         },
                         "conditions": {
                           "description": "Conditions represent the latest available observations of a signature's current state.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
                           "items": {
                             "description": "SignatureCondition describes an image signature condition of particular kind at particular probe time.",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
-                            "required": [
-                              "type",
-                              "status"
-                            ],
                             "properties": {
                               "lastProbeTime": {
                                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                                "format": "date-time",
                                 "type": [
                                   "string",
                                   "null"
-                                ],
-                                "format": "date-time"
+                                ]
                               },
                               "lastTransitionTime": {
                                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                                "format": "date-time",
                                 "type": [
                                   "string",
                                   "null"
-                                ],
-                                "format": "date-time"
+                                ]
                               },
                               "message": {
                                 "description": "Human readable message indicating details about last transition.",
@@ -2191,23 +2144,35 @@
                                 "type": "string"
                               }
                             },
+                            "required": [
+                              "type",
+                              "status"
+                            ],
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
                           },
+                          "type": [
+                            "array",
+                            "null"
+                          ],
                           "x-kubernetes-patch-merge-key": "type",
                           "x-kubernetes-patch-strategy": "merge"
                         },
                         "content": {
                           "description": "Required: An opaque binary string which is an image's signature.",
-                          "type": "string",
-                          "format": "byte"
+                          "format": "byte",
+                          "type": "string"
                         },
                         "created": {
                           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                          "format": "date-time",
                           "type": [
                             "string",
                             "null"
-                          ],
-                          "format": "date-time"
+                          ]
                         },
                         "imageIdentity": {
                           "description": "A human readable string representing image's identity. It could be a product name and version, or an image pull spec (e.g. \"registry.access.redhat.com/rhel7/rhel:7.2\").",
@@ -2218,10 +2183,6 @@
                         },
                         "issuedBy": {
                           "description": "SignatureIssuer holds information about an issuer of signing certificate or key.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "commonName": {
                               "description": "Common name (e.g. openshift-signing-service).",
@@ -2238,17 +2199,14 @@
                               ]
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "issuedTo": {
-                          "description": "SignatureSubject holds information about a person or entity who created the signature.",
                           "type": [
                             "object",
                             "null"
                           ],
-                          "required": [
-                            "publicKeyID"
-                          ],
+                          "additionalProperties": false
+                        },
+                        "issuedTo": {
+                          "description": "SignatureSubject holds information about a person or entity who created the signature.",
                           "properties": {
                             "commonName": {
                               "description": "Common name (e.g. openshift-signing-service).",
@@ -2269,6 +2227,13 @@
                               "type": "string"
                             }
                           },
+                          "required": [
+                            "publicKeyID"
+                          ],
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
                         },
                         "kind": {
@@ -2283,23 +2248,19 @@
                         },
                         "metadata": {
                           "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "annotations": {
-                              "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "additionalProperties": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "clusterName": {
                               "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -2310,40 +2271,40 @@
                             },
                             "creationTimestamp": {
                               "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                              "format": "date-time",
                               "type": [
                                 "string",
                                 "null"
-                              ],
-                              "format": "date-time"
+                              ]
                             },
                             "deletionGracePeriodSeconds": {
                               "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                              "format": "int64",
                               "type": [
                                 "integer",
                                 "null"
-                              ],
-                              "format": "int64"
+                              ]
                             },
                             "deletionTimestamp": {
                               "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                              "format": "date-time",
                               "type": [
                                 "string",
                                 "null"
-                              ],
-                              "format": "date-time"
+                              ]
                             },
                             "finalizers": {
                               "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
                               },
+                              "type": [
+                                "array",
+                                "null"
+                              ],
                               "x-kubernetes-patch-strategy": "merge"
                             },
                             "generateName": {
@@ -2355,37 +2316,29 @@
                             },
                             "generation": {
                               "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                              "format": "int64",
                               "type": [
                                 "integer",
                                 "null"
-                              ],
-                              "format": "int64"
+                              ]
                             },
                             "labels": {
-                              "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                              "type": [
-                                "object",
-                                "null"
-                              ],
                               "additionalProperties": {
                                 "type": [
                                   "string",
                                   "null"
                                 ]
-                              }
+                              },
+                              "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                              "type": [
+                                "object",
+                                "null"
+                              ]
                             },
                             "managedFields": {
                               "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
                                 "properties": {
                                   "apiVersion": {
                                     "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -2431,15 +2384,23 @@
                                   },
                                   "time": {
                                     "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                                    "format": "date-time",
                                     "type": [
                                       "string",
                                       "null"
-                                    ],
-                                    "format": "date-time"
+                                    ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
-                              }
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
                             },
                             "name": {
                               "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -2457,22 +2418,8 @@
                             },
                             "ownerReferences": {
                               "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                              "type": [
-                                "array",
-                                "null"
-                              ],
                               "items": {
                                 "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
-                                "required": [
-                                  "apiVersion",
-                                  "kind",
-                                  "name",
-                                  "uid"
-                                ],
                                 "properties": {
                                   "apiVersion": {
                                     "description": "API version of the referent.",
@@ -2505,9 +2452,23 @@
                                     "type": "string"
                                   }
                                 },
+                                "required": [
+                                  "apiVersion",
+                                  "kind",
+                                  "name",
+                                  "uid"
+                                ],
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "x-kubernetes-map-type": "atomic",
                                 "additionalProperties": false
                               },
+                              "type": [
+                                "array",
+                                "null"
+                              ],
                               "x-kubernetes-patch-merge-key": "uid",
                               "x-kubernetes-patch-strategy": "merge"
                             },
@@ -2533,26 +2494,38 @@
                               ]
                             }
                           },
-                          "additionalProperties": false
-                        },
-                        "signedClaims": {
-                          "description": "Contains claims from the signature.",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "signedClaims": {
                           "additionalProperties": {
                             "type": [
                               "string",
                               "null"
                             ]
-                          }
+                          },
+                          "description": "Contains claims from the signature.",
+                          "type": [
+                            "object",
+                            "null"
+                          ]
                         },
                         "type": {
                           "description": "Required: Describes a type of stored blob.",
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "type",
+                        "content"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "x-kubernetes-group-version-kind": [
                         {
                           "group": "",
@@ -2567,10 +2540,21 @@
                       ],
                       "additionalProperties": false
                     },
+                    "type": [
+                      "array",
+                      "null"
+                    ],
                     "x-kubernetes-patch-merge-key": "name",
                     "x-kubernetes-patch-strategy": "merge"
                   }
                 },
+                "required": [
+                  "dockerImageLayers"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-group-version-kind": [
                   {
                     "group": "",
@@ -2587,7 +2571,6 @@
               },
               "status": {
                 "description": "Status is a return value for calls that don't return other objects.",
-                "type": "object",
                 "properties": {
                   "apiVersion": {
                     "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -2601,31 +2584,19 @@
                   },
                   "code": {
                     "description": "Suggested HTTP return code for this status, 0 if not set.",
+                    "format": "int32",
                     "type": [
                       "integer",
                       "null"
-                    ],
-                    "format": "int32"
+                    ]
                   },
                   "details": {
                     "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "causes": {
                         "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
                           "properties": {
                             "field": {
                               "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
@@ -2649,8 +2620,16 @@
                               ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       },
                       "group": {
                         "description": "The group attribute of the resource associated with the status StatusReason.",
@@ -2675,11 +2654,11 @@
                       },
                       "retryAfterSeconds": {
                         "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "uid": {
                         "description": "UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
@@ -2689,6 +2668,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "kind": {
@@ -2710,10 +2693,6 @@
                   },
                   "metadata": {
                     "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "continue": {
                         "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -2724,11 +2703,11 @@
                       },
                       "remainingItemCount": {
                         "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+                        "format": "int64",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int64"
+                        ]
                       },
                       "resourceVersion": {
                         "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -2745,6 +2724,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "reason": {
@@ -2762,6 +2745,7 @@
                     ]
                   }
                 },
+                "type": "object",
                 "x-kubernetes-group-version-kind": [
                   {
                     "group": "",
@@ -2779,15 +2763,22 @@
                 ]
               }
             },
+            "required": [
+              "status"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "status": {
           "description": "Status is a return value for calls that don't return other objects.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "apiVersion": {
               "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -2801,31 +2792,19 @@
             },
             "code": {
               "description": "Suggested HTTP return code for this status, 0 if not set.",
+              "format": "int32",
               "type": [
                 "integer",
                 "null"
-              ],
-              "format": "int32"
+              ]
             },
             "details": {
               "description": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "causes": {
                   "description": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.",
-                  "type": [
-                    "array",
-                    "null"
-                  ],
                   "items": {
                     "description": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "field": {
                         "description": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\"",
@@ -2849,8 +2828,16 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
-                  }
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
                 },
                 "group": {
                   "description": "The group attribute of the resource associated with the status StatusReason.",
@@ -2875,11 +2862,11 @@
                 },
                 "retryAfterSeconds": {
                   "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.",
+                  "format": "int32",
                   "type": [
                     "integer",
                     "null"
-                  ],
-                  "format": "int32"
+                  ]
                 },
                 "uid": {
                   "description": "UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
@@ -2889,6 +2876,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "kind": {
@@ -2910,10 +2901,6 @@
             },
             "metadata": {
               "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "continue": {
                   "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -2924,11 +2911,11 @@
                 },
                 "remainingItemCount": {
                   "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+                  "format": "int64",
                   "type": [
                     "integer",
                     "null"
-                  ],
-                  "format": "int64"
+                  ]
                 },
                 "resourceVersion": {
                   "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -2945,6 +2932,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "reason": {
@@ -2962,6 +2953,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "x-kubernetes-group-version-kind": [
             {
               "group": "",
@@ -2972,9 +2967,14 @@
           "additionalProperties": false
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

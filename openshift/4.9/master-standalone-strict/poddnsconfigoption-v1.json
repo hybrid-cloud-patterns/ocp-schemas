@@ -1,6 +1,5 @@
 {
   "description": "PodDNSConfigOption defines DNS resolver options of a pod.",
-  "type": "object",
   "properties": {
     "name": {
       "description": "Required.",
@@ -16,6 +15,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

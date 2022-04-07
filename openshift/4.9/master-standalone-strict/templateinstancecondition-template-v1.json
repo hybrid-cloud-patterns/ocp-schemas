@@ -1,21 +1,13 @@
 {
   "description": "TemplateInstanceCondition contains condition information for a TemplateInstance.",
-  "type": "object",
-  "required": [
-    "type",
-    "status",
-    "lastTransitionTime",
-    "reason",
-    "message"
-  ],
   "properties": {
     "lastTransitionTime": {
       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+      "format": "date-time",
       "type": [
         "string",
         "null"
-      ],
-      "format": "date-time"
+      ]
     },
     "message": {
       "description": "Message is a human readable description of the details of the last transition, complementing reason.",
@@ -46,6 +38,14 @@
       ]
     }
   },
+  "required": [
+    "type",
+    "status",
+    "lastTransitionTime",
+    "reason",
+    "message"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

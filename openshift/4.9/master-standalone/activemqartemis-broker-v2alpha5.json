@@ -1,0 +1,1451 @@
+{
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "broker.amq.io/v2alpha5"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "ActiveMQArtemis"
+      ]
+    },
+    "metadata": {
+      "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "clusterName": {
+          "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "creationTimestamp": {
+          "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deletionGracePeriodSeconds": {
+          "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "deletionTimestamp": {
+          "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "finalizers": {
+          "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ],
+          "x-kubernetes-patch-strategy": "merge"
+        },
+        "generateName": {
+          "description": "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generation": {
+          "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "managedFields": {
+          "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
+          "items": {
+            "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "fieldsType": {
+                "description": "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: \"FieldsV1\"",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "fieldsV1": {
+                "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "manager": {
+                "description": "Manager is an identifier of the workflow managing these fields.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "operation": {
+                "description": "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "subresource": {
+                "description": "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "time": {
+                "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.\n\nMust be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ownerReferences": {
+          "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+          "items": {
+            "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
+            "properties": {
+              "apiVersion": {
+                "description": "API version of the referent.",
+                "type": "string"
+              },
+              "blockOwnerDeletion": {
+                "description": "If true, AND if the owner has the \"foregroundDeletion\" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs \"delete\" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "controller": {
+                "description": "If true, this reference points to the managing controller.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "kind": {
+                "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "name": {
+                "description": "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+                "type": "string"
+              },
+              "uid": {
+                "description": "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+                "type": "string"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
+            "x-kubernetes-map-type": "atomic"
+          },
+          "type": [
+            "array",
+            "null"
+          ],
+          "x-kubernetes-patch-merge-key": "uid",
+          "x-kubernetes-patch-strategy": "merge"
+        },
+        "resourceVersion": {
+          "description": "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.\n\nPopulated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selfLink": {
+          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only.\n\nDEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uid": {
+          "description": "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.\n\nPopulated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "spec": {
+      "properties": {
+        "acceptors": {
+          "description": "Configuration of all acceptors",
+          "items": {
+            "description": "A single acceptor configuration",
+            "properties": {
+              "amqpMinLargeMessageSize": {
+                "description": "The default value is 102400 (100KBytes). Setting it to -1 will disable large message support.",
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "anycastPrefix": {
+                "description": "To indicate which kind of routing type to use.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "connectionsAllowed": {
+                "description": "Limits the number of connections which the acceptor will allow. When this limit is reached a DEBUG level message is issued to the log, and the connection is refused.",
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "enabledCipherSuites": {
+                "description": "Comma separated list of cipher suites used for SSL communication.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "enabledProtocols": {
+                "description": "Comma separated list of protocols used for SSL communication.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "expose": {
+                "description": "Whether or not to expose this acceptor",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "multicastPrefix": {
+                "description": "To indicate which kind of routing type to use.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "name": {
+                "description": "The name of the acceptor",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "needClientAuth": {
+                "description": "Tells a client connecting to this acceptor that 2-way SSL is required. This property takes precedence over wantClientAuth.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "port": {
+                "description": "Port number",
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "protocols": {
+                "description": "The protocols to enable for this acceptor",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sniHost": {
+                "description": "A regular expression used to match the server_name extension on incoming SSL connections. If the name does not match then the connection to the acceptor will be rejected.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sslEnabled": {
+                "description": "Whether or not to enable SSL on this port",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "sslProvider": {
+                "description": "Used to change the SSL Provider between JDK and OPENSSL. The default is JDK.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sslSecret": {
+                "description": "Name of the secret to use for ssl information",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "supportAdvisory": {
+                "description": "For openwire protocol if advisory topics are enabled, default false",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "suppressInternalManagementObjects": {
+                "description": "If prevents advisory addresses/queues to be registered to management service, default false",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "verifyHost": {
+                "description": "The CN of the connecting clients SSL certificate will be compared to its hostname to verify they match. This is useful only for 2-way SSL.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "wantClientAuth": {
+                "description": "Tells a client connecting to this acceptor that 2-way SSL is requested but not required. Overridden by needClientAuth.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "minItems": 0,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "addressSettings": {
+          "description": "a list of address settings",
+          "properties": {
+            "addressSetting": {
+              "description": "address setting configuration",
+              "items": {
+                "properties": {
+                  "addressFullPolicy": {
+                    "description": "what happens when an address where maxSizeBytes is specified becomes full",
+                    "enum": [
+                      "DROP",
+                      "FAIL",
+                      "PAGE",
+                      "BLOCK"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "autoCreateAddresses": {
+                    "description": "whether or not to automatically create addresses when a client sends a message to or attempts to consume a message from a queue mapped to an address that doesnt exist",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoCreateDeadLetterResources": {
+                    "description": "whether or not to automatically create the dead-letter-address and/or a corresponding queue on that address when a message found to be undeliverable",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoCreateExpiryResources": {
+                    "description": "whether or not to automatically create the expiry-address and/or a corresponding queue on that address when a message is sent to a matching queue",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoCreateJmsQueues": {
+                    "description": "DEPRECATED. whether or not to automatically create JMS queues when a producer sends or a consumer connects to a queue",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoCreateJmsTopics": {
+                    "description": "DEPRECATED. whether or not to automatically create JMS topics when a producer sends or a consumer subscribes to a topic",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoCreateQueues": {
+                    "description": "whether or not to automatically create a queue when a client sends a message to or attempts to consume a message from a queue",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteAddresses": {
+                    "description": "whether or not to delete auto-created addresses when it no longer has any queues",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteAddressesDelay": {
+                    "description": "how long to wait (in milliseconds) before deleting auto-created addresses after they no longer have any queues",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteCreatedQueues": {
+                    "description": "whether or not to delete created queues when the queue has 0 consumers and 0 messages",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteJmsQueues": {
+                    "description": "DEPRECATED. whether or not to delete auto-created JMS queues when the queue has 0 consumers and 0 messages",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteJmsTopics": {
+                    "description": "DEPRECATED. whether or not to delete auto-created JMS topics when the last subscription is closed",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteQueues": {
+                    "description": "whether or not to delete auto-created queues when the queue has 0 consumers and 0 messages",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteQueuesDelay": {
+                    "description": "how long to wait (in milliseconds) before deleting auto-created queues after the queue has 0 consumers.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "autoDeleteQueuesMessageCount": {
+                    "description": "the message count the queue must be at or below before it can be evaluated  to be auto deleted, 0 waits until empty queue (default) and -1 disables this check.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "configDeleteAddresses": {
+                    "description": "What to do when an address is no longer in broker.xml. OFF = will do nothing addresses will remain, FORCE = delete address and its queues even if messages remaining.",
+                    "enum": [
+                      "OFF",
+                      "FORCE"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "configDeleteQueues": {
+                    "description": "What to do when a queue is no longer in broker.xml. OFF = will do nothing queues will remain, FORCE = delete queues even if messages remaining.",
+                    "enum": [
+                      "OFF",
+                      "FORCE"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "deadLetterAddress": {
+                    "description": "the address to send dead messages to",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "deadLetterQueuePrefix": {
+                    "description": "the prefix to use for auto-created dead letter queues",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "deadLetterQueueSuffix": {
+                    "description": "the suffix to use for auto-created dead letter queues",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultAddressRoutingType": {
+                    "description": "the routing-type used on auto-created addresses",
+                    "enum": [
+                      "ANYCAST",
+                      "MULTICAST"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultConsumerWindowSize": {
+                    "description": "the default window size for a consumer",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "defaultConsumersBeforeDispatch": {
+                    "description": "the default number of consumers needed before dispatch can start for queues under the address.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "defaultDelayBeforeDispatch": {
+                    "description": "the default delay (in milliseconds) to wait before dispatching if number of consumers before dispatch is not met for queues under the address.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "defaultExclusiveQueue": {
+                    "description": "whether to treat the queues under the address as exclusive queues by default",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultGroupBuckets": {
+                    "description": "number of buckets to use for grouping, -1 (default) is unlimited and uses the raw group, 0 disables message groups.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "defaultGroupFirstKey": {
+                    "description": "key used to mark a message is first in a group for a consumer",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultGroupRebalance": {
+                    "description": "whether to rebalance groups when a consumer is added",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultGroupRebalancePauseDispatch": {
+                    "description": "whether to pause dispatch when rebalancing groups",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultLastValueKey": {
+                    "description": "the property to use as the key for a last value queue by default",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultLastValueQueue": {
+                    "description": "whether to treat the queues under the address as a last value queues by default",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultMaxConsumers": {
+                    "description": "the maximum number of consumers allowed on this queue at any one time",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "defaultNonDestructive": {
+                    "description": "whether the queue should be non-destructive by default",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultPurgeOnNoConsumers": {
+                    "description": "purge the contents of the queue once there are no consumers",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "defaultQueueRoutingType": {
+                    "description": "the routing-type used on auto-created queues",
+                    "enum": [
+                      "ANYCAST",
+                      "MULTICAST"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultRingSize": {
+                    "description": "the default ring-size value for any matching queue which doesnt have ring-size explicitly defined",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "enableIngressTimestamp": {
+                    "description": "whether or not set the timestamp of arrival on messages. default false",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enableMetrics": {
+                    "description": "whether or not to enable metrics for metrics plugins on the matching address",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "expiryAddress": {
+                    "description": "the address to send expired messages to",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "expiryDelay": {
+                    "description": "Overrides the expiration time for messages using the default value for expiration time. \"-1\" disables this setting.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "expiryQueuePrefix": {
+                    "description": "the prefix to use for auto-created expiry queues",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "expiryQueueSuffix": {
+                    "description": "the suffix to use for auto-created expiry queues",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "lastValueQueue": {
+                    "description": "This is deprecated please use default-last-value-queue instead.",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "managementBrowsePageSize": {
+                    "description": "how many message a management resource can browse",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "managementMessageAttributeSizeLimit": {
+                    "description": "max size of the message returned from management API, default 256",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "match": {
+                    "description": "pattern for matching settings against addresses; can use wildards",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "maxDeliveryAttempts": {
+                    "description": "how many times to attempt to deliver a message before sending to dead letter address",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "maxExpiryDelay": {
+                    "description": "Overrides the expiration time for messages using a higher value. \"-1\" disables this setting.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "maxRedeliveryDelay": {
+                    "description": "Maximum value for the redelivery-delay",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "maxSizeBytes": {
+                    "description": "the maximum size in bytes for an address. -1 means no limits. This is used in PAGING, BLOCK and FAIL policies. Supports byte notation like K, Mb, GB, etc.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "maxSizeBytesRejectThreshold": {
+                    "description": "used with the address full BLOCK policy, the maximum size in bytes an address can reach before messages start getting rejected. Works in combination with max-size-bytes for AMQP protocol only. Default = -1 (no limit).",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "messageCounterHistoryDayLimit": {
+                    "description": "how many days to keep message counter history for this address",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "minExpiryDelay": {
+                    "description": "Overrides the expiration time for messages using a lower value. \"-1\" disables this setting.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "pageMaxCacheSize": {
+                    "description": "Number of paging files to cache in memory to avoid IO during paging navigation",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "pageSizeBytes": {
+                    "description": "The page size in bytes to use for an address. Supports byte notation like K, Mb, GB, etc.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "redeliveryCollisionAvoidanceFactor": {
+                    "description": "factor by which to modify the redelivery delay slightly to avoid collisions",
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "redeliveryDelay": {
+                    "description": "the time (in ms) to wait before redelivering a cancelled message.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "redeliveryDelayMultiplier": {
+                    "description": "multiplier to apply to the redelivery-delay",
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "redistributionDelay": {
+                    "description": "how long (in ms) to wait after the last consumer is closed on a queue before redistributing messages.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "retroactiveMessageCount": {
+                    "description": "the number of messages to preserve for future queues created on the matching address",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "sendToDlaOnNoRoute": {
+                    "description": "if there are no queues matching this address, whether to forward message to DLA (if it exists for this address)",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "slowConsumerCheckPeriod": {
+                    "description": "How often to check for slow consumers on a particular queue. Measured in seconds.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "slowConsumerPolicy": {
+                    "description": "what happens when a slow consumer is identified",
+                    "enum": [
+                      "KILL",
+                      "NOTIFY"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "slowConsumerThreshold": {
+                    "description": "The minimum rate of message consumption allowed before a consumer is considered \"slow.\" Measured in messages-per-second.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "slowConsumerThresholdMeasurementUnit": {
+                    "description": "unit used in specifying slow consumer threshold; available values: MESSAGES_PER_SECOND MESSAGES_PER_MINUTE MESSAGES_PER_HOUR MESSAGES_PER_DAY default is MESSAGE_PER_SECOND",
+                    "enum": [
+                      "MESSAGES_PER_SECOND",
+                      "MESSAGES_PER_MINUTE",
+                      "MESSAGES_PER_HOUR",
+                      "MESSAGES_PER_DAY"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "applyRule": {
+              "description": "a flag APPLY_RULE that indicates on what parts of address settings in broker.xml to perform the merge. It has 3 possible values: =replace_all The merge performs merge on the address-settings as a whole part. =merge_replace The merge performs merge on each address-setting element =merge_all The merge performs merge on each property of every address-setting This is the default value",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "adminPassword": {
+          "description": "Password for standard broker user. It is required for connecting to the broker. If left empty, it will be generated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "adminUser": {
+          "description": "User name for standard broker user. It is required for connecting to the broker. If left empty, it will be generated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "connectors": {
+          "description": "Configuration of all connectors",
+          "items": {
+            "description": "A single connector configuration",
+            "properties": {
+              "enabledCipherSuites": {
+                "description": "Comma separated list of cipher suites used for SSL communication.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "enabledProtocols": {
+                "description": "Comma separated list of protocols used for SSL communication.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "expose": {
+                "description": "Whether or not to expose this connector",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "host": {
+                "description": "Hostname or IP to connect to",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "name": {
+                "description": "The name of the acceptor",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "needClientAuth": {
+                "description": "Tells a client connecting to this acceptor that 2-way SSL is required. This property takes precedence over wantClientAuth.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "port": {
+                "description": "Port number",
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "sniHost": {
+                "description": "A regular expression used to match the server_name extension on incoming SSL connections. If the name does not match then the connection to the acceptor will be rejected.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sslEnabled": {
+                "description": "Whether or not to enable SSL on this port",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "sslProvider": {
+                "description": "Used to change the SSL Provider between JDK and OPENSSL. The default is JDK.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sslSecret": {
+                "description": "Name of the secret to use for ssl information",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "description": "The type either tcp or vm",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verifyHost": {
+                "description": "The CN of the connecting client's SSL certificate will be compared to its hostname to verify they match. This is useful only for 2-way SSL.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "wantClientAuth": {
+                "description": "Tells a client connecting to this acceptor that 2-way SSL is requested but not required. Overridden by needClientAuth.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "minItems": 0,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "console": {
+          "description": "Configuration for the embedded web console",
+          "properties": {
+            "expose": {
+              "description": "Whether or not to expose this port",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "sslEnabled": {
+              "description": "Whether or not to enable SSL on this port",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "sslSecret": {
+              "description": "Name of the secret to use for ssl information",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "useClientAuth": {
+              "description": "If the embedded server requires client authentication",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "deploymentPlan": {
+          "properties": {
+            "clustered": {
+              "description": "whether the broker deployments are clustered or not",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "enableMetricsPlugin": {
+              "description": "whether or not to install the artemis metrics plugin",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "extraMounts": {
+              "description": "Optional configmaps and secrets as mount volumes",
+              "properties": {
+                "configMaps": {
+                  "description": "List of configmaps to mount",
+                  "items": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
+                },
+                "secrets": {
+                  "description": "List of secrets to mount",
+                  "items": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "type": [
+                    "array",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "image": {
+              "description": "The image used for the broker deployment",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "initImage": {
+              "description": "The init container image used to configure broker",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "jolokiaAgentEnabled": {
+              "description": "If true enable the Jolokia JVM Agent",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "journalType": {
+              "description": "If aio use ASYNCIO, if nio use NIO for journal IO",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "livenessProbe": {
+              "description": "Optional broker container liveness probe configuration",
+              "properties": {
+                "timeoutSeconds": {
+                  "description": "timeoutSeconds for the probe. Default 5 seconds",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "managementRBACEnabled": {
+              "description": "If true enable the management role based access control",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "messageMigration": {
+              "description": "If true migrate messages on scaledown",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "persistenceEnabled": {
+              "description": "If true use persistent volume via persistent volume claim for journal storage",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "podSecurity": {
+              "description": "Security properties for broker pods",
+              "properties": {
+                "runAsUser": {
+                  "description": "runAsUser as defined in PodSecurityContext",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "serviceAccountName": {
+                  "description": "serviceAccount Name of the pod",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "readinessProbe": {
+              "description": "Optional broker container readiness probe configuration",
+              "properties": {
+                "timeoutSeconds": {
+                  "description": "timeoutSeconds for the probe. Default 5 seconds",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "requireLogin": {
+              "description": "If true require user password login credentials for broker protocol ports",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "resources": {
+              "properties": {
+                "limits": {
+                  "properties": {
+                    "cpu": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "memory": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "requests": {
+                  "properties": {
+                    "cpu": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "memory": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "size": {
+              "description": "The number of broker pods to deploy",
+              "maximum": 16,
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "storage": {
+              "description": "the storage capacity",
+              "properties": {
+                "size": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "upgrades": {
+          "description": "Specify the level of upgrade that should be allowed when an older product version is detected",
+          "properties": {
+            "enabled": {
+              "description": "Set true to enable automatic micro version product upgrades, it is disabled by default.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "minor": {
+              "description": "Set true to enable automatic minor product version upgrades, it is disabled by default. Requires spec.upgrades.enabled to be true.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "version": {
+          "description": "The version of the application deployment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "properties": {
+        "podStatus": {
+          "properties": {
+            "ready": {
+              "items": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "starting": {
+              "items": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "stopped": {
+              "items": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "podStatus"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object",
+  "x-kubernetes-group-version-kind": [
+    {
+      "group": "broker.amq.io",
+      "kind": "ActiveMQArtemis",
+      "version": "v2alpha5"
+    }
+  ],
+  "$schema": "http://json-schema.org/schema#"
+}

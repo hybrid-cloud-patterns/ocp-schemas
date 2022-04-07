@@ -1,6 +1,5 @@
 {
   "description": "ImageStreamTagReference references the ImageStreamTag in an image change trigger by namespace and name.",
-  "type": "object",
   "properties": {
     "name": {
       "description": "name is the name of the ImageStreamTag for an ImageChangeTrigger",
@@ -17,6 +16,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

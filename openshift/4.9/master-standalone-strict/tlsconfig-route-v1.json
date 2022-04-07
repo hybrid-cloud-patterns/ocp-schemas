@@ -1,9 +1,5 @@
 {
   "description": "TLSConfig defines config used to secure a route and provide termination",
-  "type": "object",
-  "required": [
-    "termination"
-  ],
   "properties": {
     "caCertificate": {
       "description": "caCertificate provides the cert authority certificate contents",
@@ -48,6 +44,10 @@
       ]
     }
   },
+  "required": [
+    "termination"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

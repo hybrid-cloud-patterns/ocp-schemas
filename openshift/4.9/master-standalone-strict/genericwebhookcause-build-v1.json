@@ -1,30 +1,14 @@
 {
   "description": "GenericWebHookCause holds information about a generic WebHook that triggered a build.",
-  "type": "object",
   "properties": {
     "revision": {
       "description": "SourceRevision is the revision or commit information from the source for the build",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "type"
-      ],
       "properties": {
         "git": {
           "description": "GitSourceRevision is the commit information from a git source for a build",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "author": {
               "description": "SourceControlUser defines the identity of a user of source control",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "email": {
                   "description": "email of the source control user",
@@ -41,6 +25,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "commit": {
@@ -52,10 +40,6 @@
             },
             "committer": {
               "description": "SourceControlUser defines the identity of a user of source control",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "email": {
                   "description": "email of the source control user",
@@ -72,6 +56,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "message": {
@@ -82,6 +70,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "type": {
@@ -89,6 +81,13 @@
           "type": "string"
         }
       },
+      "required": [
+        "type"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "secret": {
@@ -99,6 +98,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

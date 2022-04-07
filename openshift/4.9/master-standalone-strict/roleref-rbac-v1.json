@@ -1,11 +1,5 @@
 {
   "description": "RoleRef contains information that points to the role being used",
-  "type": "object",
-  "required": [
-    "apiGroup",
-    "kind",
-    "name"
-  ],
   "properties": {
     "apiGroup": {
       "description": "APIGroup is the group for the resource being referenced",
@@ -29,6 +23,12 @@
       ]
     }
   },
+  "required": [
+    "apiGroup",
+    "kind",
+    "name"
+  ],
+  "type": "object",
   "x-kubernetes-map-type": "atomic",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"

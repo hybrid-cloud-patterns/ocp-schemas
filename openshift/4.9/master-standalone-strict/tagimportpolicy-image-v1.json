@@ -1,6 +1,5 @@
 {
   "description": "TagImportPolicy controls how images related to this tag will be imported.",
-  "type": "object",
   "properties": {
     "insecure": {
       "description": "Insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import.",
@@ -17,6 +16,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

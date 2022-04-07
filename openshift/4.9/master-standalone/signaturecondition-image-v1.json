@@ -1,26 +1,21 @@
 {
   "description": "SignatureCondition describes an image signature condition of particular kind at particular probe time.",
-  "type": "object",
-  "required": [
-    "type",
-    "status"
-  ],
   "properties": {
     "lastProbeTime": {
       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+      "format": "date-time",
       "type": [
         "string",
         "null"
-      ],
-      "format": "date-time"
+      ]
     },
     "lastTransitionTime": {
       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+      "format": "date-time",
       "type": [
         "string",
         "null"
-      ],
-      "format": "date-time"
+      ]
     },
     "message": {
       "description": "Human readable message indicating details about last transition.",
@@ -51,5 +46,10 @@
       ]
     }
   },
+  "required": [
+    "type",
+    "status"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

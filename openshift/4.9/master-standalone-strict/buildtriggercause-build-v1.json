@@ -1,37 +1,17 @@
 {
   "description": "BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration.",
-  "type": "object",
   "properties": {
     "bitbucketWebHook": {
       "description": "BitbucketWebHookCause has information about a Bitbucket webhook that triggered a build.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "revision": {
           "description": "SourceRevision is the revision or commit information from the source for the build",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "type"
-          ],
           "properties": {
             "git": {
               "description": "GitSourceRevision is the commit information from a git source for a build",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "author": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -48,6 +28,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "commit": {
@@ -59,10 +43,6 @@
                 },
                 "committer": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -79,6 +59,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "message": {
@@ -89,6 +73,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "type": {
@@ -96,6 +84,13 @@
               "type": "string"
             }
           },
+          "required": [
+            "type"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "secret": {
@@ -106,38 +101,23 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "genericWebHook": {
       "description": "GenericWebHookCause holds information about a generic WebHook that triggered a build.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "revision": {
           "description": "SourceRevision is the revision or commit information from the source for the build",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "type"
-          ],
           "properties": {
             "git": {
               "description": "GitSourceRevision is the commit information from a git source for a build",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "author": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -154,6 +134,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "commit": {
@@ -165,10 +149,6 @@
                 },
                 "committer": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -185,6 +165,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "message": {
@@ -195,6 +179,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "type": {
@@ -202,6 +190,13 @@
               "type": "string"
             }
           },
+          "required": [
+            "type"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "secret": {
@@ -212,38 +207,23 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "githubWebHook": {
       "description": "GitHubWebHookCause has information about a GitHub webhook that triggered a build.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "revision": {
           "description": "SourceRevision is the revision or commit information from the source for the build",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "type"
-          ],
           "properties": {
             "git": {
               "description": "GitSourceRevision is the commit information from a git source for a build",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "author": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -260,6 +240,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "commit": {
@@ -271,10 +255,6 @@
                 },
                 "committer": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -291,6 +271,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "message": {
@@ -301,6 +285,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "type": {
@@ -308,6 +296,13 @@
               "type": "string"
             }
           },
+          "required": [
+            "type"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "secret": {
@@ -318,38 +313,23 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "gitlabWebHook": {
-      "description": "GitLabWebHookCause has information about a GitLab webhook that triggered a build.",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "gitlabWebHook": {
+      "description": "GitLabWebHookCause has information about a GitLab webhook that triggered a build.",
       "properties": {
         "revision": {
           "description": "SourceRevision is the revision or commit information from the source for the build",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "type"
-          ],
           "properties": {
             "git": {
               "description": "GitSourceRevision is the commit information from a git source for a build",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "author": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -366,6 +346,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "commit": {
@@ -377,10 +361,6 @@
                 },
                 "committer": {
                   "description": "SourceControlUser defines the identity of a user of source control",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "email": {
                       "description": "email of the source control user",
@@ -397,6 +377,10 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 },
                 "message": {
@@ -407,6 +391,10 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "type": {
@@ -414,6 +402,13 @@
               "type": "string"
             }
           },
+          "required": [
+            "type"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "secret": {
@@ -424,21 +419,17 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "imageChangeBuild": {
-      "description": "ImageChangeCause contains information about the image that triggered a build",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "imageChangeBuild": {
+      "description": "ImageChangeCause contains information about the image that triggered a build",
       "properties": {
         "fromRef": {
           "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "apiVersion": {
               "description": "API version of the referent.",
@@ -490,6 +481,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
@@ -501,6 +496,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "message": {
@@ -511,6 +510,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

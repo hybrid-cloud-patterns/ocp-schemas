@@ -1,27 +1,9 @@
 {
   "description": "APIServiceDescription provides details to OLM about apis provided via aggregation",
-  "type": "object",
-  "required": [
-    "name",
-    "group",
-    "version",
-    "kind"
-  ],
   "properties": {
     "actionDescriptors": {
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ActionDescriptor describes a declarative action that can be performed on a custom resource instance",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "path"
-        ],
         "properties": {
           "description": {
             "type": [
@@ -39,33 +21,44 @@
             "type": "string"
           },
           "value": {
+            "format": "byte",
             "type": [
               "string",
               "null"
-            ],
-            "format": "byte"
+            ]
           },
           "x-descriptors": {
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
-        }
-      }
+        },
+        "required": [
+          "path"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "containerPort": {
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     },
     "deploymentName": {
       "type": [
@@ -104,21 +97,8 @@
       ]
     },
     "resources": {
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "APIResourceReference is a Kubernetes resource type used by a custom resource",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name",
-          "kind",
-          "version"
-        ],
         "properties": {
           "kind": {
             "type": "string"
@@ -129,23 +109,25 @@
           "version": {
             "type": "string"
           }
-        }
-      }
+        },
+        "required": [
+          "name",
+          "kind",
+          "version"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "specDescriptors": {
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "SpecDescriptor describes a field in a spec block of a CRD so that OLM can consume it",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "path"
-        ],
         "properties": {
           "description": {
             "type": [
@@ -163,41 +145,41 @@
             "type": "string"
           },
           "value": {
+            "format": "byte",
             "type": [
               "string",
               "null"
-            ],
-            "format": "byte"
+            ]
           },
           "x-descriptors": {
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
-        }
-      }
-    },
-    "statusDescriptors": {
+        },
+        "required": [
+          "path"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
       "type": [
         "array",
         "null"
-      ],
+      ]
+    },
+    "statusDescriptors": {
       "items": {
         "description": "StatusDescriptor describes a field in a status block of a CRD so that OLM can consume it",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "path"
-        ],
         "properties": {
           "description": {
             "type": [
@@ -215,26 +197,37 @@
             "type": "string"
           },
           "value": {
+            "format": "byte",
             "type": [
               "string",
               "null"
-            ],
-            "format": "byte"
+            ]
           },
           "x-descriptors": {
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
-        }
-      }
+        },
+        "required": [
+          "path"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "version": {
       "type": [
@@ -243,5 +236,12 @@
       ]
     }
   },
+  "required": [
+    "name",
+    "group",
+    "version",
+    "kind"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,6 +1,5 @@
 {
   "description": "HiveConfig is the Schema for the hives API",
-  "type": "object",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -24,23 +23,19 @@
     },
     "metadata": {
       "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "annotations": {
-          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "clusterName": {
           "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -51,40 +46,40 @@
         },
         "creationTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "deletionGracePeriodSeconds": {
           "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "deletionTimestamp": {
           "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "format": "date-time",
           "type": [
             "string",
             "null"
-          ],
-          "format": "date-time"
+          ]
         },
         "finalizers": {
           "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-strategy": "merge"
         },
         "generateName": {
@@ -96,37 +91,29 @@
         },
         "generation": {
           "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "labels": {
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-          "type": [
-            "object",
-            "null"
-          ],
           "additionalProperties": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+          "type": [
+            "object",
+            "null"
+          ]
         },
         "managedFields": {
           "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -172,15 +159,23 @@
               },
               "time": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "name": {
           "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -198,22 +193,8 @@
         },
         "ownerReferences": {
           "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "apiVersion",
-              "kind",
-              "name",
-              "uid"
-            ],
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -246,9 +227,23 @@
                 "type": "string"
               }
             },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-patch-merge-key": "uid",
           "x-kubernetes-patch-strategy": "merge"
         },
@@ -274,27 +269,19 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "spec": {
-      "description": "HiveConfigSpec defines the desired state of Hive",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "description": "HiveConfigSpec defines the desired state of Hive",
       "properties": {
         "additionalCertificateAuthoritiesSecretRef": {
           "description": "AdditionalCertificateAuthoritiesSecretRef is a list of references to secrets in the TargetNamespace that contain an additional Certificate Authority to use when communicating with target clusters. These certificate authorities will be used in addition to any self-signed CA generated by each cluster on installation.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "name": {
                 "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -304,18 +291,19 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "argoCDConfig": {
           "description": "ArgoCD specifies configuration for ArgoCD integration. If enabled, Hive will automatically add provisioned clusters to ArgoCD, and remove them when they are deprovisioned.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "enabled"
-          ],
           "properties": {
             "enabled": {
               "description": "Enabled dictates if ArgoCD gitops integration is enabled. If not specified, the default is disabled.",
@@ -329,41 +317,25 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "awsPrivateLink": {
-          "description": "AWSPrivateLink defines the configuration for the aws-private-link controller. It provides 3 major pieces of information required by the controller, 1. The Credentials that should be used to create AWS PrivateLink resources other than     what exist in the customer's account. 2. A list of VPCs that can be used by the controller to choose one to create AWS VPC Endpoints     for the AWS VPC Endpoint Services created for ClusterDeployments in their     corresponding regions. 3. A list of VPCs that should be able to resolve the DNS addresses setup for Private Link.",
+          "required": [
+            "enabled"
+          ],
           "type": [
             "object",
             "null"
           ],
-          "required": [
-            "credentialsSecretRef"
-          ],
+          "additionalProperties": false
+        },
+        "awsPrivateLink": {
+          "description": "AWSPrivateLink defines the configuration for the aws-private-link controller. It provides 3 major pieces of information required by the controller, 1. The Credentials that should be used to create AWS PrivateLink resources other than     what exist in the customer's account. 2. A list of VPCs that can be used by the controller to choose one to create AWS VPC Endpoints     for the AWS VPC Endpoint Services created for ClusterDeployments in their     corresponding regions. 3. A list of VPCs that should be able to resolve the DNS addresses setup for Private Link.",
           "properties": {
             "associatedVPCs": {
               "description": "AssociatedVPCs is the list of VPCs that should be able to resolve the DNS addresses setup for Private Link. This allows clients in VPC to resolve the AWS PrivateLink address using AWS's default DNS resolver for Private Route53 Hosted Zones. \n This list should at minimum include the VPC where the current Hive controller is running.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "AWSAssociatedVPC defines a VPC that should be able to resolve the DNS addresses setup for Private Link.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "region",
-                  "vpcID"
-                ],
                 "properties": {
                   "credentialsSecretRef": {
                     "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with AWS for associating the VPC with the Private HostedZone created for PrivateLink. When not provided, the common credentials for the controller should be used.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "name": {
                         "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -373,6 +345,10 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "region": {
@@ -382,12 +358,23 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "region",
+                  "vpcID"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "credentialsSecretRef": {
               "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with AWS for creating the resources for AWS PrivateLink.",
-              "type": "object",
               "properties": {
                 "name": {
                   "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -397,52 +384,31 @@
                   ]
                 }
               },
+              "type": "object",
               "additionalProperties": false
             },
             "dnsRecordType": {
               "description": "DNSRecordType defines what type of DNS record should be created in Private Hosted Zone for the customer cluster's API endpoint (which is the VPC Endpoint's regional DNS name).",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "Alias",
                 "ARecord"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             },
             "endpointVPCInventory": {
               "description": "EndpointVPCInventory is a list of VPCs and the corresponding subnets in various AWS regions. The controller uses this list to choose a VPC for creating AWS VPC Endpoints. Since the VPC Endpoints must be in the same region as the ClusterDeployment, we must have VPCs in that region to be able to setup Private Link.",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "AWSPrivateLinkInventory is a VPC and its corresponding subnets in an AWS region. This VPC will be used to create an AWS VPC Endpoint whenever there is a VPC Endpoint Service created for a ClusterDeployment.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "region",
-                  "subnets",
-                  "vpcID"
-                ],
                 "properties": {
                   "region": {
                     "type": "string"
                   },
                   "subnets": {
-                    "type": "array",
                     "items": {
                       "description": "AWSPrivateLinkSubnet defines a subnet in the an AWS VPC.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "availabilityZone",
-                        "subnetID"
-                      ],
                       "properties": {
                         "availabilityZone": {
                           "type": "string"
@@ -451,25 +417,50 @@
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "availabilityZone",
+                        "subnetID"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": "array"
                   },
                   "vpcID": {
                     "type": "string"
                   }
                 },
+                "required": [
+                  "region",
+                  "subnets",
+                  "vpcID"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             }
           },
-          "additionalProperties": false
-        },
-        "backup": {
-          "description": "Backup specifies configuration for backup integration. If absent, backup integration will be disabled.",
+          "required": [
+            "credentialsSecretRef"
+          ],
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "backup": {
+          "description": "Backup specifies configuration for backup integration. If absent, backup integration will be disabled.",
           "properties": {
             "minBackupPeriodSeconds": {
               "description": "MinBackupPeriodSeconds specifies that a minimum of MinBackupPeriodSeconds will occur in between each backup. This is used to rate limit backups. This potentially batches together multiple changes into 1 backup. No backups will be lost as changes that happen during this interval are queued up and will result in a backup happening once the interval has been completed.",
@@ -480,10 +471,6 @@
             },
             "velero": {
               "description": "Velero specifies configuration for the Velero backup integration.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "enabled": {
                   "description": "Enabled dictates if Velero backup integration is enabled. If not specified, the default is disabled.",
@@ -500,93 +487,84 @@
                   ]
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             }
           },
-          "additionalProperties": false
-        },
-        "controllersConfig": {
-          "description": "ControllersConfig is used to configure different hive controllers",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "controllersConfig": {
+          "description": "ControllersConfig is used to configure different hive controllers",
           "properties": {
             "controllers": {
               "description": "Controllers contains a list of configurations for different controllers",
-              "type": [
-                "array",
-                "null"
-              ],
               "items": {
                 "description": "SpecificControllerConfig contains the configuration for a specific controller",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "config",
-                  "name"
-                ],
                 "properties": {
                   "config": {
                     "description": "ControllerConfig contains the configuration for the controller specified by Name field",
-                    "type": "object",
                     "properties": {
                       "clientBurst": {
                         "description": "ClientBurst specifies client rate limiter burst for a controller",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "clientQPS": {
                         "description": "ClientQPS specifies client rate limiter QPS for a controller",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "concurrentReconciles": {
                         "description": "ConcurrentReconciles specifies number of concurrent reconciles for a controller",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "queueBurst": {
                         "description": "QueueBurst specifies workqueue rate limiter burst for a controller",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "queueQPS": {
                         "description": "QueueQPS specifies workqueue rate limiter QPS for a controller",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       },
                       "replicas": {
                         "description": "Replicas specifies the number of replicas the specific controller pod should use. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others.",
+                        "format": "int32",
                         "type": [
                           "integer",
                           "null"
-                        ],
-                        "format": "int32"
+                        ]
                       }
                     },
+                    "type": "object",
                     "additionalProperties": false
                   },
                   "name": {
                     "description": "Name specifies the name of the controller",
-                    "type": "string",
                     "enum": [
                       "clusterDeployment",
                       "clusterrelocate",
@@ -608,81 +586,98 @@
                       "clusterclaim",
                       "metrics",
                       "clustersync"
-                    ]
+                    ],
+                    "type": "string"
                   }
                 },
+                "required": [
+                  "config",
+                  "name"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
-              }
+              },
+              "type": [
+                "array",
+                "null"
+              ]
             },
             "default": {
               "description": "Default specifies default configuration for all the controllers, can be used to override following coded defaults default for concurrent reconciles is 5 default for client qps is 5 default for client burst is 10 default for queue qps is 10 default for queue burst is 100",
+              "properties": {
+                "clientBurst": {
+                  "description": "ClientBurst specifies client rate limiter burst for a controller",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "clientQPS": {
+                  "description": "ClientQPS specifies client rate limiter QPS for a controller",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "concurrentReconciles": {
+                  "description": "ConcurrentReconciles specifies number of concurrent reconciles for a controller",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "queueBurst": {
+                  "description": "QueueBurst specifies workqueue rate limiter burst for a controller",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "queueQPS": {
+                  "description": "QueueQPS specifies workqueue rate limiter QPS for a controller",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "replicas": {
+                  "description": "Replicas specifies the number of replicas the specific controller pod should use. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others.",
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
               "type": [
                 "object",
                 "null"
               ],
-              "properties": {
-                "clientBurst": {
-                  "description": "ClientBurst specifies client rate limiter burst for a controller",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                },
-                "clientQPS": {
-                  "description": "ClientQPS specifies client rate limiter QPS for a controller",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                },
-                "concurrentReconciles": {
-                  "description": "ConcurrentReconciles specifies number of concurrent reconciles for a controller",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                },
-                "queueBurst": {
-                  "description": "QueueBurst specifies workqueue rate limiter burst for a controller",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                },
-                "queueQPS": {
-                  "description": "QueueQPS specifies workqueue rate limiter QPS for a controller",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                },
-                "replicas": {
-                  "description": "Replicas specifies the number of replicas the specific controller pod should use. This is ONLY for controllers that have been split out into their own pods. This is ignored for all others.",
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "format": "int32"
-                }
-              },
               "additionalProperties": false
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "deleteProtection": {
           "description": "DeleteProtection can be set to \"enabled\" to turn on automatic delete protection for ClusterDeployments. When enabled, Hive will add the \"hive.openshift.io/protected-delete\" annotation to new ClusterDeployments. Once a ClusterDeployment has been installed, a user must remove the annotation from a ClusterDeployment prior to deleting it.",
+          "enum": [
+            "enabled"
+          ],
           "type": [
             "string",
             "null"
-          ],
-          "enum": [
-            "enabled"
           ]
         },
         "deprovisionsDisabled": {
@@ -694,33 +689,22 @@
         },
         "disabledControllers": {
           "description": "DisabledControllers allows selectively disabling Hive controllers by name. The name of an individual controller matches the name of the controller as seen in the Hive logging output.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "failedProvisionConfig": {
           "description": "FailedProvisionConfig is used to configure settings related to handling provision failures.",
-          "type": [
-            "object",
-            "null"
-          ],
           "properties": {
             "aws": {
               "description": "FailedProvisionAWSConfig contains AWS-specific info to upload log files.",
-              "type": [
-                "object",
-                "null"
-              ],
-              "required": [
-                "credentialsSecretRef"
-              ],
               "properties": {
                 "bucket": {
                   "description": "Bucket is the S3 bucket to store the logs in.",
@@ -731,7 +715,6 @@
                 },
                 "credentialsSecretRef": {
                   "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with AWS S3. It will need permission to upload logs to S3. Secret should have keys named aws_access_key_id and aws_secret_access_key that contain the AWS credentials. Example Secret:   data:     aws_access_key_id: minio     aws_secret_access_key: minio123",
-                  "type": "object",
                   "properties": {
                     "name": {
                       "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -741,6 +724,7 @@
                       ]
                     }
                   },
+                  "type": "object",
                   "additionalProperties": false
                 },
                 "region": {
@@ -758,6 +742,13 @@
                   ]
                 }
               },
+              "required": [
+                "credentialsSecretRef"
+              ],
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             },
             "skipGatherLogs": {
@@ -768,38 +759,38 @@
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "featureGates": {
-          "description": "FeatureGateSelection allows selecting feature gates for the controller.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "featureGates": {
+          "description": "FeatureGateSelection allows selecting feature gates for the controller.",
           "properties": {
             "custom": {
               "description": "custom allows the enabling or disabling of any feature. Because of its nature, this setting cannot be validated.  If you have any typos or accidentally apply invalid combinations might cause unknown behavior. featureSet must equal \"Custom\" must be set to use this field."
             },
             "featureSet": {
               "description": "featureSet changes the list of features in the cluster.  The default is empty.  Be very careful adjusting this setting.",
-              "type": [
-                "string",
-                "null"
-              ],
               "enum": [
                 "",
                 "Custom"
+              ],
+              "type": [
+                "string",
+                "null"
               ]
             }
           },
-          "additionalProperties": false
-        },
-        "globalPullSecretRef": {
-          "description": "GlobalPullSecretRef is used to specify a pull secret that will be used globally by all of the cluster deployments. For each cluster deployment, the contents of GlobalPullSecret will be merged with the specific pull secret for a cluster deployment(if specified), with precedence given to the contents of the pull secret for the cluster deployment. The global pull secret is assumed to be in the TargetNamespace.",
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "globalPullSecretRef": {
+          "description": "GlobalPullSecretRef is used to specify a pull secret that will be used globally by all of the cluster deployments. For each cluster deployment, the contents of GlobalPullSecret will be merged with the specific pull secret for a cluster deployment(if specified), with precedence given to the contents of the pull secret for the cluster deployment. The global pull secret is assumed to be in the TargetNamespace.",
           "properties": {
             "name": {
               "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -809,6 +800,10 @@
               ]
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "logLevel": {
@@ -827,33 +822,14 @@
         },
         "managedDomains": {
           "description": "ManagedDomains is the list of DNS domains that are managed by the Hive cluster When specifying 'manageDNS: true' in a ClusterDeployment, the ClusterDeployment's baseDomain should be a direct child of one of these domains, otherwise the ClusterDeployment creation will result in a validation error.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ManageDNSConfig contains the domain being managed, and the cloud-specific details for accessing/managing the domain.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "domains"
-            ],
             "properties": {
               "aws": {
                 "description": "AWS contains AWS-specific settings for external DNS",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "credentialsSecretRef"
-                ],
                 "properties": {
                   "credentialsSecretRef": {
                     "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with AWS Route53. It will need permission to manage entries for the domain listed in the parent ManageDNSConfig object. Secret should have AWS keys named 'aws_access_key_id' and 'aws_secret_access_key'.",
-                    "type": "object",
                     "properties": {
                       "name": {
                         "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -863,6 +839,7 @@
                         ]
                       }
                     },
+                    "type": "object",
                     "additionalProperties": false
                   },
                   "region": {
@@ -873,36 +850,34 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "azure": {
-                "description": "Azure contains Azure-specific settings for external DNS",
+                "required": [
+                  "credentialsSecretRef"
+                ],
                 "type": [
                   "object",
                   "null"
                 ],
-                "required": [
-                  "credentialsSecretRef",
-                  "resourceGroupName"
-                ],
+                "additionalProperties": false
+              },
+              "azure": {
+                "description": "Azure contains Azure-specific settings for external DNS",
                 "properties": {
                   "cloudName": {
                     "description": "CloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to \"AzurePublicCloud\".",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "enum": [
                       "",
                       "AzurePublicCloud",
                       "AzureUSGovernmentCloud",
                       "AzureChinaCloud",
                       "AzureGermanCloud"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
                     ]
                   },
                   "credentialsSecretRef": {
                     "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with Azure DNS. It wil need permission to manage entries in each of the managed domains listed in the parent ManageDNSConfig object. Secret should have a key named 'osServicePrincipal.json'",
-                    "type": "object",
                     "properties": {
                       "name": {
                         "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -912,6 +887,7 @@
                         ]
                       }
                     },
+                    "type": "object",
                     "additionalProperties": false
                   },
                   "resourceGroupName": {
@@ -919,31 +895,31 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "credentialsSecretRef",
+                  "resourceGroupName"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "domains": {
                 "description": "Domains is the list of domains that hive will be managing entries for with the provided credentials.",
-                "type": "array",
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "type": "array"
               },
               "gcp": {
                 "description": "GCP contains GCP-specific settings for external DNS",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "credentialsSecretRef"
-                ],
                 "properties": {
                   "credentialsSecretRef": {
                     "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with GCP DNS. It will need permission to manage entries in each of the managed domains for this cluster. listed in the parent ManageDNSConfig object. Secret should have a key named 'osServiceAccount.json'. The credentials must specify the project to use.",
-                    "type": "object",
                     "properties": {
                       "name": {
                         "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -953,25 +929,36 @@
                         ]
                       }
                     },
+                    "type": "object",
                     "additionalProperties": false
                   }
                 },
+                "required": [
+                  "credentialsSecretRef"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "required": [
+              "domains"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "releaseImageVerificationConfigMapRef": {
           "description": "ReleaseImageVerificationConfigMapRef is a reference to the ConfigMap that will be used to verify release images. \n The config map structure is exactly the same as the config map used for verification of release images for OpenShift 4 during upgrades. Therefore you can usually set this to the config map shipped as part of OpenShift (openshift-config-managed/release-verification). \n See https://github.com/openshift/cluster-update-keys for more details. The keys within the config map in the data field define how verification is performed: \n verifier-public-key-*: One or more GPG public keys in ASCII form that must have signed the                        release image by digest. \n store-*: A URL (scheme file://, http://, or https://) location that contains signatures. These          signatures are in the atomic container signature format. The URL will have the digest          of the image appended to it as \"<STORE>/<ALGO>=<DIGEST>/signature-<NUMBER>\" as described          in the container image signing format. The docker-image-manifest section of the          signature must match the release image digest. Signatures are searched starting at          NUMBER 1 and incrementing if the signature exists but is not valid. The signature is a          GPG signed and encrypted JSON message. The file store is provided for testing only at          the current time, although future versions of the CVO might allow host mounting of          signatures. \n See https://github.com/containers/image/blob/ab49b0a48428c623a8f03b41b9083d48966b34a9/docs/signature-protocols.md for a description of the signature store \n The returned verifier will require that any new release image will only be considered verified if each provided public key has signed the release image digest. The signature may be in any store and the lookup order is internally defined. \n If not set, no verification will be performed.",
-          "type": [
-            "object",
-            "null"
-          ],
-          "required": [
-            "name",
-            "namespace"
-          ],
           "properties": {
             "name": {
               "description": "Name of the ConfigMap",
@@ -982,28 +969,24 @@
               "type": "string"
             }
           },
-          "additionalProperties": false
-        },
-        "serviceProviderCredentialsConfig": {
-          "description": "ServiceProviderCredentialsConfig is used to configure credentials related to being a service provider on various cloud platforms.",
+          "required": [
+            "name",
+            "namespace"
+          ],
           "type": [
             "object",
             "null"
           ],
+          "additionalProperties": false
+        },
+        "serviceProviderCredentialsConfig": {
+          "description": "ServiceProviderCredentialsConfig is used to configure credentials related to being a service provider on various cloud platforms.",
           "properties": {
             "aws": {
               "description": "AWS is used to configure credentials related to being a service provider on AWS.",
-              "type": [
-                "object",
-                "null"
-              ],
               "properties": {
                 "credentialsSecretRef": {
                   "description": "CredentialsSecretRef references a secret in the TargetNamespace that will be used to authenticate with AWS to become the Service Provider. Being a Service Provider allows the controllers to assume the role in customer AWS accounts to manager clusters.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "name": {
                       "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -1013,12 +996,24 @@
                       ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
                 }
               },
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
             }
           },
+          "type": [
+            "object",
+            "null"
+          ],
           "additionalProperties": false
         },
         "syncSetReapplyInterval": {
@@ -1036,14 +1031,14 @@
           ]
         }
       },
-      "additionalProperties": false
-    },
-    "status": {
-      "description": "HiveConfigStatus defines the observed state of Hive",
       "type": [
         "object",
         "null"
       ],
+      "additionalProperties": false
+    },
+    "status": {
+      "description": "HiveConfigStatus defines the observed state of Hive",
       "properties": {
         "aggregatorClientCAHash": {
           "description": "AggregatorClientCAHash keeps an md5 hash of the aggregator client CA configmap data from the openshift-config-managed namespace. When the configmap changes, admission is redeployed.",
@@ -1054,36 +1049,24 @@
         },
         "conditions": {
           "description": "Conditions includes more detailed status for the HiveConfig",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "HiveConfigCondition contains details for the current condition of a HiveConfig",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "status",
-              "type"
-            ],
             "properties": {
               "lastProbeTime": {
                 "description": "LastProbeTime is the last time we probed the condition.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "lastTransitionTime": {
                 "description": "LastTransitionTime is the last time the condition transitioned from one status to another.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "message": {
                 "description": "Message is a human-readable message indicating details about last transition.",
@@ -1108,8 +1091,20 @@
                 "type": "string"
               }
             },
+            "required": [
+              "status",
+              "type"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "configApplied": {
           "description": "ConfigApplied will be set by the hive operator to indicate whether or not the LastGenerationObserved was successfully reconciled.",
@@ -1120,16 +1115,21 @@
         },
         "observedGeneration": {
           "description": "ObservedGeneration will record the most recently processed HiveConfig object's generation.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "type": "object",
   "x-kubernetes-group-version-kind": [
     {
       "group": "hive.openshift.io",

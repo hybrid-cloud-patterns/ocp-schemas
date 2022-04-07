@@ -1,39 +1,16 @@
 {
   "description": "DeploymentDetails captures information about the causes of a deployment.",
-  "type": "object",
-  "required": [
-    "causes"
-  ],
   "properties": {
     "causes": {
       "description": "Causes are extended data associated with all the causes for creating a new deployment",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "DeploymentCause captures information about a particular cause of a deployment.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "type"
-        ],
         "properties": {
           "imageTrigger": {
             "description": "DeploymentCauseImageTrigger represents details about the cause of a deployment originating from an image change trigger",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "from"
-            ],
             "properties": {
               "from": {
                 "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-                "type": "object",
                 "properties": {
                   "apiVersion": {
                     "description": "API version of the referent.",
@@ -85,16 +62,35 @@
                     ]
                   }
                 },
+                "type": "object",
                 "x-kubernetes-map-type": "atomic"
               }
-            }
+            },
+            "required": [
+              "from"
+            ],
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "type": {
             "description": "Type of the trigger that resulted in the creation of a new deployment",
             "type": "string"
           }
-        }
-      }
+        },
+        "required": [
+          "type"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "message": {
       "description": "Message is the user specified change message, if this deployment was triggered manually by the user",
@@ -104,5 +100,9 @@
       ]
     }
   },
+  "required": [
+    "causes"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

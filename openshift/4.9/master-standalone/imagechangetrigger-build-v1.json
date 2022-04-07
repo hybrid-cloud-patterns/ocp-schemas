@@ -1,13 +1,8 @@
 {
   "description": "ImageChangeTrigger allows builds to be triggered when an ImageStream changes",
-  "type": "object",
   "properties": {
     "from": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -59,6 +54,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic"
     },
     "lastTriggeredImageID": {
@@ -76,5 +75,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

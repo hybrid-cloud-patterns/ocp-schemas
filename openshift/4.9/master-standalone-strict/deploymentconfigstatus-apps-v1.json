@@ -1,55 +1,34 @@
 {
   "description": "DeploymentConfigStatus represents the current deployment state.",
-  "type": "object",
-  "required": [
-    "latestVersion",
-    "observedGeneration",
-    "replicas",
-    "updatedReplicas",
-    "availableReplicas",
-    "unavailableReplicas"
-  ],
   "properties": {
     "availableReplicas": {
       "description": "AvailableReplicas is the total number of available pods targeted by this deployment config.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     },
     "conditions": {
       "description": "Conditions represents the latest available observations of a deployment config's current state.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "DeploymentCondition describes the state of a deployment config at a certain point.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "type",
-          "status"
-        ],
         "properties": {
           "lastTransitionTime": {
             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+            "format": "date-time",
             "type": [
               "string",
               "null"
-            ],
-            "format": "date-time"
+            ]
           },
           "lastUpdateTime": {
             "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+            "format": "date-time",
             "type": [
               "string",
               "null"
-            ],
-            "format": "date-time"
+            ]
           },
           "message": {
             "description": "A human readable message indicating details about the transition.",
@@ -74,47 +53,36 @@
             "type": "string"
           }
         },
+        "required": [
+          "type",
+          "status"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-patch-merge-key": "type",
       "x-kubernetes-patch-strategy": "merge"
     },
     "details": {
       "description": "DeploymentDetails captures information about the causes of a deployment.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "causes"
-      ],
       "properties": {
         "causes": {
           "description": "Causes are extended data associated with all the causes for creating a new deployment",
-          "type": "array",
           "items": {
             "description": "DeploymentCause captures information about a particular cause of a deployment.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "type"
-            ],
             "properties": {
               "imageTrigger": {
                 "description": "DeploymentCauseImageTrigger represents details about the cause of a deployment originating from an image change trigger",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "from"
-                ],
                 "properties": {
                   "from": {
                     "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-                    "type": "object",
                     "properties": {
                       "apiVersion": {
                         "description": "API version of the referent.",
@@ -166,10 +134,18 @@
                         ]
                       }
                     },
+                    "type": "object",
                     "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   }
                 },
+                "required": [
+                  "from"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "type": {
@@ -177,8 +153,16 @@
                 "type": "string"
               }
             },
+            "required": [
+              "type"
+            ],
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
-          }
+          },
+          "type": "array"
         },
         "message": {
           "description": "Message is the user specified change message, if this deployment was triggered manually by the user",
@@ -188,57 +172,73 @@
           ]
         }
       },
+      "required": [
+        "causes"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "latestVersion": {
       "description": "LatestVersion is used to determine whether the current deployment associated with a deployment config is out of sync.",
+      "format": "int64",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int64"
+      ]
     },
     "observedGeneration": {
       "description": "ObservedGeneration is the most recent generation observed by the deployment config controller.",
+      "format": "int64",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int64"
+      ]
     },
     "readyReplicas": {
       "description": "Total number of ready pods targeted by this deployment.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     },
     "replicas": {
       "description": "Replicas is the total number of pods targeted by this deployment config.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     },
     "unavailableReplicas": {
       "description": "UnavailableReplicas is the total number of unavailable pods targeted by this deployment config.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     },
     "updatedReplicas": {
       "description": "UpdatedReplicas is the total number of non-terminated pods targeted by this deployment config that have the desired template spec.",
+      "format": "int32",
       "type": [
         "integer",
         "null"
-      ],
-      "format": "int32"
+      ]
     }
   },
+  "required": [
+    "latestVersion",
+    "observedGeneration",
+    "replicas",
+    "updatedReplicas",
+    "availableReplicas",
+    "unavailableReplicas"
+  ],
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

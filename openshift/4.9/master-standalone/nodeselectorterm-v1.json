@@ -1,23 +1,10 @@
 {
   "description": "A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
-  "type": "object",
   "properties": {
     "matchExpressions": {
       "description": "A list of node selector requirements by node's labels.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "key",
-          "operator"
-        ],
         "properties": {
           "key": {
             "description": "The label key that the selector applies to.",
@@ -29,36 +16,36 @@
           },
           "values": {
             "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
-        }
-      }
+        },
+        "required": [
+          "key",
+          "operator"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "matchFields": {
       "description": "A list of node selector requirements by node's fields.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "key",
-          "operator"
-        ],
         "properties": {
           "key": {
             "description": "The label key that the selector applies to.",
@@ -70,21 +57,34 @@
           },
           "values": {
             "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
-        }
-      }
+        },
+        "required": [
+          "key",
+          "operator"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "type": "object",
   "x-kubernetes-map-type": "atomic",
   "$schema": "http://json-schema.org/schema#"
 }

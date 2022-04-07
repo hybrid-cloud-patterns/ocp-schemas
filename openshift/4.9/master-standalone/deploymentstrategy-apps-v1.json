@@ -1,13 +1,8 @@
 {
   "description": "DeploymentStrategy describes how to replace existing pods with new ones.",
-  "type": "object",
   "properties": {
     "rollingUpdate": {
       "description": "Spec to control the desired behavior of rolling update.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "maxSurge": {
           "oneOf": [
@@ -41,7 +36,11 @@
             }
           ]
         }
-      }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "type": {
       "description": "Type of deployment. Can be \"Recreate\" or \"RollingUpdate\". Default is RollingUpdate.",
@@ -51,5 +50,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

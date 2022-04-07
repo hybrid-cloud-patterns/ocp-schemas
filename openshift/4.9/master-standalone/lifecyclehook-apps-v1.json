@@ -1,30 +1,18 @@
 {
   "description": "LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time.",
-  "type": "object",
-  "required": [
-    "failurePolicy"
-  ],
   "properties": {
     "execNewPod": {
       "description": "ExecNewPodHook is a hook implementation which runs a command in a new pod based on the specified container which is assumed to be part of the deployment template.",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "command",
-        "containerName"
-      ],
       "properties": {
         "command": {
           "description": "Command is the action command and its arguments.",
-          "type": "array",
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": "array"
         },
         "containerName": {
           "description": "ContainerName is the name of a container in the deployment pod template whose container image will be used for the hook pod's container.",
@@ -32,19 +20,8 @@
         },
         "env": {
           "description": "Env is a set of environment variables to supply to the hook pod's container.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "EnvVar represents an environment variable present in a Container.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "name"
-            ],
             "properties": {
               "name": {
                 "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -59,20 +36,9 @@
               },
               "valueFrom": {
                 "description": "EnvVarSource represents a source for the value of an EnvVar.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "configMapKeyRef": {
                     "description": "Selects a key from a ConfigMap.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "key"
-                    ],
                     "properties": {
                       "key": {
                         "description": "The key to select.",
@@ -93,17 +59,17 @@
                         ]
                       }
                     },
-                    "x-kubernetes-map-type": "atomic"
-                  },
-                  "fieldRef": {
-                    "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
+                    "required": [
+                      "key"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "fieldPath"
-                    ],
+                    "x-kubernetes-map-type": "atomic"
+                  },
+                  "fieldRef": {
+                    "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
                     "properties": {
                       "apiVersion": {
                         "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -117,17 +83,17 @@
                         "type": "string"
                       }
                     },
-                    "x-kubernetes-map-type": "atomic"
-                  },
-                  "resourceFieldRef": {
-                    "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
+                    "required": [
+                      "fieldPath"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "resource"
-                    ],
+                    "x-kubernetes-map-type": "atomic"
+                  },
+                  "resourceFieldRef": {
+                    "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
                     "properties": {
                       "containerName": {
                         "description": "Container name: required for volumes, optional for env vars",
@@ -157,17 +123,17 @@
                         "type": "string"
                       }
                     },
-                    "x-kubernetes-map-type": "atomic"
-                  },
-                  "secretKeyRef": {
-                    "description": "SecretKeySelector selects a key of a Secret.",
+                    "required": [
+                      "resource"
+                    ],
                     "type": [
                       "object",
                       "null"
                     ],
-                    "required": [
-                      "key"
-                    ],
+                    "x-kubernetes-map-type": "atomic"
+                  },
+                  "secretKeyRef": {
+                    "description": "SecretKeySelector selects a key of a Secret.",
                     "properties": {
                       "key": {
                         "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -188,27 +154,57 @@
                         ]
                       }
                     },
+                    "required": [
+                      "key"
+                    ],
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "x-kubernetes-map-type": "atomic"
                   }
-                }
+                },
+                "type": [
+                  "object",
+                  "null"
+                ]
               }
-            }
-          }
-        },
-        "volumes": {
-          "description": "Volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied.",
+            },
+            "required": [
+              "name"
+            ],
+            "type": [
+              "object",
+              "null"
+            ]
+          },
           "type": [
             "array",
             "null"
-          ],
+          ]
+        },
+        "volumes": {
+          "description": "Volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied.",
           "items": {
             "type": [
               "string",
               "null"
             ]
-          }
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         }
-      }
+      },
+      "required": [
+        "command",
+        "containerName"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "failurePolicy": {
       "description": "FailurePolicy specifies what action to take if the hook fails.",
@@ -219,20 +215,8 @@
     },
     "tagImages": {
       "description": "TagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "containerName",
-          "to"
-        ],
         "properties": {
           "containerName": {
             "description": "ContainerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container.",
@@ -240,7 +224,6 @@
           },
           "to": {
             "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-            "type": "object",
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -292,11 +275,28 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-map-type": "atomic"
           }
-        }
-      }
+        },
+        "required": [
+          "containerName",
+          "to"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     }
   },
+  "required": [
+    "failurePolicy"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

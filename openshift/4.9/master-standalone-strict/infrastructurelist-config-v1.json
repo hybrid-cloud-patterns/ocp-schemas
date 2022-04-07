@@ -1,8 +1,5 @@
 {
   "description": "InfrastructureList is a list of Infrastructure",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,19 +13,8 @@
     },
     "items": {
       "description": "List of infrastructures. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "Infrastructure holds cluster-wide information about Infrastructure.  The canonical name is `cluster` \n Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "spec"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -52,23 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -79,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -124,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -200,15 +174,23 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -226,22 +208,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -274,9 +242,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic",
                   "additionalProperties": false
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -302,18 +284,17 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           },
           "spec": {
             "description": "spec holds user settable values for configuration",
-            "type": "object",
             "properties": {
               "cloudConfig": {
                 "description": "cloudConfig is a reference to a ConfigMap containing the cloud provider configuration file. This configuration file is used to configure the Kubernetes cloud provider integration when using the built-in cloud provider integration or the external cloud controller manager. The namespace for this config map is openshift-config. \n cloudConfig should only be consumed by the kube_cloud_config controller. The controller is responsible for using the user configuration in the spec for various platforms and combining that with the user provided ConfigMap in this field to create a stitched kube cloud config. The controller generates a ConfigMap `kube-cloud-config` in `openshift-config-managed` namespace with the kube cloud config is stored in `cloud.conf` key. All the clients are expected to use the generated ConfigMap only.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "key": {
                     "description": "Key allows pointing to a specific key/value inside of the configmap.  This is useful for logical file references.",
@@ -329,56 +310,56 @@
                     ]
                   }
                 },
-                "additionalProperties": false
-              },
-              "platformSpec": {
-                "description": "platformSpec holds desired information specific to the underlying infrastructure provider.",
                 "type": [
                   "object",
                   "null"
                 ],
+                "additionalProperties": false
+              },
+              "platformSpec": {
+                "description": "platformSpec holds desired information specific to the underlying infrastructure provider.",
                 "properties": {
                   "aws": {
                     "description": "AWS contains settings specific to the Amazon Web Services infrastructure provider.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "serviceEndpoints": {
                         "description": "serviceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
                         "items": {
                           "description": "AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services.",
+                          "properties": {
+                            "name": {
+                              "description": "name is the name of the AWS service. The list of all the service names can be found at https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html This must be provided and cannot be empty.",
+                              "pattern": "^[a-z0-9-]+$",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "url": {
+                              "description": "url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty.",
+                              "pattern": "^https://",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
                           "type": [
                             "object",
                             "null"
                           ],
-                          "properties": {
-                            "name": {
-                              "description": "name is the name of the AWS service. The list of all the service names can be found at https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html This must be provided and cannot be empty.",
-                              "type": [
-                                "string",
-                                "null"
-                              ],
-                              "pattern": "^[a-z0-9-]+$"
-                            },
-                            "url": {
-                              "description": "url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty.",
-                              "type": [
-                                "string",
-                                "null"
-                              ],
-                              "pattern": "^https://"
-                            }
-                          },
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "azure": {
@@ -439,10 +420,6 @@
                   },
                   "type": {
                     "description": "type is the underlying infrastructure provider for the cluster. This value controls whether infrastructure automation such as service load balancers, dynamic volume provisioning, machine creation and deletion, and other integrations are enabled. If None, no infrastructure automation is enabled. Allowed values are \"AWS\", \"Azure\", \"BareMetal\", \"GCP\", \"Libvirt\", \"OpenStack\", \"VSphere\", \"oVirt\", \"KubeVirt\", \"EquinixMetal\", and \"None\". Individual components may not support all platforms, and must handle unrecognized platforms as None if they do not support that platform.",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "enum": [
                       "",
                       "AWS",
@@ -457,6 +434,10 @@
                       "IBMCloud",
                       "KubeVirt",
                       "EquinixMetal"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
                     ]
                   },
                   "vsphere": {
@@ -467,17 +448,18 @@
                     ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "type": "object",
             "additionalProperties": false
           },
           "status": {
             "description": "status holds observed values from the cluster. They may not be overridden.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "apiServerInternalURI": {
                 "description": "apiServerInternalURL is a valid URI with scheme 'https', address and optionally a port (defaulting to 443).  apiServerInternalURL can be used by components like kubelets, to contact the Kubernetes API server using the infrastructure provider rather than Kubernetes networking.",
@@ -495,14 +477,14 @@
               },
               "controlPlaneTopology": {
                 "description": "controlPlaneTopology expresses the expectations for operands that normally run on control nodes. The default is 'HighlyAvailable', which represents the behavior operators have in a \"normal\" cluster. The 'SingleReplica' mode will be used in single-node deployments and the operators should not configure the operand for highly-available operation The 'External' mode indicates that the control plane is hosted externally to the cluster and that its components are not visible within the cluster.",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "HighlyAvailable",
                   "SingleReplica",
                   "External"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "etcdDiscoveryDomain": {
@@ -521,21 +503,17 @@
               },
               "infrastructureTopology": {
                 "description": "infrastructureTopology expresses the expectations for infrastructure services that do not run on control plane nodes, usually indicated by a node selector for a `role` value other than `master`. The default is 'HighlyAvailable', which represents the behavior operators have in a \"normal\" cluster. The 'SingleReplica' mode will be used in single-node deployments and the operators should not configure the operand for highly-available operation NOTE: External topology mode is not applicable for this field.",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "HighlyAvailable",
                   "SingleReplica"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "platform": {
                 "description": "platform is the underlying infrastructure provider for the cluster. \n Deprecated: Use platformStatus.type instead.",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "",
                   "AWS",
@@ -550,21 +528,17 @@
                   "IBMCloud",
                   "KubeVirt",
                   "EquinixMetal"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "platformStatus": {
                 "description": "platformStatus holds status information specific to the underlying infrastructure provider.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "aws": {
                     "description": "AWS contains settings specific to the Amazon Web Services infrastructure provider.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "region": {
                         "description": "region holds the default AWS region for new AWS resources created by the cluster.",
@@ -575,82 +549,82 @@
                       },
                       "resourceTags": {
                         "description": "resourceTags is a list of additional tags to apply to AWS resources created for the cluster. See https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html for information on tagging AWS resources. AWS supports a maximum of 50 tags per resource. OpenShift reserves 25 tags for its use, leaving 25 tags available for the user.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "maxItems": 25,
                         "items": {
                           "description": "AWSResourceTag is a tag to apply to AWS resources created for the cluster.",
-                          "type": [
-                            "object",
-                            "null"
-                          ],
+                          "properties": {
+                            "key": {
+                              "description": "key is the key of the tag",
+                              "maxLength": 128,
+                              "minLength": 1,
+                              "pattern": "^[0-9A-Za-z_.:/=+-@]+$",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "value is the value of the tag. Some AWS service do not support empty values. Since tags are added to resources in many services, the length of the tag value must meet the requirements of all services.",
+                              "maxLength": 256,
+                              "minLength": 1,
+                              "pattern": "^[0-9A-Za-z_.:/=+-@]+$",
+                              "type": "string"
+                            }
+                          },
                           "required": [
                             "key",
                             "value"
                           ],
-                          "properties": {
-                            "key": {
-                              "description": "key is the key of the tag",
-                              "type": "string",
-                              "maxLength": 128,
-                              "minLength": 1,
-                              "pattern": "^[0-9A-Za-z_.:/=+-@]+$"
-                            },
-                            "value": {
-                              "description": "value is the value of the tag. Some AWS service do not support empty values. Since tags are added to resources in many services, the length of the tag value must meet the requirements of all services.",
-                              "type": "string",
-                              "maxLength": 256,
-                              "minLength": 1,
-                              "pattern": "^[0-9A-Za-z_.:/=+-@]+$"
-                            }
-                          },
-                          "additionalProperties": false
-                        }
-                      },
-                      "serviceEndpoints": {
-                        "description": "ServiceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service.",
-                        "type": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "description": "AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services.",
                           "type": [
                             "object",
                             "null"
                           ],
+                          "additionalProperties": false
+                        },
+                        "maxItems": 25,
+                        "type": [
+                          "array",
+                          "null"
+                        ]
+                      },
+                      "serviceEndpoints": {
+                        "description": "ServiceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service.",
+                        "items": {
+                          "description": "AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services.",
                           "properties": {
                             "name": {
                               "description": "name is the name of the AWS service. The list of all the service names can be found at https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html This must be provided and cannot be empty.",
+                              "pattern": "^[a-z0-9-]+$",
                               "type": [
                                 "string",
                                 "null"
-                              ],
-                              "pattern": "^[a-z0-9-]+$"
+                              ]
                             },
                             "url": {
                               "description": "url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty.",
+                              "pattern": "^https://",
                               "type": [
                                 "string",
                                 "null"
-                              ],
-                              "pattern": "^https://"
+                              ]
                             }
                           },
+                          "type": [
+                            "object",
+                            "null"
+                          ],
                           "additionalProperties": false
-                        }
+                        },
+                        "type": [
+                          "array",
+                          "null"
+                        ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "azure": {
-                    "description": "Azure contains settings specific to the Azure infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "azure": {
+                    "description": "Azure contains settings specific to the Azure infrastructure provider.",
                     "properties": {
                       "armEndpoint": {
                         "description": "armEndpoint specifies a URL to use for resource management in non-soverign clouds such as Azure Stack.",
@@ -661,10 +635,6 @@
                       },
                       "cloudName": {
                         "description": "cloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to `AzurePublicCloud`.",
-                        "type": [
-                          "string",
-                          "null"
-                        ],
                         "enum": [
                           "",
                           "AzurePublicCloud",
@@ -672,6 +642,10 @@
                           "AzureChinaCloud",
                           "AzureGermanCloud",
                           "AzureStackCloud"
+                        ],
+                        "type": [
+                          "string",
+                          "null"
                         ]
                       },
                       "networkResourceGroupName": {
@@ -689,14 +663,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "baremetal": {
-                    "description": "BareMetal contains settings specific to the BareMetal platform.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "baremetal": {
+                    "description": "BareMetal contains settings specific to the BareMetal platform.",
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -720,14 +694,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "equinixMetal": {
-                    "description": "EquinixMetal contains settings specific to the Equinix Metal infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "equinixMetal": {
+                    "description": "EquinixMetal contains settings specific to the Equinix Metal infrastructure provider.",
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -744,14 +718,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "gcp": {
-                    "description": "GCP contains settings specific to the Google Cloud Platform infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "gcp": {
+                    "description": "GCP contains settings specific to the Google Cloud Platform infrastructure provider.",
                     "properties": {
                       "projectID": {
                         "description": "resourceGroupName is the Project ID for new GCP resources created for the cluster.",
@@ -768,14 +742,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "ibmcloud": {
-                    "description": "IBMCloud contains settings specific to the IBMCloud infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "ibmcloud": {
+                    "description": "IBMCloud contains settings specific to the IBMCloud infrastructure provider.",
                     "properties": {
                       "cisInstanceCRN": {
                         "description": "CISInstanceCRN is the CRN of the Cloud Internet Services instance managing the DNS zone for the cluster's base domain",
@@ -806,14 +780,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "kubevirt": {
-                    "description": "Kubevirt contains settings specific to the kubevirt infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "kubevirt": {
+                    "description": "Kubevirt contains settings specific to the kubevirt infrastructure provider.",
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -830,14 +804,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "openstack": {
-                    "description": "OpenStack contains settings specific to the OpenStack infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "openstack": {
+                    "description": "OpenStack contains settings specific to the OpenStack infrastructure provider.",
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -868,14 +842,14 @@
                         ]
                       }
                     },
-                    "additionalProperties": false
-                  },
-                  "ovirt": {
-                    "description": "Ovirt contains settings specific to the oVirt infrastructure provider.",
                     "type": [
                       "object",
                       "null"
                     ],
+                    "additionalProperties": false
+                  },
+                  "ovirt": {
+                    "description": "Ovirt contains settings specific to the oVirt infrastructure provider.",
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -899,14 +873,14 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   },
                   "type": {
                     "description": "type is the underlying infrastructure provider for the cluster. This value controls whether infrastructure automation such as service load balancers, dynamic volume provisioning, machine creation and deletion, and other integrations are enabled. If None, no infrastructure automation is enabled. Allowed values are \"AWS\", \"Azure\", \"BareMetal\", \"GCP\", \"Libvirt\", \"OpenStack\", \"VSphere\", \"oVirt\", \"EquinixMetal\", and \"None\". Individual components may not support all platforms, and must handle unrecognized platforms as None if they do not support that platform. \n This value will be synced with to the `status.platform` and `status.platformStatus.type`. Currently this value cannot be changed once set.",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "enum": [
                       "",
                       "AWS",
@@ -921,14 +895,14 @@
                       "IBMCloud",
                       "KubeVirt",
                       "EquinixMetal"
+                    ],
+                    "type": [
+                      "string",
+                      "null"
                     ]
                   },
                   "vsphere": {
                     "description": "VSphere contains settings specific to the VSphere infrastructure provider.",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
                     "properties": {
                       "apiServerInternalIP": {
                         "description": "apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.",
@@ -952,15 +926,34 @@
                         ]
                       }
                     },
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "additionalProperties": false
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "required": [
+          "spec"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "config.openshift.io",
@@ -969,7 +962,11 @@
           }
         ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -983,10 +980,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -997,11 +990,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -1018,9 +1011,16 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "config.openshift.io",

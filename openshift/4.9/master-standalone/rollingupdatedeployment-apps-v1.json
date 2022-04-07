@@ -1,6 +1,5 @@
 {
   "description": "Spec to control the desired behavior of rolling update.",
-  "type": "object",
   "properties": {
     "maxSurge": {
       "oneOf": [
@@ -35,5 +34,6 @@
       ]
     }
   },
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }

@@ -1,35 +1,23 @@
 {
   "description": "CustomDeploymentStrategyParams are the input to the Custom deployment strategy.",
-  "type": "object",
   "properties": {
     "command": {
       "description": "Command is optional and overrides CMD in the container Image.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "type": [
           "string",
           "null"
         ]
-      }
-    },
-    "environment": {
-      "description": "Environment holds the environment which will be given to the container for Image.",
+      },
       "type": [
         "array",
         "null"
-      ],
+      ]
+    },
+    "environment": {
+      "description": "Environment holds the environment which will be given to the container for Image.",
       "items": {
         "description": "EnvVar represents an environment variable present in a Container.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -44,20 +32,9 @@
           },
           "valueFrom": {
             "description": "EnvVarSource represents a source for the value of an EnvVar.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "configMapKeyRef": {
                 "description": "Selects a key from a ConfigMap.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key to select.",
@@ -78,18 +55,18 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "fieldRef": {
                 "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "fieldPath"
-                ],
                 "properties": {
                   "apiVersion": {
                     "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -103,18 +80,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "fieldPath"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "resourceFieldRef": {
                 "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "resource"
-                ],
                 "properties": {
                   "containerName": {
                     "description": "Container name: required for volumes, optional for env vars",
@@ -144,18 +121,18 @@
                     "type": "string"
                   }
                 },
+                "required": [
+                  "resource"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               },
               "secretKeyRef": {
                 "description": "SecretKeySelector selects a key of a Secret.",
-                "type": [
-                  "object",
-                  "null"
-                ],
-                "required": [
-                  "key"
-                ],
                 "properties": {
                   "key": {
                     "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -176,15 +153,37 @@
                     ]
                   }
                 },
+                "required": [
+                  "key"
+                ],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "x-kubernetes-map-type": "atomic",
                 "additionalProperties": false
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "required": [
+          "name"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "image": {
       "description": "Image specifies a container image which can carry out a deployment.",
@@ -194,6 +193,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

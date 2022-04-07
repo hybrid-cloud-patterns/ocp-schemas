@@ -1,8 +1,5 @@
 {
   "description": "RestoreList is a list of Restore",
-  "required": [
-    "items"
-  ],
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -16,16 +13,8 @@
     },
     "items": {
       "description": "List of restores. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "Restore is a Velero resource that represents the application of resources from a Velero backup to a target Kubernetes cluster.",
-        "type": [
-          "object",
-          "null"
-        ],
         "properties": {
           "apiVersion": {
             "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -49,23 +38,19 @@
           },
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "annotations": {
-                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "clusterName": {
                 "description": "The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.",
@@ -76,40 +61,40 @@
               },
               "creationTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "deletionGracePeriodSeconds": {
                 "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "deletionTimestamp": {
                 "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "format": "date-time",
                 "type": [
                   "string",
                   "null"
-                ],
-                "format": "date-time"
+                ]
               },
               "finalizers": {
                 "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "type": [
                     "string",
                     "null"
                   ]
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-strategy": "merge"
               },
               "generateName": {
@@ -121,37 +106,29 @@
               },
               "generation": {
                 "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+                "format": "int64",
                 "type": [
                   "integer",
                   "null"
-                ],
-                "format": "int64"
+                ]
               },
               "labels": {
-                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "managedFields": {
                 "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
@@ -197,15 +174,23 @@
                     },
                     "time": {
                       "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                      "format": "date-time",
                       "type": [
                         "string",
                         "null"
-                      ],
-                      "format": "date-time"
+                      ]
                     }
                   },
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "type": [
+                  "array",
+                  "null"
+                ]
               },
               "name": {
                 "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
@@ -223,22 +208,8 @@
               },
               "ownerReferences": {
                 "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-                "type": [
-                  "array",
-                  "null"
-                ],
                 "items": {
                   "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "required": [
-                    "apiVersion",
-                    "kind",
-                    "name",
-                    "uid"
-                  ],
                   "properties": {
                     "apiVersion": {
                       "description": "API version of the referent.",
@@ -271,9 +242,23 @@
                       "type": "string"
                     }
                   },
+                  "required": [
+                    "apiVersion",
+                    "kind",
+                    "name",
+                    "uid"
+                  ],
+                  "type": [
+                    "object",
+                    "null"
+                  ],
                   "x-kubernetes-map-type": "atomic",
                   "additionalProperties": false
                 },
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "x-kubernetes-patch-merge-key": "uid",
                 "x-kubernetes-patch-strategy": "merge"
               },
@@ -299,17 +284,14 @@
                 ]
               }
             },
-            "additionalProperties": false
-          },
-          "spec": {
-            "description": "RestoreSpec defines the specification for a Velero restore.",
             "type": [
               "object",
               "null"
             ],
-            "required": [
-              "backupName"
-            ],
+            "additionalProperties": false
+          },
+          "spec": {
+            "description": "RestoreSpec defines the specification for a Velero restore.",
             "properties": {
               "backupName": {
                 "description": "BackupName is the unique name of the Velero backup to restore from.",
@@ -323,25 +305,10 @@
               },
               "hooks": {
                 "description": "Hooks represent custom behaviors that should be executed during or post restore.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "properties": {
                   "resources": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
                     "items": {
                       "description": "RestoreResourceHookSpec defines one or more RestoreResrouceHooks that should be executed based on the rules defined for namespaces, resources, and label selector.",
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "required": [
-                        "name"
-                      ],
                       "properties": {
                         "excludedNamespaces": {
                           "description": "ExcludedNamespaces specifies the namespaces to which this hook spec does not apply."
@@ -364,37 +331,22 @@
                         },
                         "postHooks": {
                           "description": "PostHooks is a list of RestoreResourceHooks to execute during and after restoring a resource.",
-                          "type": [
-                            "array",
-                            "null"
-                          ],
                           "items": {
                             "description": "RestoreResourceHook defines a restore hook for a resource.",
-                            "type": [
-                              "object",
-                              "null"
-                            ],
                             "properties": {
                               "exec": {
                                 "description": "Exec defines an exec restore hook.",
-                                "type": [
-                                  "object",
-                                  "null"
-                                ],
-                                "required": [
-                                  "command"
-                                ],
                                 "properties": {
                                   "command": {
                                     "description": "Command is the command and arguments to execute from within a container after a pod has been restored.",
-                                    "type": "array",
-                                    "minItems": 1,
                                     "items": {
                                       "type": [
                                         "string",
                                         "null"
                                       ]
-                                    }
+                                    },
+                                    "minItems": 1,
+                                    "type": "array"
                                   },
                                   "container": {
                                     "description": "Container is the container in the pod where the command should be executed. If not specified, the pod's first container is used.",
@@ -412,13 +364,13 @@
                                   },
                                   "onError": {
                                     "description": "OnError specifies how Velero should behave if it encounters an error executing this hook.",
-                                    "type": [
-                                      "string",
-                                      "null"
-                                    ],
                                     "enum": [
                                       "Continue",
                                       "Fail"
+                                    ],
+                                    "type": [
+                                      "string",
+                                      "null"
                                     ]
                                   },
                                   "waitTimeout": {
@@ -429,72 +381,53 @@
                                     ]
                                   }
                                 },
-                                "additionalProperties": false
-                              },
-                              "init": {
-                                "description": "Init defines an init restore hook.",
+                                "required": [
+                                  "command"
+                                ],
                                 "type": [
                                   "object",
                                   "null"
                                 ],
+                                "additionalProperties": false
+                              },
+                              "init": {
+                                "description": "Init defines an init restore hook.",
                                 "properties": {
                                   "initContainers": {
                                     "description": "InitContainers is list of init containers to be added to a pod during its restore.",
-                                    "type": [
-                                      "array",
-                                      "null"
-                                    ],
                                     "items": {
                                       "description": "A single application container that you want to run within a pod.",
-                                      "type": [
-                                        "object",
-                                        "null"
-                                      ],
-                                      "required": [
-                                        "name"
-                                      ],
                                       "properties": {
                                         "args": {
                                           "description": "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
                                           "items": {
                                             "type": [
                                               "string",
                                               "null"
                                             ]
-                                          }
+                                          },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ]
                                         },
                                         "command": {
                                           "description": "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
                                           "items": {
                                             "type": [
                                               "string",
                                               "null"
                                             ]
-                                          }
-                                        },
-                                        "env": {
-                                          "description": "List of environment variables to set in the container. Cannot be updated.",
+                                          },
                                           "type": [
                                             "array",
                                             "null"
-                                          ],
+                                          ]
+                                        },
+                                        "env": {
+                                          "description": "List of environment variables to set in the container. Cannot be updated.",
                                           "items": {
                                             "description": "EnvVar represents an environment variable present in a Container.",
-                                            "type": [
-                                              "object",
-                                              "null"
-                                            ],
-                                            "required": [
-                                              "name"
-                                            ],
                                             "properties": {
                                               "name": {
                                                 "description": "Name of the environment variable. Must be a C_IDENTIFIER.",
@@ -509,20 +442,9 @@
                                               },
                                               "valueFrom": {
                                                 "description": "Source for the environment variable's value. Cannot be used if value is not empty.",
-                                                "type": [
-                                                  "object",
-                                                  "null"
-                                                ],
                                                 "properties": {
                                                   "configMapKeyRef": {
                                                     "description": "Selects a key of a ConfigMap.",
-                                                    "type": [
-                                                      "object",
-                                                      "null"
-                                                    ],
-                                                    "required": [
-                                                      "key"
-                                                    ],
                                                     "properties": {
                                                       "key": {
                                                         "description": "The key to select.",
@@ -543,17 +465,17 @@
                                                         ]
                                                       }
                                                     },
-                                                    "additionalProperties": false
-                                                  },
-                                                  "fieldRef": {
-                                                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+                                                    "required": [
+                                                      "key"
+                                                    ],
                                                     "type": [
                                                       "object",
                                                       "null"
                                                     ],
-                                                    "required": [
-                                                      "fieldPath"
-                                                    ],
+                                                    "additionalProperties": false
+                                                  },
+                                                  "fieldRef": {
+                                                    "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
                                                     "properties": {
                                                       "apiVersion": {
                                                         "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\".",
@@ -567,17 +489,17 @@
                                                         "type": "string"
                                                       }
                                                     },
-                                                    "additionalProperties": false
-                                                  },
-                                                  "resourceFieldRef": {
-                                                    "description": "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+                                                    "required": [
+                                                      "fieldPath"
+                                                    ],
                                                     "type": [
                                                       "object",
                                                       "null"
                                                     ],
-                                                    "required": [
-                                                      "resource"
-                                                    ],
+                                                    "additionalProperties": false
+                                                  },
+                                                  "resourceFieldRef": {
+                                                    "description": "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
                                                     "properties": {
                                                       "containerName": {
                                                         "description": "Container name: required for volumes, optional for env vars",
@@ -596,17 +518,17 @@
                                                         "type": "string"
                                                       }
                                                     },
-                                                    "additionalProperties": false
-                                                  },
-                                                  "secretKeyRef": {
-                                                    "description": "Selects a key of a secret in the pod's namespace",
+                                                    "required": [
+                                                      "resource"
+                                                    ],
                                                     "type": [
                                                       "object",
                                                       "null"
                                                     ],
-                                                    "required": [
-                                                      "key"
-                                                    ],
+                                                    "additionalProperties": false
+                                                  },
+                                                  "secretKeyRef": {
+                                                    "description": "Selects a key of a secret in the pod's namespace",
                                                     "properties": {
                                                       "key": {
                                                         "description": "The key of the secret to select from.  Must be a valid secret key.",
@@ -627,34 +549,44 @@
                                                         ]
                                                       }
                                                     },
+                                                    "required": [
+                                                      "key"
+                                                    ],
+                                                    "type": [
+                                                      "object",
+                                                      "null"
+                                                    ],
                                                     "additionalProperties": false
                                                   }
                                                 },
-                                                "additionalProperties": false
-                                              }
-                                            },
-                                            "additionalProperties": false
-                                          }
-                                        },
-                                        "envFrom": {
-                                          "description": "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
-                                          "items": {
-                                            "description": "EnvFromSource represents the source of a set of ConfigMaps",
-                                            "type": [
-                                              "object",
-                                              "null"
-                                            ],
-                                            "properties": {
-                                              "configMapRef": {
-                                                "description": "The ConfigMap to select from",
                                                 "type": [
                                                   "object",
                                                   "null"
                                                 ],
+                                                "additionalProperties": false
+                                              }
+                                            },
+                                            "required": [
+                                              "name"
+                                            ],
+                                            "type": [
+                                              "object",
+                                              "null"
+                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ]
+                                        },
+                                        "envFrom": {
+                                          "description": "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+                                          "items": {
+                                            "description": "EnvFromSource represents the source of a set of ConfigMaps",
+                                            "properties": {
+                                              "configMapRef": {
+                                                "description": "The ConfigMap to select from",
                                                 "properties": {
                                                   "name": {
                                                     "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -671,6 +603,10 @@
                                                     ]
                                                   }
                                                 },
+                                                "type": [
+                                                  "object",
+                                                  "null"
+                                                ],
                                                 "additionalProperties": false
                                               },
                                               "prefix": {
@@ -682,10 +618,6 @@
                                               },
                                               "secretRef": {
                                                 "description": "The Secret to select from",
-                                                "type": [
-                                                  "object",
-                                                  "null"
-                                                ],
                                                 "properties": {
                                                   "name": {
                                                     "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -702,11 +634,23 @@
                                                     ]
                                                   }
                                                 },
+                                                "type": [
+                                                  "object",
+                                                  "null"
+                                                ],
                                                 "additionalProperties": false
                                               }
                                             },
+                                            "type": [
+                                              "object",
+                                              "null"
+                                            ],
                                             "additionalProperties": false
-                                          }
+                                          },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ]
                                         },
                                         "image": {
                                           "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
@@ -724,50 +668,35 @@
                                         },
                                         "lifecycle": {
                                           "description": "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
                                           "properties": {
                                             "postStart": {
                                               "description": "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-                                              "type": [
-                                                "object",
-                                                "null"
-                                              ],
                                               "properties": {
                                                 "exec": {
                                                   "description": "One and only one of the following should be specified. Exec specifies the action to take.",
-                                                  "type": [
-                                                    "object",
-                                                    "null"
-                                                  ],
                                                   "properties": {
                                                     "command": {
                                                       "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-                                                      "type": [
-                                                        "array",
-                                                        "null"
-                                                      ],
                                                       "items": {
                                                         "type": [
                                                           "string",
                                                           "null"
                                                         ]
-                                                      }
+                                                      },
+                                                      "type": [
+                                                        "array",
+                                                        "null"
+                                                      ]
                                                     }
                                                   },
-                                                  "additionalProperties": false
-                                                },
-                                                "httpGet": {
-                                                  "description": "HTTPGet specifies the http request to perform.",
                                                   "type": [
                                                     "object",
                                                     "null"
                                                   ],
-                                                  "required": [
-                                                    "port"
-                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "httpGet": {
+                                                  "description": "HTTPGet specifies the http request to perform.",
                                                   "properties": {
                                                     "host": {
                                                       "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -778,20 +707,8 @@
                                                     },
                                                     "httpHeaders": {
                                                       "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-                                                      "type": [
-                                                        "array",
-                                                        "null"
-                                                      ],
                                                       "items": {
                                                         "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-                                                        "type": [
-                                                          "object",
-                                                          "null"
-                                                        ],
-                                                        "required": [
-                                                          "name",
-                                                          "value"
-                                                        ],
                                                         "properties": {
                                                           "name": {
                                                             "description": "The header field name",
@@ -802,8 +719,20 @@
                                                             "type": "string"
                                                           }
                                                         },
+                                                        "required": [
+                                                          "name",
+                                                          "value"
+                                                        ],
+                                                        "type": [
+                                                          "object",
+                                                          "null"
+                                                        ],
                                                         "additionalProperties": false
-                                                      }
+                                                      },
+                                                      "type": [
+                                                        "array",
+                                                        "null"
+                                                      ]
                                                     },
                                                     "path": {
                                                       "description": "Path to access on the HTTP server.",
@@ -824,17 +753,17 @@
                                                       ]
                                                     }
                                                   },
-                                                  "additionalProperties": false
-                                                },
-                                                "tcpSocket": {
-                                                  "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+                                                  "required": [
+                                                    "port"
+                                                  ],
                                                   "type": [
                                                     "object",
                                                     "null"
                                                   ],
-                                                  "required": [
-                                                    "port"
-                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "tcpSocket": {
+                                                  "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                                   "properties": {
                                                     "host": {
                                                       "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -848,50 +777,50 @@
                                                       "x-kubernetes-int-or-string": true
                                                     }
                                                   },
+                                                  "required": [
+                                                    "port"
+                                                  ],
+                                                  "type": [
+                                                    "object",
+                                                    "null"
+                                                  ],
                                                   "additionalProperties": false
                                                 }
                                               },
+                                              "type": [
+                                                "object",
+                                                "null"
+                                              ],
                                               "additionalProperties": false
                                             },
                                             "preStop": {
                                               "description": "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-                                              "type": [
-                                                "object",
-                                                "null"
-                                              ],
                                               "properties": {
                                                 "exec": {
                                                   "description": "One and only one of the following should be specified. Exec specifies the action to take.",
-                                                  "type": [
-                                                    "object",
-                                                    "null"
-                                                  ],
                                                   "properties": {
                                                     "command": {
                                                       "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-                                                      "type": [
-                                                        "array",
-                                                        "null"
-                                                      ],
                                                       "items": {
                                                         "type": [
                                                           "string",
                                                           "null"
                                                         ]
-                                                      }
+                                                      },
+                                                      "type": [
+                                                        "array",
+                                                        "null"
+                                                      ]
                                                     }
                                                   },
-                                                  "additionalProperties": false
-                                                },
-                                                "httpGet": {
-                                                  "description": "HTTPGet specifies the http request to perform.",
                                                   "type": [
                                                     "object",
                                                     "null"
                                                   ],
-                                                  "required": [
-                                                    "port"
-                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "httpGet": {
+                                                  "description": "HTTPGet specifies the http request to perform.",
                                                   "properties": {
                                                     "host": {
                                                       "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -902,20 +831,8 @@
                                                     },
                                                     "httpHeaders": {
                                                       "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-                                                      "type": [
-                                                        "array",
-                                                        "null"
-                                                      ],
                                                       "items": {
                                                         "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-                                                        "type": [
-                                                          "object",
-                                                          "null"
-                                                        ],
-                                                        "required": [
-                                                          "name",
-                                                          "value"
-                                                        ],
                                                         "properties": {
                                                           "name": {
                                                             "description": "The header field name",
@@ -926,8 +843,20 @@
                                                             "type": "string"
                                                           }
                                                         },
+                                                        "required": [
+                                                          "name",
+                                                          "value"
+                                                        ],
+                                                        "type": [
+                                                          "object",
+                                                          "null"
+                                                        ],
                                                         "additionalProperties": false
-                                                      }
+                                                      },
+                                                      "type": [
+                                                        "array",
+                                                        "null"
+                                                      ]
                                                     },
                                                     "path": {
                                                       "description": "Path to access on the HTTP server.",
@@ -948,17 +877,17 @@
                                                       ]
                                                     }
                                                   },
-                                                  "additionalProperties": false
-                                                },
-                                                "tcpSocket": {
-                                                  "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+                                                  "required": [
+                                                    "port"
+                                                  ],
                                                   "type": [
                                                     "object",
                                                     "null"
                                                   ],
-                                                  "required": [
-                                                    "port"
-                                                  ],
+                                                  "additionalProperties": false
+                                                },
+                                                "tcpSocket": {
+                                                  "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                                   "properties": {
                                                     "host": {
                                                       "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -972,61 +901,65 @@
                                                       "x-kubernetes-int-or-string": true
                                                     }
                                                   },
+                                                  "required": [
+                                                    "port"
+                                                  ],
+                                                  "type": [
+                                                    "object",
+                                                    "null"
+                                                  ],
                                                   "additionalProperties": false
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            }
-                                          },
-                                          "additionalProperties": false
-                                        },
-                                        "livenessProbe": {
-                                          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
-                                          "properties": {
-                                            "exec": {
-                                              "description": "One and only one of the following should be specified. Exec specifies the action to take.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "livenessProbe": {
+                                          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                          "properties": {
+                                            "exec": {
+                                              "description": "One and only one of the following should be specified. Exec specifies the action to take.",
                                               "properties": {
                                                 "command": {
                                                   "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "type": [
                                                       "string",
                                                       "null"
                                                     ]
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "failureThreshold": {
-                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "httpGet": {
-                                              "description": "HTTPGet specifies the http request to perform.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "failureThreshold": {
+                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "httpGet": {
+                                              "description": "HTTPGet specifies the http request to perform.",
                                               "properties": {
                                                 "host": {
                                                   "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -1037,20 +970,8 @@
                                                 },
                                                 "httpHeaders": {
                                                   "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-                                                    "type": [
-                                                      "object",
-                                                      "null"
-                                                    ],
-                                                    "required": [
-                                                      "name",
-                                                      "value"
-                                                    ],
                                                     "properties": {
                                                       "name": {
                                                         "description": "The header field name",
@@ -1061,8 +982,20 @@
                                                         "type": "string"
                                                       }
                                                     },
+                                                    "required": [
+                                                      "name",
+                                                      "value"
+                                                    ],
+                                                    "type": [
+                                                      "object",
+                                                      "null"
+                                                    ],
                                                     "additionalProperties": false
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 },
                                                 "path": {
                                                   "description": "Path to access on the HTTP server.",
@@ -1083,41 +1016,41 @@
                                                   ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "initialDelaySeconds": {
-                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                              "type": [
-                                                "integer",
-                                                "null"
+                                              "required": [
+                                                "port"
                                               ],
-                                              "format": "int32"
-                                            },
-                                            "periodSeconds": {
-                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "successThreshold": {
-                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "tcpSocket": {
-                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "initialDelaySeconds": {
+                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "periodSeconds": {
+                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "successThreshold": {
+                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "tcpSocket": {
+                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "properties": {
                                                 "host": {
                                                   "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1131,17 +1064,28 @@
                                                   "x-kubernetes-int-or-string": true
                                                 }
                                               },
+                                              "required": [
+                                                "port"
+                                              ],
+                                              "type": [
+                                                "object",
+                                                "null"
+                                              ],
                                               "additionalProperties": false
                                             },
                                             "timeoutSeconds": {
                                               "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
                                               "type": [
                                                 "integer",
                                                 "null"
-                                              ],
-                                              "format": "int32"
+                                              ]
                                             }
                                           },
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
                                           "additionalProperties": false
                                         },
                                         "name": {
@@ -1150,25 +1094,13 @@
                                         },
                                         "ports": {
                                           "description": "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default \"0.0.0.0\" address inside a container will be accessible from the network. Cannot be updated.",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
                                           "items": {
                                             "description": "ContainerPort represents a network port in a single container.",
-                                            "type": [
-                                              "object",
-                                              "null"
-                                            ],
-                                            "required": [
-                                              "containerPort",
-                                              "protocol"
-                                            ],
                                             "properties": {
                                               "containerPort": {
                                                 "description": "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
-                                                "type": "integer",
-                                                "format": "int32"
+                                                "format": "int32",
+                                                "type": "integer"
                                               },
                                               "hostIP": {
                                                 "description": "What host IP to bind the external port to.",
@@ -1179,11 +1111,11 @@
                                               },
                                               "hostPort": {
                                                 "description": "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+                                                "format": "int32",
                                                 "type": [
                                                   "integer",
                                                   "null"
-                                                ],
-                                                "format": "int32"
+                                                ]
                                               },
                                               "name": {
                                                 "description": "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
@@ -1197,8 +1129,20 @@
                                                 "type": "string"
                                               }
                                             },
+                                            "required": [
+                                              "containerPort",
+                                              "protocol"
+                                            ],
+                                            "type": [
+                                              "object",
+                                              "null"
+                                            ],
                                             "additionalProperties": false
                                           },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ],
                                           "x-kubernetes-list-map-keys": [
                                             "containerPort",
                                             "protocol"
@@ -1207,51 +1151,40 @@
                                         },
                                         "readinessProbe": {
                                           "description": "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
                                           "properties": {
                                             "exec": {
                                               "description": "One and only one of the following should be specified. Exec specifies the action to take.",
-                                              "type": [
-                                                "object",
-                                                "null"
-                                              ],
                                               "properties": {
                                                 "command": {
                                                   "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "type": [
                                                       "string",
                                                       "null"
                                                     ]
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "failureThreshold": {
-                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "httpGet": {
-                                              "description": "HTTPGet specifies the http request to perform.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "failureThreshold": {
+                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "httpGet": {
+                                              "description": "HTTPGet specifies the http request to perform.",
                                               "properties": {
                                                 "host": {
                                                   "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -1262,20 +1195,8 @@
                                                 },
                                                 "httpHeaders": {
                                                   "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-                                                    "type": [
-                                                      "object",
-                                                      "null"
-                                                    ],
-                                                    "required": [
-                                                      "name",
-                                                      "value"
-                                                    ],
                                                     "properties": {
                                                       "name": {
                                                         "description": "The header field name",
@@ -1286,8 +1207,20 @@
                                                         "type": "string"
                                                       }
                                                     },
+                                                    "required": [
+                                                      "name",
+                                                      "value"
+                                                    ],
+                                                    "type": [
+                                                      "object",
+                                                      "null"
+                                                    ],
                                                     "additionalProperties": false
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 },
                                                 "path": {
                                                   "description": "Path to access on the HTTP server.",
@@ -1308,41 +1241,41 @@
                                                   ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "initialDelaySeconds": {
-                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                              "type": [
-                                                "integer",
-                                                "null"
+                                              "required": [
+                                                "port"
                                               ],
-                                              "format": "int32"
-                                            },
-                                            "periodSeconds": {
-                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "successThreshold": {
-                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "tcpSocket": {
-                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "initialDelaySeconds": {
+                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "periodSeconds": {
+                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "successThreshold": {
+                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "tcpSocket": {
+                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "properties": {
                                                 "host": {
                                                   "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1356,57 +1289,64 @@
                                                   "x-kubernetes-int-or-string": true
                                                 }
                                               },
+                                              "required": [
+                                                "port"
+                                              ],
+                                              "type": [
+                                                "object",
+                                                "null"
+                                              ],
                                               "additionalProperties": false
                                             },
                                             "timeoutSeconds": {
                                               "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
                                               "type": [
                                                 "integer",
                                                 "null"
-                                              ],
-                                              "format": "int32"
+                                              ]
                                             }
                                           },
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
                                           "additionalProperties": false
                                         },
                                         "resources": {
                                           "description": "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
                                           "properties": {
                                             "limits": {
+                                              "additionalProperties": {
+                                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
+                                                "x-kubernetes-int-or-string": true
+                                              },
                                               "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
                                               "type": [
                                                 "object",
                                                 "null"
-                                              ],
+                                              ]
+                                            },
+                                            "requests": {
                                               "additionalProperties": {
                                                 "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
                                                 "x-kubernetes-int-or-string": true
-                                              }
-                                            },
-                                            "requests": {
+                                              },
                                               "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
                                               "type": [
                                                 "object",
                                                 "null"
-                                              ],
-                                              "additionalProperties": {
-                                                "pattern": "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$",
-                                                "x-kubernetes-int-or-string": true
-                                              }
+                                              ]
                                             }
                                           },
-                                          "additionalProperties": false
-                                        },
-                                        "securityContext": {
-                                          "description": "Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
                                           "type": [
                                             "object",
                                             "null"
                                           ],
+                                          "additionalProperties": false
+                                        },
+                                        "securityContext": {
+                                          "description": "Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
                                           "properties": {
                                             "allowPrivilegeEscalation": {
                                               "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
@@ -1417,40 +1357,40 @@
                                             },
                                             "capabilities": {
                                               "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+                                              "properties": {
+                                                "add": {
+                                                  "description": "Added capabilities",
+                                                  "items": {
+                                                    "description": "Capability represent POSIX capabilities type",
+                                                    "type": [
+                                                      "string",
+                                                      "null"
+                                                    ]
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
+                                                },
+                                                "drop": {
+                                                  "description": "Removed capabilities",
+                                                  "items": {
+                                                    "description": "Capability represent POSIX capabilities type",
+                                                    "type": [
+                                                      "string",
+                                                      "null"
+                                                    ]
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
+                                                }
+                                              },
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "properties": {
-                                                "add": {
-                                                  "description": "Added capabilities",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
-                                                  "items": {
-                                                    "description": "Capability represent POSIX capabilities type",
-                                                    "type": [
-                                                      "string",
-                                                      "null"
-                                                    ]
-                                                  }
-                                                },
-                                                "drop": {
-                                                  "description": "Removed capabilities",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
-                                                  "items": {
-                                                    "description": "Capability represent POSIX capabilities type",
-                                                    "type": [
-                                                      "string",
-                                                      "null"
-                                                    ]
-                                                  }
-                                                }
-                                              },
                                               "additionalProperties": false
                                             },
                                             "privileged": {
@@ -1476,11 +1416,11 @@
                                             },
                                             "runAsGroup": {
                                               "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+                                              "format": "int64",
                                               "type": [
                                                 "integer",
                                                 "null"
-                                              ],
-                                              "format": "int64"
+                                              ]
                                             },
                                             "runAsNonRoot": {
                                               "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
@@ -1491,18 +1431,14 @@
                                             },
                                             "runAsUser": {
                                               "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+                                              "format": "int64",
                                               "type": [
                                                 "integer",
                                                 "null"
-                                              ],
-                                              "format": "int64"
+                                              ]
                                             },
                                             "seLinuxOptions": {
                                               "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-                                              "type": [
-                                                "object",
-                                                "null"
-                                              ],
                                               "properties": {
                                                 "level": {
                                                   "description": "Level is SELinux level label that applies to the container.",
@@ -1533,17 +1469,14 @@
                                                   ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "seccompProfile": {
-                                              "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "type"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "seccompProfile": {
+                                              "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
                                               "properties": {
                                                 "localhostProfile": {
                                                   "description": "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is \"Localhost\".",
@@ -1557,14 +1490,17 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "windowsOptions": {
-                                              "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+                                              "required": [
+                                                "type"
+                                              ],
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
+                                              "additionalProperties": false
+                                            },
+                                            "windowsOptions": {
+                                              "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
                                               "properties": {
                                                 "gmsaCredentialSpec": {
                                                   "description": "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
@@ -1588,58 +1524,55 @@
                                                   ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            }
-                                          },
-                                          "additionalProperties": false
-                                        },
-                                        "startupProbe": {
-                                          "description": "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                          "type": [
-                                            "object",
-                                            "null"
-                                          ],
-                                          "properties": {
-                                            "exec": {
-                                              "description": "One and only one of the following should be specified. Exec specifies the action to take.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
+                                              "additionalProperties": false
+                                            }
+                                          },
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "startupProbe": {
+                                          "description": "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                          "properties": {
+                                            "exec": {
+                                              "description": "One and only one of the following should be specified. Exec specifies the action to take.",
                                               "properties": {
                                                 "command": {
                                                   "description": "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "type": [
                                                       "string",
                                                       "null"
                                                     ]
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "failureThreshold": {
-                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "httpGet": {
-                                              "description": "HTTPGet specifies the http request to perform.",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "failureThreshold": {
+                                              "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "httpGet": {
+                                              "description": "HTTPGet specifies the http request to perform.",
                                               "properties": {
                                                 "host": {
                                                   "description": "Host name to connect to, defaults to the pod IP. You probably want to set \"Host\" in httpHeaders instead.",
@@ -1650,20 +1583,8 @@
                                                 },
                                                 "httpHeaders": {
                                                   "description": "Custom headers to set in the request. HTTP allows repeated headers.",
-                                                  "type": [
-                                                    "array",
-                                                    "null"
-                                                  ],
                                                   "items": {
                                                     "description": "HTTPHeader describes a custom header to be used in HTTP probes",
-                                                    "type": [
-                                                      "object",
-                                                      "null"
-                                                    ],
-                                                    "required": [
-                                                      "name",
-                                                      "value"
-                                                    ],
                                                     "properties": {
                                                       "name": {
                                                         "description": "The header field name",
@@ -1674,8 +1595,20 @@
                                                         "type": "string"
                                                       }
                                                     },
+                                                    "required": [
+                                                      "name",
+                                                      "value"
+                                                    ],
+                                                    "type": [
+                                                      "object",
+                                                      "null"
+                                                    ],
                                                     "additionalProperties": false
-                                                  }
+                                                  },
+                                                  "type": [
+                                                    "array",
+                                                    "null"
+                                                  ]
                                                 },
                                                 "path": {
                                                   "description": "Path to access on the HTTP server.",
@@ -1696,41 +1629,41 @@
                                                   ]
                                                 }
                                               },
-                                              "additionalProperties": false
-                                            },
-                                            "initialDelaySeconds": {
-                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-                                              "type": [
-                                                "integer",
-                                                "null"
+                                              "required": [
+                                                "port"
                                               ],
-                                              "format": "int32"
-                                            },
-                                            "periodSeconds": {
-                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "successThreshold": {
-                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-                                              "type": [
-                                                "integer",
-                                                "null"
-                                              ],
-                                              "format": "int32"
-                                            },
-                                            "tcpSocket": {
-                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "type": [
                                                 "object",
                                                 "null"
                                               ],
-                                              "required": [
-                                                "port"
-                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            "initialDelaySeconds": {
+                                              "description": "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "periodSeconds": {
+                                              "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "successThreshold": {
+                                              "description": "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+                                              "format": "int32",
+                                              "type": [
+                                                "integer",
+                                                "null"
+                                              ]
+                                            },
+                                            "tcpSocket": {
+                                              "description": "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
                                               "properties": {
                                                 "host": {
                                                   "description": "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1744,17 +1677,28 @@
                                                   "x-kubernetes-int-or-string": true
                                                 }
                                               },
+                                              "required": [
+                                                "port"
+                                              ],
+                                              "type": [
+                                                "object",
+                                                "null"
+                                              ],
                                               "additionalProperties": false
                                             },
                                             "timeoutSeconds": {
                                               "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+                                              "format": "int32",
                                               "type": [
                                                 "integer",
                                                 "null"
-                                              ],
-                                              "format": "int32"
+                                              ]
                                             }
                                           },
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ],
                                           "additionalProperties": false
                                         },
                                         "stdin": {
@@ -1794,20 +1738,8 @@
                                         },
                                         "volumeDevices": {
                                           "description": "volumeDevices is the list of block devices to be used by the container.",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
                                           "items": {
                                             "description": "volumeDevice describes a mapping of a raw block device within a container.",
-                                            "type": [
-                                              "object",
-                                              "null"
-                                            ],
-                                            "required": [
-                                              "devicePath",
-                                              "name"
-                                            ],
                                             "properties": {
                                               "devicePath": {
                                                 "description": "devicePath is the path inside of the container that the device will be mapped to.",
@@ -1818,25 +1750,25 @@
                                                 "type": "string"
                                               }
                                             },
-                                            "additionalProperties": false
-                                          }
-                                        },
-                                        "volumeMounts": {
-                                          "description": "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-                                          "type": [
-                                            "array",
-                                            "null"
-                                          ],
-                                          "items": {
-                                            "description": "VolumeMount describes a mounting of a Volume within a container.",
+                                            "required": [
+                                              "devicePath",
+                                              "name"
+                                            ],
                                             "type": [
                                               "object",
                                               "null"
                                             ],
-                                            "required": [
-                                              "mountPath",
-                                              "name"
-                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ]
+                                        },
+                                        "volumeMounts": {
+                                          "description": "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+                                          "items": {
+                                            "description": "VolumeMount describes a mounting of a Volume within a container.",
                                             "properties": {
                                               "mountPath": {
                                                 "description": "Path within the container at which the volume should be mounted.  Must not contain ':'.",
@@ -1875,8 +1807,20 @@
                                                 ]
                                               }
                                             },
+                                            "required": [
+                                              "mountPath",
+                                              "name"
+                                            ],
+                                            "type": [
+                                              "object",
+                                              "null"
+                                            ],
                                             "additionalProperties": false
-                                          }
+                                          },
+                                          "type": [
+                                            "array",
+                                            "null"
+                                          ]
                                         },
                                         "workingDir": {
                                           "description": "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
@@ -1886,8 +1830,19 @@
                                           ]
                                         }
                                       },
+                                      "required": [
+                                        "name"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ],
                                       "additionalProperties": false
-                                    }
+                                    },
+                                    "type": [
+                                      "array",
+                                      "null"
+                                    ]
                                   },
                                   "timeout": {
                                     "description": "Timeout defines the maximum amount of time Velero should wait for the initContainers to complete.",
@@ -1897,17 +1852,44 @@
                                     ]
                                   }
                                 },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ],
                                 "additionalProperties": false
                               }
                             },
+                            "type": [
+                              "object",
+                              "null"
+                            ],
                             "additionalProperties": false
-                          }
+                          },
+                          "type": [
+                            "array",
+                            "null"
+                          ]
                         }
                       },
+                      "required": [
+                        "name"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ],
                       "additionalProperties": false
-                    }
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
                   }
                 },
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "additionalProperties": false
               },
               "includeClusterResources": {
@@ -1923,17 +1905,17 @@
                 "description": "LabelSelector is a metav1.LabelSelector to filter with when restoring individual objects from the backup. If empty or nil, all objects are included. Optional."
               },
               "namespaceMapping": {
-                "description": "NamespaceMapping is a map of source namespace names to target namespace names to restore into. Any source namespaces not included in the map will be restored into namespaces of the same name.",
-                "type": [
-                  "object",
-                  "null"
-                ],
                 "additionalProperties": {
                   "type": [
                     "string",
                     "null"
                   ]
-                }
+                },
+                "description": "NamespaceMapping is a map of source namespace names to target namespace names to restore into. Any source namespaces not included in the map will be restored into namespaces of the same name.",
+                "type": [
+                  "object",
+                  "null"
+                ]
               },
               "preserveNodePorts": {
                 "description": "PreserveNodePorts specifies whether to restore old nodePorts from backup."
@@ -1949,14 +1931,17 @@
                 ]
               }
             },
-            "additionalProperties": false
-          },
-          "status": {
-            "description": "RestoreStatus captures the current status of a Velero restore",
+            "required": [
+              "backupName"
+            ],
             "type": [
               "object",
               "null"
             ],
+            "additionalProperties": false
+          },
+          "status": {
+            "description": "RestoreStatus captures the current status of a Velero restore",
             "properties": {
               "completionTimestamp": {
                 "description": "CompletionTimestamp records the time the restore operation was completed. Completion time is recorded even on failed restore. The server's time is used for StartTimestamps",
@@ -1978,10 +1963,6 @@
               },
               "phase": {
                 "description": "Phase is the current state of the Restore",
-                "type": [
-                  "string",
-                  "null"
-                ],
                 "enum": [
                   "New",
                   "FailedValidation",
@@ -1989,6 +1970,10 @@
                   "Completed",
                   "PartiallyFailed",
                   "Failed"
+                ],
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "progress": {
@@ -2009,9 +1994,17 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "additionalProperties": false
           }
         },
+        "type": [
+          "object",
+          "null"
+        ],
         "x-kubernetes-group-version-kind": [
           {
             "group": "velero.io",
@@ -2020,7 +2013,11 @@
           }
         ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "kind": {
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -2034,10 +2031,6 @@
     },
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "continue": {
           "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.",
@@ -2048,11 +2041,11 @@
         },
         "remainingItemCount": {
           "description": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.",
+          "format": "int64",
           "type": [
             "integer",
             "null"
-          ],
-          "format": "int64"
+          ]
         },
         "resourceVersion": {
           "description": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
@@ -2069,9 +2062,16 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     }
   },
+  "required": [
+    "items"
+  ],
   "x-kubernetes-group-version-kind": [
     {
       "group": "velero.io",

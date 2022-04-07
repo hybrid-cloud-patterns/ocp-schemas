@@ -1,13 +1,8 @@
 {
   "description": "BuildSource is the SCM used for the build.",
-  "type": "object",
   "properties": {
     "binary": {
       "description": "BinaryBuildSource describes a binary file to be used for the Docker and Source build strategies, where the file will be extracted and used as the build source.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "asFile": {
           "description": "asFile indicates that the provided binary input should be considered a single file within the build input. For example, specifying \"webapp.war\" would place the provided binary as `/webapp.war` for the builder. If left empty, the Docker and Source build strategies assume this file is a zip, tar, or tar.gz file and extract it as the source. The custom strategy receives this binary as standard input. This filename may not contain slashes or be '..' or '.'.",
@@ -17,27 +12,19 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "configMaps": {
       "description": "configMaps represents a list of configMaps and their destinations that will be used for the build.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ConfigMapBuildSource describes a configmap and its destination directory that will be used only at the build time. The content of the configmap referenced here will be copied into the destination directory instead of mounting.",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "configMap"
-        ],
         "properties": {
           "configMap": {
             "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-            "type": "object",
             "properties": {
               "name": {
                 "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -47,6 +34,7 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
@@ -58,8 +46,19 @@
             ]
           }
         },
+        "required": [
+          "configMap"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "contextDir": {
       "description": "contextDir specifies the sub-directory where the source code for the application exists. This allows to have buildable sources in directory other than root of repository.",
@@ -77,13 +76,6 @@
     },
     "git": {
       "description": "GitBuildSource defines the parameters of a Git SCM",
-      "type": [
-        "object",
-        "null"
-      ],
-      "required": [
-        "uri"
-      ],
       "properties": {
         "httpProxy": {
           "description": "httpProxy is a proxy used to reach the git repository over http",
@@ -118,40 +110,35 @@
           "type": "string"
         }
       },
+      "required": [
+        "uri"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "additionalProperties": false
     },
     "images": {
       "description": "images describes a set of images to be used to provide source for the build",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "description": "ImageSource is used to describe build source that will be extracted from an image or used during a multi stage build. A reference of type ImageStreamTag, ImageStreamImage or DockerImage may be used. A pull secret can be specified to pull the image from an external registry or override the default service account secret if pulling from the internal registry. Image sources can either be used to extract content from an image and place it into the build context along with the repository source, or used directly during a multi-stage container image build to allow content to be copied without overwriting the contents of the repository source (see the 'paths' and 'as' fields).",
-        "type": [
-          "object",
-          "null"
-        ],
-        "required": [
-          "from"
-        ],
         "properties": {
           "as": {
             "description": "A list of image names that this source will be used in place of during a multi-stage container image build. For instance, a Dockerfile that uses \"COPY --from=nginx:latest\" will first check for an image source that has \"nginx:latest\" in this field before attempting to pull directly. If the Dockerfile does not reference an image source it is ignored. This field and paths may both be set, in which case the contents will be used twice.",
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "type": [
                 "string",
                 "null"
               ]
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           },
           "from": {
             "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-            "type": "object",
             "properties": {
               "apiVersion": {
                 "description": "API version of the referent.",
@@ -203,25 +190,14 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           },
           "paths": {
             "description": "paths is a list of source and destination paths to copy from the image. This content will be copied into the build context prior to starting the build. If no paths are set, the build context will not be altered.",
-            "type": [
-              "array",
-              "null"
-            ],
             "items": {
               "description": "ImageSourcePath describes a path to be copied from a source image and its destination within the build directory.",
-              "type": [
-                "object",
-                "null"
-              ],
-              "required": [
-                "sourcePath",
-                "destinationDir"
-              ],
               "properties": {
                 "destinationDir": {
                   "description": "destinationDir is the relative directory within the build directory where files copied from the image are placed.",
@@ -232,15 +208,23 @@
                   "type": "string"
                 }
               },
+              "required": [
+                "sourcePath",
+                "destinationDir"
+              ],
+              "type": [
+                "object",
+                "null"
+              ],
               "additionalProperties": false
-            }
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           },
           "pullSecret": {
             "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-            "type": [
-              "object",
-              "null"
-            ],
             "properties": {
               "name": {
                 "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -250,28 +234,32 @@
                 ]
               }
             },
+            "type": [
+              "object",
+              "null"
+            ],
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           }
         },
-        "additionalProperties": false
-      }
-    },
-    "secrets": {
-      "description": "secrets represents a list of secrets and their destinations that will be used only for the build.",
-      "type": [
-        "array",
-        "null"
-      ],
-      "items": {
-        "description": "SecretBuildSource describes a secret and its destination directory that will be used only at the build time. The content of the secret referenced here will be copied into the destination directory instead of mounting.",
+        "required": [
+          "from"
+        ],
         "type": [
           "object",
           "null"
         ],
-        "required": [
-          "secret"
-        ],
+        "additionalProperties": false
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "secrets": {
+      "description": "secrets represents a list of secrets and their destinations that will be used only for the build.",
+      "items": {
+        "description": "SecretBuildSource describes a secret and its destination directory that will be used only at the build time. The content of the secret referenced here will be copied into the destination directory instead of mounting.",
         "properties": {
           "destinationDir": {
             "description": "destinationDir is the directory where the files from the secret should be available for the build time. For the Source build strategy, these will be injected into a container where the assemble script runs. Later, when the script finishes, all files injected will be truncated to zero length. For the container image build strategy, these will be copied into the build directory, where the Dockerfile is located, so users can ADD or COPY them during container image build.",
@@ -282,7 +270,6 @@
           },
           "secret": {
             "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-            "type": "object",
             "properties": {
               "name": {
                 "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -292,19 +279,27 @@
                 ]
               }
             },
+            "type": "object",
             "x-kubernetes-map-type": "atomic",
             "additionalProperties": false
           }
         },
+        "required": [
+          "secret"
+        ],
+        "type": [
+          "object",
+          "null"
+        ],
         "additionalProperties": false
-      }
+      },
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "sourceSecret": {
       "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "name": {
           "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -314,6 +309,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
@@ -325,6 +324,7 @@
       ]
     }
   },
+  "type": "object",
   "additionalProperties": false,
   "$schema": "http://json-schema.org/schema#"
 }

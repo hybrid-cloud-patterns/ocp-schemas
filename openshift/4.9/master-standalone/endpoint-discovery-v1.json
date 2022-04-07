@@ -1,30 +1,22 @@
 {
   "description": "Endpoint represents a single logical \"backend\" implementing a service.",
-  "type": "object",
-  "required": [
-    "addresses"
-  ],
   "properties": {
     "addresses": {
       "description": "addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.",
-      "type": [
-        "array",
-        "null"
-      ],
       "items": {
         "type": [
           "string",
           "null"
         ]
       },
+      "type": [
+        "array",
+        "null"
+      ],
       "x-kubernetes-list-type": "set"
     },
     "conditions": {
       "description": "EndpointConditions represents the current condition of an endpoint.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "ready": {
           "description": "ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be \"true\" for terminating endpoints.",
@@ -47,53 +39,57 @@
             "null"
           ]
         }
-      }
-    },
-    "deprecatedTopology": {
-      "description": "deprecatedTopology contains topology information part of the v1beta1 API. This field is deprecated, and will be removed when the v1beta1 API is removed (no sooner than kubernetes v1.24).  While this field can hold values, it is not writable through the v1 API, and any attempts to write to it will be silently ignored. Topology information can be found in the zone and nodeName fields instead.",
+      },
       "type": [
         "object",
         "null"
-      ],
+      ]
+    },
+    "deprecatedTopology": {
       "additionalProperties": {
         "type": [
           "string",
           "null"
         ]
-      }
-    },
-    "hints": {
-      "description": "EndpointHints provides hints describing how an endpoint should be consumed.",
+      },
+      "description": "deprecatedTopology contains topology information part of the v1beta1 API. This field is deprecated, and will be removed when the v1beta1 API is removed (no sooner than kubernetes v1.24).  While this field can hold values, it is not writable through the v1 API, and any attempts to write to it will be silently ignored. Topology information can be found in the zone and nodeName fields instead.",
       "type": [
         "object",
         "null"
-      ],
+      ]
+    },
+    "hints": {
+      "description": "EndpointHints provides hints describing how an endpoint should be consumed.",
       "properties": {
         "forZones": {
           "description": "forZones indicates the zone(s) this endpoint should be consumed by to enable topology aware routing.",
-          "type": [
-            "array",
-            "null"
-          ],
           "items": {
             "description": "ForZone provides information about which zones should consume this endpoint.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "required": [
-              "name"
-            ],
             "properties": {
               "name": {
                 "description": "name represents the name of the zone.",
                 "type": "string"
               }
-            }
+            },
+            "required": [
+              "name"
+            ],
+            "type": [
+              "object",
+              "null"
+            ]
           },
+          "type": [
+            "array",
+            "null"
+          ],
           "x-kubernetes-list-type": "atomic"
         }
-      }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
     },
     "hostname": {
       "description": "hostname of this endpoint. This field may be used by consumers of endpoints to distinguish endpoints from each other (e.g. in DNS names). Multiple endpoints which use the same hostname should be considered fungible (e.g. multiple A values in DNS). Must be lowercase and pass DNS Label (RFC 1123) validation.",
@@ -111,10 +107,6 @@
     },
     "targetRef": {
       "description": "ObjectReference contains enough information to let you inspect or modify the referred object.",
-      "type": [
-        "object",
-        "null"
-      ],
       "properties": {
         "apiVersion": {
           "description": "API version of the referent.",
@@ -166,6 +158,10 @@
           ]
         }
       },
+      "type": [
+        "object",
+        "null"
+      ],
       "x-kubernetes-map-type": "atomic"
     },
     "zone": {
@@ -176,5 +172,9 @@
       ]
     }
   },
+  "required": [
+    "addresses"
+  ],
+  "type": "object",
   "$schema": "http://json-schema.org/schema#"
 }
