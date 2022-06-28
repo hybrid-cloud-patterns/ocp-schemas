@@ -1,0 +1,56 @@
+{
+  "description": "ManagedClusterSpec provides the information to securely connect to a remote server and verify its identity.",
+  "properties": {
+    "hubAcceptsClient": {
+      "description": "hubAcceptsClient represents that hub accepts the joining of Klusterlet agent on the managed cluster with the hub. The default value is false, and can only be set true when the user on hub has an RBAC rule to UPDATE on the virtual subresource of managedclusters/accept. When the value is set true, a namespace whose name is the same as the name of ManagedCluster is created on the hub. This namespace represents the managed cluster, also role/rolebinding is created on the namespace to grant the permision of access from the agent on the managed cluster. When the value is set to false, the namespace representing the managed cluster is deleted.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "leaseDurationSeconds": {
+      "description": "LeaseDurationSeconds is used to coordinate the lease update time of Klusterlet agents on the managed cluster. If its value is zero, the Klusterlet agent will update its lease every 60 seconds by default",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "managedClusterClientConfigs": {
+      "description": "ManagedClusterClientConfigs represents a list of the apiserver address of the managed cluster. If it is empty, the managed cluster has no accessible address for the hub to connect with it.",
+      "items": {
+        "description": "ClientConfig represents the apiserver address of the managed cluster.",
+        "properties": {
+          "caBundle": {
+            "description": "CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.",
+            "format": "byte",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "description": "URL is the URL of apiserver endpoint of the managed cluster.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "hubAcceptsClient"
+  ],
+  "type": "object",
+  "$schema": "http://json-schema.org/schema#"
+}
