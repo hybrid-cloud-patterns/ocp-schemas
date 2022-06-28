@@ -1,0 +1,45 @@
+{
+  "description": "SubjectRulesReviewSpec adds information about how to conduct the check",
+  "properties": {
+    "groups": {
+      "description": "Groups is optional.  Groups is the list of groups to which the User belongs.  At least one of User and Groups must be specified.",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "scopes": {
+      "description": "Scopes to use for the evaluation.  Empty means \"use the unscoped (full) permissions of the user/groups\".",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "user": {
+      "description": "User is optional.  At least one of User and Groups must be specified.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "user",
+    "groups",
+    "scopes"
+  ],
+  "type": "object",
+  "$schema": "http://json-schema.org/schema#"
+}

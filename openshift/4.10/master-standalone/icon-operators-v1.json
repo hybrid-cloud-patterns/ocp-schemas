@@ -1,0 +1,19 @@
+{
+  "description": "Icon defines a base64 encoded icon and media type",
+  "properties": {
+    "base64data": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mediatype": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$schema": "http://json-schema.org/schema#"
+}

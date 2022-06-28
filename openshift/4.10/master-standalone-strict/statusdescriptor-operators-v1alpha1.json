@@ -1,0 +1,48 @@
+{
+  "description": "StatusDescriptor describes a field in a status block of a CRD so that OLM can consume it",
+  "properties": {
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "displayName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "value": {
+      "format": "byte",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "x-descriptors": {
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "path"
+  ],
+  "type": "object",
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/schema#"
+}

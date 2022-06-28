@@ -1,9 +1,10 @@
 #!/bin/bash
 set -eu
 
-OCPVER=${OCPVER:-4.9}
+OCPVER=${OCPVER:-4.10}
 ARGOVER=${ARGOVER:-master}
 V=${VENV:-~/.virtualenvs}
+FILE=ocp-4.10-acm-2.5.0-clean.json
 # NOTE The prerequisite of this script is that you installed
 # Install openapi2json via pip in a virtualenv with the following patch
 # need to patch it with https://github.com/instrumenta/openapi2jsonschema/pull/55
@@ -23,18 +24,19 @@ source ${V}/openapi2json/bin/activate
 # done
 
 mkdir openshift/${OCPVER} -p
-cp ocp-acm-schemas/ocp-4.9-acm-2.4.2-clean.json openshift/${OCPVER}
+cp ocp-acm-schemas/${FILE} openshift/${OCPVER}
 cd openshift/${OCPVER}
 curl -L -o ocp-swagger.json https://github.com/openshift/kubernetes/blob/release-${OCPVER}/api/openapi-spec/swagger.json?raw=true
 curl -L -o argo-swagger.json https://raw.githubusercontent.com/argoproj/argo-cd/${ARGOVER}/assets/swagger.json
+curl -L -o tekton-swagger.json https://raw.githubusercontent.com/tektoncd/hub/main/vendor/github.com/tektoncd/pipeline/pkg/apis/pipeline/v1beta1/swagger.json
 mkdir -p master-standalone master-standalone-strict
 set +e
 # Order is important keep the downloaded json files last so they override the others
-for f in  ocp-4.9-acm-2.4.2-clean.json ocp-swagger.json argo-swagger.json; do
+for f in ${FILE} ocp-swagger.json argo-swagger.json tekton-swagger.json; do
 openapi2jsonschema -o "master-standalone" --expanded --kubernetes --stand-alone "$f" &
 openapi2jsonschema -o "master-standalone-strict" --expanded --kubernetes --stand-alone --strict "$f" &
 done
 wait
 set -e
-rm ocp-4.9-acm-2.4.2-clean.json ocp-swagger.json argo-swagger.json
+rm ${FILE} ocp-swagger.json argo-swagger.json tekton-swagger.json
 echo "Finished"

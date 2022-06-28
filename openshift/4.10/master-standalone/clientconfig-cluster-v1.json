@@ -1,0 +1,25 @@
+{
+  "description": "ClientConfig represents the apiserver address of the managed cluster.",
+  "properties": {
+    "caBundle": {
+      "description": "CABundle is the ca bundle to connect to apiserver of the managed cluster. System certs are used if it is not set.",
+      "format": "byte",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "url": {
+      "description": "URL is the URL of apiserver endpoint of the managed cluster.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "url"
+  ],
+  "type": "object",
+  "$schema": "http://json-schema.org/schema#"
+}
