@@ -820,6 +820,12 @@
       "$ref": "_definitions.json#/definitions/io.external-secrets.v1beta1.SecretStoreList"
     },
     {
+      "$ref": "_definitions.json#/definitions/io.hybrid-cloud-patterns.gitops.v1alpha1.Pattern"
+    },
+    {
+      "$ref": "_definitions.json#/definitions/io.hybrid-cloud-patterns.gitops.v1alpha1.PatternList"
+    },
+    {
       "$ref": "_definitions.json#/definitions/io.k8s.api.admissionregistration.v1.MutatingWebhook"
     },
     {

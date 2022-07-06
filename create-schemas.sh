@@ -4,7 +4,7 @@ set -eu
 OCPVER=${OCPVER:-4.10}
 ARGOVER=${ARGOVER:-master}
 V=${VENV:-~/.virtualenvs}
-FILE=ocp-4.10-acm-2.5.0-clean.json
+FILE=${FILE:-ocp-4.10-acm-2.5.0-clean.json}
 # NOTE The prerequisite of this script is that you installed
 # Install openapi2json via pip in a virtualenv with the following patch
 # need to patch it with https://github.com/instrumenta/openapi2jsonschema/pull/55
@@ -16,6 +16,7 @@ FILE=ocp-4.10-acm-2.5.0-clean.json
 # curl -L https://github.com/instrumenta/openapi2jsonschema/commit/eeed25046b189924fe835ab784eadbb241ae574c.diff | patch -d ~/.virtualenvs/openapi2json/lib/python3.10/site-packages/openapi2jsonschema -p2
 # curl -L https://github.com/instrumenta/openapi2jsonschema/pull/58/commits/7a208e9becae9c66bccb4c89869bb24f634a42af.diff | patch -d ~/.virtualenvs/openapi2json/lib/python3.10/site-packages/openapi2jsonschema -p2
 source ${V}/openapi2json/bin/activate
+echo "Working on ${FILE}"
 
 # for i in ${URLS[@]}; do
 #   base=$(basename $i)
